@@ -3,7 +3,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta content="Asciidoctor 0.1.4" name="generator">
+<meta content="Asciidoctor 1.5.0" name="generator">
 <title>Neo4j Intro Training</title>
 <script src="../../../../asciidoc/deck.js/jquery.min.js"></script>
 <script src="../../../../asciidoc/deck.js/core/deck.core.js"></script>
@@ -45,7 +45,6 @@ Grab a USB key, and plug it in.
 </li>
 </ol>
 </div>
-
 <table class="tableblock frame-all grid-all" style="width:100%">
 <colgroup>
 <col style="width:50%">
@@ -72,7 +71,6 @@ Grab a USB key, and plug it in.
 </tr>
 </tbody>
 </table>
-
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -81,7 +79,6 @@ Grab a coffee and get ready to begin!
 </ol>
 </div>
 </section>
-
 <section class="slide" id="_neo4j_tutorial">
 <h2>Neo4j Tutorial</h2>
 <div class="listingblock">
@@ -89,17 +86,13 @@ Grab a coffee and get ready to begin!
 <pre><code>(you)-[:KNOW]-&gt;(Neo4j)</code></pre>
 </div>
 </div>
-
-<div class="paragraph"><p class="center-down">with Michael Hunger</p></div>
-
+<div class="paragraph"><p class="center-down">with Neo Technology</p></div>
 <div class="paragraph"><p><a href="mailto:info@neotechnology.com">info@neotechnology.com</a> | @neo4j</p></div>
 </section>
-
 <section class="slide" id="_why_did_you_come">
 <h2>Why did you come?</h2>
 
 </section>
-
 <section class="slide" id="_answer_five_questions">
 <h2>Answer five Questions</h2>
 <div class="ulist">
@@ -109,13 +102,12 @@ Grab a coffee and get ready to begin!
 <li class="slide">How do I model data?</li>
 <li class="slide">How do I enter data?</li>
 <li class="slide">How do I query data?</li>
-<li class="slide">and&#8230;</li>
+<li class="slide">and&#8230;&#8203;</li>
 <li class="slide">provide confidence start building</li>
 <li class="slide">a graph enabled application</li>
 </ul>
 </div>
 </section>
-
 <section class="slide" id="_schedule">
 <h2>Schedule</h2>
 <div class="literalblock">
@@ -132,26 +124,22 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="__introduction_to_graphs">
 <h2>(Introduction to Graphs)</h2>
 
 </section>
-
 <section class="slide" id="_but_first_an_important_message">
-<h2>But first an important message &#8230;</h2>
+<h2>But first an important message &#8230;&#8203;</h2>
 
 </section>
-
 <section class="slide" id="_these_are_charts">
-<h2>These are Charts &#8230;</h2>
+<h2>These are Charts &#8230;&#8203;</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="charts" src="../../img/charts.png">
 </div>
 </div>
 </section>
-
 <section class="slide" id="_not_graphs">
 <h2>Not Graphs</h2>
 <div class="imageblock">
@@ -160,7 +148,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_leonhard_euler_1707_1783">
 <h2>Leonhard Euler 1707-1783</h2>
 <div class="imageblock">
@@ -168,61 +155,49 @@ Grab a coffee and get ready to begin!
 <img alt="euler" src="../../img/euler.png">
 </div>
 </div>
-
 <div class="paragraph"><p>Swiss Mathematician</p></div>
 </section>
-
-<section class="slide" id="_7_bridges_of_k_nigsberg">
+<section class="slide" id="_7_bridges_of_königsberg">
 <h2>7 Bridges of Königsberg</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="konigsberg" src="../../img/konigsberg.png">
 </div>
 </div>
-
 <div class="paragraph"><p>Königsberg (Prussia) - 1736</p></div>
-
 <div class="paragraph"><p>7 Bridges, one route?</p></div>
 </section>
-
-<section class="slide" id="_7_bridges_of_k_nigsberg_approach">
+<section class="slide" id="_7_bridges_of_königsberg_approach">
 <h2>7 Bridges of Königsberg - Approach</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="konigsberg1" src="../../img/konigsberg1.png">
 </div>
 </div>
-
 <div class="paragraph"><p>Identify parts &#8594; Landmasses &amp; Bridges</p></div>
 </section>
-
-<section class="slide" id="_7_bridges_of_k_nigsberg_model">
+<section class="slide" id="_7_bridges_of_königsberg_model">
 <h2>7 Bridges of Königsberg - Model</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="konigsberg3" src="../../img/konigsberg3.png">
 </div>
 </div>
-
 <div class="paragraph"><p>It&#8217;s a graph &#8594; Nodes &amp; Relationships</p></div>
 </section>
-
-<section class="slide" id="_7_bridges_of_k_nigsberg_solution">
+<section class="slide" id="_7_bridges_of_königsberg_solution">
 <h2>7 Bridges of Königsberg - Solution</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="konigsberg4" src="../../img/konigsberg4.png">
 </div>
 </div>
-
 <div class="paragraph"><p>Path finding &#8594; There was no route</p></div>
 </section>
-
 <section class="slide" id="_so_what_about_data">
 <h2>So what about data?</h2>
 
 </section>
-
 <section class="slide" id="_alice_bob">
 <h2>Alice &amp; Bob</h2>
 <figure class="graph-diagram">
@@ -250,7 +225,6 @@ Grab a coffee and get ready to begin!
 </ul>
 </figure>
 </section>
-
 <section class="slide" id="_add_detail">
 <h2>Add Detail</h2>
 <figure class="graph-diagram">
@@ -274,12 +248,10 @@ Grab a coffee and get ready to begin!
 </ul>
 </figure>
 </section>
-
 <section class="slide" id="_segue_graphs_in_a_relational_world">
 <h2>Segue: Graphs in a Relational World</h2>
 
 </section>
-
 <section class="slide" id="_tables">
 <h2>Tables</h2>
 <div class="imageblock">
@@ -288,7 +260,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_one_table">
 <h2>One table</h2>
 <div class="imageblock">
@@ -297,7 +268,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_another_one">
 <h2>Another one</h2>
 <div class="imageblock">
@@ -306,7 +276,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_a_link_table">
 <h2>A link table</h2>
 <div class="imageblock">
@@ -315,7 +284,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_joining_them">
 <h2>JOINing them</h2>
 <div class="imageblock">
@@ -324,7 +292,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_this_is_the_data">
 <h2>This is the data</h2>
 <div class="imageblock">
@@ -333,7 +300,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_explicit_as_a_graph">
 <h2>Explicit as a graph</h2>
 <div class="imageblock">
@@ -342,7 +308,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_nodes">
 <h2>Nodes</h2>
 <div class="imageblock">
@@ -351,16 +316,14 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_relationships_and">
-<h2>Relationships and &#8230;</h2>
+<h2>Relationships and &#8230;&#8203;</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="rel graph8" src="../../img/rel_graph8.jpg">
 </div>
 </div>
 </section>
-
 <section class="slide" id="_nodes_relationships_and_labels">
 <h2>Nodes, Relationships and Labels.</h2>
 <div class="imageblock">
@@ -369,17 +332,14 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_modeling_with_graphs">
 <h2>Modeling with graphs</h2>
 
 </section>
-
 <section class="slide" id="_start_with_a_whiteboard">
 <h2>Start with a whiteboard</h2>
 
 </section>
-
 <section class="slide" id="_1">
 <h2>1</h2>
 <div class="imageblock">
@@ -388,7 +348,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_2">
 <h2>2</h2>
 <div class="imageblock">
@@ -397,7 +356,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_3">
 <h2>3</h2>
 <div class="imageblock">
@@ -406,7 +364,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_4">
 <h2>4</h2>
 <div class="imageblock">
@@ -415,7 +372,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_5">
 <h2>5</h2>
 <div class="imageblock">
@@ -424,12 +380,10 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_model_incrementally">
 <h2>Model incrementally</h2>
 
 </section>
-
 <section class="slide" id="_6">
 <h2>6</h2>
 <div class="imageblock">
@@ -438,7 +392,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_7">
 <h2>7</h2>
 <div class="imageblock">
@@ -447,12 +400,10 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="__brief_tour_of_neo4j">
 <h2>(Brief tour of Neo4j)</h2>
 
 </section>
-
 <section class="slide" id="_neo4j_browser_finding_help">
 <h2>Neo4j Browser - finding help</h2>
 <div class="imageblock">
@@ -461,7 +412,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_neo4j_browser_execute_cypher_visualize">
 <h2>Neo4j Browser - execute Cypher, visualize</h2>
 <div class="imageblock">
@@ -470,7 +420,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_neo4j_browser_importing_sample_data">
 <h2>Neo4j Browser - importing sample data</h2>
 <div class="imageblock">
@@ -479,7 +428,6 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_neo4j_data_browser_display_more_data">
 <h2>Neo4j Data browser - display more data</h2>
 <div class="imageblock">
@@ -488,17 +436,14 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-
 <section class="slide" id="_coffee">
 <h2>Coffee?</h2>
 
 </section>
-
 <section class="slide" id="_intro_to_cypher">
 <h2>Intro to Cypher</h2>
 
 </section>
-
 <section class="slide" id="_cypher_is_neo4j_s_graph_query_language">
 <h2>Cypher is Neo4j&#8217;s graph query language</h2>
 <div class="ulist">
@@ -509,7 +454,6 @@ Grab a coffee and get ready to begin!
 </ul>
 </div>
 </section>
-
 <section class="slide" id="_it_s_all_about_patterns">
 <h2>It&#8217;s all about patterns</h2>
 <figure class="graph-diagram">
@@ -529,7 +473,6 @@ Grab a coffee and get ready to begin!
  </ul>
 </figure>
 </section>
-
 <section class="slide" id="_it_s_all_about_patterns_2">
 <h2>It&#8217;s all about patterns</h2>
 <section class="notitle slide" id="big_graph1">
@@ -564,23 +507,19 @@ Grab a coffee and get ready to begin!
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="bg1_triangle1">
 <h3>Triangle1</h3>
 
 </section>
-
 <section class="notitle slide" id="bg1_triangle2">
 <h3>Triangle2</h3>
 
 </section>
 </section>
-
 <section class="slide" id="_how">
 <h2>How?</h2>
 
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship">
 <h2>Two nodes, one relationship</h2>
 <section class="slide" id="_the_graph">
@@ -596,7 +535,6 @@ Grab a coffee and get ready to begin!
   <li class="relationship" data-from="0" data-to="1"></li>
 </ul>
 </figure>
-
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code">(a)--&gt;(b)</textarea>
@@ -604,7 +542,6 @@ Grab a coffee and get ready to begin!
 </div>
 </section>
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship_2">
 <h2>Two nodes, one relationship</h2>
 <div class="listingblock slide">
@@ -613,7 +550,6 @@ Grab a coffee and get ready to begin!
 RETURN a, b</textarea>
 </div>
 </div>
-
 <section class="slide" id="_the_pattern">
 <h3>The pattern</h3>
 <figure class="graph-diagram">
@@ -629,7 +565,6 @@ RETURN a, b</textarea>
 </figure>
 </section>
 </section>
-
 <section class="slide" id="big_graph2">
 <h2>The graph</h2>
 <figure class="graph-diagram big-graph">
@@ -661,23 +596,19 @@ RETURN a, b</textarea>
   <li class="relationship" data-from="9" data-to="3"></li>
 </ul>
 </figure>
-
 <section class="notitle slide" id="bg2_graph_pattern_ab1">
 <h3>ab1</h3>
 
 </section>
-
 <section class="notitle slide" id="bg2_graph_pattern_ab2">
 <h3>ab2</h3>
 
 </section>
-
 <section class="notitle slide" id="bg2_graph_pattern_ab3">
 <h3>ab3</h3>
 
 </section>
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship_3">
 <h2>Two nodes, one relationship</h2>
 <section class="notitle slide" id="_the_graph_2">
@@ -694,7 +625,6 @@ RETURN a, b</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="_the_code">
 <h3>The code</h3>
 <div class="listingblock">
@@ -704,7 +634,6 @@ RETURN a, b</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship_4">
 <h2>Two nodes, one relationship</h2>
 <div class="listingblock slide">
@@ -713,7 +642,6 @@ RETURN a, b</textarea>
 RETURN a.name</textarea>
 </div>
 </div>
-
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
   <li class="node" data-node-id="0" data-x="-50" data-y="-40">
@@ -726,7 +654,6 @@ RETURN a.name</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship_5">
 <h2>Two nodes, one relationship</h2>
 <div class="listingblock slide">
@@ -735,7 +662,6 @@ RETURN a.name</textarea>
 RETURN a.name</textarea>
 </div>
 </div>
-
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
   <li class="node" data-node-id="0" data-x="-50" data-y="-40">
@@ -748,7 +674,6 @@ RETURN a.name</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship_6">
 <h2>Two nodes, one relationship</h2>
 <section class="notitle slide" id="_the_graph_3">
@@ -767,13 +692,11 @@ RETURN a.name</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="_the_code_2">
 <h3>The code</h3>
-<div class="paragraph"><p><code>(a)-<span class="highlight">[r]</span> - &gt;()</code></p></div>
+<div class="paragraph"><p>(a)-[highlight]#[r]# - &gt;()</p></div>
 </section>
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship_7">
 <h2>Two nodes, one relationship</h2>
 <div class="listingblock slide">
@@ -782,7 +705,6 @@ RETURN a.name</textarea>
 RETURN a.name, type(r)</textarea>
 </div>
 </div>
-
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
   <li class="node" data-node-id="0" data-x="-50" data-y="-40">
@@ -797,7 +719,6 @@ RETURN a.name, type(r)</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="slide" id="_two_nodes_one_optional_relationship">
 <h2>Two nodes, one optional relationship</h2>
 <section class="notitle slide" id="graph_optional_match">
@@ -814,7 +735,6 @@ RETURN a.name, type(r)</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="graph_pattern_optional_rel">
 <h3>Optional stroke</h3>
 <div class="listingblock slide">
@@ -825,7 +745,6 @@ RETURN a.name, type(r)</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_two_nodes_one_relationship_8">
 <h2>Two nodes, one relationship</h2>
 <section class="notitle slide" id="graph_optional_match">
@@ -844,11 +763,9 @@ RETURN a.name, type(r)</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="_the_code_3">
 <h3>The code</h3>
-<div class="paragraph"><p><code>(a)-[:ACTED_IN]&#8594;(m)</code></p></div>
-
+<div class="paragraph"><p>(a)-[:ACTED_IN]-&gt;(m)</p></div>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (a)-[:ACTED_IN]-&gt;(m)
@@ -856,7 +773,6 @@ RETURN a.name, m.title</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_returning_role_properties">
 <h3>Returning role properties</h3>
 <div class="listingblock slide">
@@ -867,7 +783,6 @@ RETURN a.name, r.roles, m.title</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_paths">
 <h2>Paths</h2>
 <section class="notitle slide" id="_the_graph_4">
@@ -892,13 +807,11 @@ RETURN a.name, r.roles, m.title</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="_the_code_4">
 <h3>The code</h3>
-<div class="paragraph"><p><code>(a) - - &gt;(b) - - &gt;(c)</code></p></div>
+<div class="paragraph"><p>(a) - - &gt;(b) - - &gt;(c)</p></div>
 </section>
 </section>
-
 <section class="slide" id="_paths_2">
 <h2>Paths</h2>
 <section class="notitle slide" id="_the_graph_5">
@@ -923,13 +836,11 @@ RETURN a.name, r.roles, m.title</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="_the_code_5">
 <h3>The code</h3>
-<div class="paragraph"><p><code>(a) - - &gt;(b)&lt; - - (c)</code></p></div>
+<div class="paragraph"><p>(a) - - &gt;(b)&lt; - - (c)</p></div>
 </section>
 </section>
-
 <section class="slide" id="_paths_3">
 <h2>Paths</h2>
 <section class="notitle slide" id="_the_graph_6">
@@ -953,7 +864,6 @@ RETURN a.name, r.roles, m.title</textarea>
     </li>
 </ul>
 </figure>
-
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (a)-[:ACTED_IN]-&gt;(m)&lt;-[:DIRECTED]-(d)
@@ -962,7 +872,6 @@ RETURN a.name, m.title, d.name</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_a_movies_query">
 <h2>A Movies Query</h2>
 <section class="notitle slide" id="_the_code_6">
@@ -974,7 +883,6 @@ RETURN a.name, m.title, d.name;</textarea>
 </div>
 </div>
 </section>
-
 <section class="notitle slide" id="_the_result">
 <h3>The result</h3>
 <table class="tableblock frame-topbot grid-all" style="width:100%">
@@ -1015,7 +923,6 @@ RETURN a.name, m.title, d.name;</textarea>
 </table>
 </section>
 </section>
-
 <section class="slide" id="_a_movies_query_with_alias">
 <h2>A Movies Query with alias</h2>
 <section class="notitle slide" id="_the_code_7">
@@ -1028,7 +935,6 @@ RETURN a.name AS actor, m.title AS movie,
 </div>
 </div>
 </section>
-
 <section class="notitle slide" id="_the_result_2">
 <h3>The result</h3>
 <table class="tableblock frame-topbot grid-all" style="width:100%">
@@ -1069,7 +975,6 @@ RETURN a.name AS actor, m.title AS movie,
 </table>
 </section>
 </section>
-
 <section class="slide" id="_paths_4">
 <h2>Paths</h2>
 <section class="notitle slide" id="graph_optional_match">
@@ -1097,7 +1002,6 @@ RETURN a.name AS actor, m.title AS movie,
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="_the_code_8">
 <h3>The code</h3>
 <div class="listingblock">
@@ -1109,7 +1013,6 @@ RETURN a.name, m.title, d.name</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_paths_5">
 <h2>Paths</h2>
 <figure class="graph-diagram">
@@ -1134,7 +1037,6 @@ RETURN a.name, m.title, d.name</textarea>
     </li>
 </ul>
 </figure>
-
 <div class="listingblock">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH
@@ -1143,7 +1045,6 @@ RETURN a.name, m.title, d.name</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_paths_6">
 <h2>Paths</h2>
 <section class="notitle slide" id="graph_optional_match">
@@ -1168,7 +1069,6 @@ RETURN a.name, m.title, d.name</textarea>
 </ul>
 </figure>
 </section>
-
 <section class="notitle slide" id="_the_code_9">
 <h3>The code</h3>
 <div class="listingblock">
@@ -1179,7 +1079,6 @@ RETURN p</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_paths_7">
 <h2>Paths</h2>
 <section class="notitle slide" id="graph_optional_match">
@@ -1203,7 +1102,6 @@ RETURN p</textarea>
     </li>
 </ul>
 </figure>
-
 <div class="listingblock">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH p=(a)-[:ACTED_IN]-&gt;(m)&lt;-[:DIRECTED]-(d)
@@ -1212,7 +1110,6 @@ RETURN nodes(p)</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_paths_8">
 <h2>Paths</h2>
 <figure class="graph-diagram">
@@ -1237,7 +1134,6 @@ RETURN nodes(p)</textarea>
     </li>
 </ul>
 </figure>
-
 <div class="listingblock">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH
@@ -1246,7 +1142,6 @@ RETURN p1, p2</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_aggregation">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
@@ -1255,7 +1150,6 @@ RETURN p1, p2</textarea>
 RETURN a.name, m.title, d.name;</textarea>
 </div>
 </div>
-
 <table class="tableblock frame-topbot grid-all slide" style="width:100%">
 <colgroup>
 <col style="width:33%">
@@ -1288,21 +1182,19 @@ RETURN a.name, m.title, d.name;</textarea>
 </tbody>
 </table>
 </section>
-
 <section class="slide" id="_aggregation_functions">
 <h2>Aggregation functions</h2>
 <div class="ulist">
 <ul>
-<li class="slide"><code>count(x)</code>	- add up the number of occurrences</li>
-<li class="slide"><code>min(x)</code>	- get the lowest value</li>
-<li class="slide"><code>max(x)</code>	- get the highest value</li>
-<li class="slide"><code>avg(x)</code>	- get the average of a numeric value</li>
-<li class="slide"><code>sum(x)</code>	- add up all values</li>
-<li class="slide"><code>collect(x)</code>	- collected all the occurrences into an array</li>
+<li class="slide">count(x)	- add up the number of occurrences</li>
+<li class="slide">min(x)	- get the lowest value</li>
+<li class="slide">max(x)	- get the highest value</li>
+<li class="slide">avg(x)	- get the average of a numeric value</li>
+<li class="slide">sum(x)	- add up all values</li>
+<li class="slide">collect(x)	- collected all the occurrences into an array</li>
 </ul>
 </div>
 </section>
-
 <section class="slide" id="_aggregation_2">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
@@ -1311,7 +1203,6 @@ RETURN a.name, m.title, d.name;</textarea>
 RETURN a.name, d.name, count(*);</textarea>
 </div>
 </div>
-
 <table class="tableblock frame-topbot grid-all slide" style="width:100%">
 <colgroup>
 <col style="width:33%">
@@ -1344,7 +1235,6 @@ RETURN a.name, d.name, count(*);</textarea>
 </tbody>
 </table>
 </section>
-
 <section class="slide" id="_aggregation_3">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
@@ -1353,7 +1243,6 @@ RETURN a.name, d.name, count(*);</textarea>
 RETURN a.name, d.name, count(m);</textarea>
 </div>
 </div>
-
 <table class="tableblock frame-topbot grid-all slide" style="width:100%">
 <colgroup>
 <col style="width:33%">
@@ -1386,7 +1275,6 @@ RETURN a.name, d.name, count(m);</textarea>
 </tbody>
 </table>
 </section>
-
 <section class="slide" id="_as">
 <h2>As</h2>
 <div class="listingblock slide">
@@ -1398,7 +1286,6 @@ RETURN
  count(m) AS count;</textarea>
 </div>
 </div>
-
 <table class="tableblock frame-topbot grid-all slide" style="width:100%">
 <colgroup>
 <col style="width:33%">
@@ -1431,7 +1318,6 @@ RETURN
 </tbody>
 </table>
 </section>
-
 <section class="labslide slide" id="_lab">
 <h2>Lab</h2>
 <section class="slide" id="_which_directors_acted_also_in_their_movie">
@@ -1444,7 +1330,6 @@ RETURN a.name, m.title;</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_unique_relationships_in_paths">
 <h2>Unique relationships in paths</h2>
 <div class="listingblock slide">
@@ -1454,7 +1339,6 @@ RETURN a.name, m.title</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_sort_and_limit">
 <h2>Sort and limit</h2>
 <div class="listingblock slide">
@@ -1466,7 +1350,6 @@ LIMIT 5</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_aggregation_4">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
@@ -1478,7 +1361,6 @@ RETURN
   collect(m.title)</textarea>
 </div>
 </div>
-
 <section class="notitle slide" id="_notitle">
 <h3>notitle</h3>
 <figure class="graph-diagram">
@@ -1502,12 +1384,10 @@ RETURN
 </figure>
 </section>
 </section>
-
 <section class="slide" id="_starting_somewhere">
 <h2>Starting somewhere</h2>
 
 </section>
-
 <section class="slide" id="_get_all_nodes">
 <h2>Get all nodes</h2>
 <div class="listingblock slide">
@@ -1517,7 +1397,6 @@ RETURN n</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_find_a_specific_node_within_all_nodes">
 <h2>Find a specific node (within all-nodes)</h2>
 <div class="listingblock slide">
@@ -1527,7 +1406,6 @@ WHERE has(n.name) AND n.name="Tom Hanks"
 RETURN n</textarea>
 </div>
 </div>
-
 <div class="ulist">
 <ul>
 <li class="slide"><span class="highlight">WHERE</span> - filter the results</li>
@@ -1536,7 +1414,6 @@ RETURN n</textarea>
 </ul>
 </div>
 </section>
-
 <section class="slide" id="big_graph3">
 <h2>The Graph</h2>
 <figure class="graph-diagram big-graph">
@@ -1568,13 +1445,11 @@ RETURN n</textarea>
   <li class="relationship" data-from="9" data-to="3"></li>
 </ul>
 </figure>
-
 <section class="notitle slide" id="bg3_one_node">
 <h3>notitle</h3>
 
 </section>
 </section>
-
 <section class="slide" id="_find_a_specific_node_with_a_label">
 <h2>Find a specific node (with a label)</h2>
 <div class="listingblock slide">
@@ -1584,14 +1459,12 @@ WHERE tom.name="Tom Hanks"
 RETURN tom</textarea>
 </div>
 </div>
-
 <div class="ulist">
 <ul>
 <li class="slide"><span class="highlight">:Person</span> - Matches only nodes labeled as Person</li>
 </ul>
 </div>
 </section>
-
 <section class="slide" id="big_graph4">
 <h2>The Graph</h2>
 <figure class="graph-diagram big-graph">
@@ -1623,13 +1496,11 @@ RETURN tom</textarea>
   <li class="relationship" data-from="9" data-to="3"></li>
 </ul>
 </figure>
-
 <section class="notitle slide" id="bg4_one_node">
 <h3>notitle</h3>
 
 </section>
 </section>
-
 <section class="slide" id="_start_with_a_specific_labeled_node">
 <h2>Start with a specific (labeled) node</h2>
 <div class="listingblock slide">
@@ -1639,10 +1510,8 @@ WHERE tom.name="Tom Hanks"
 RETURN movie.title</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Movies featuring Tom Hanks)</p></div>
 </section>
-
 <section class="slide" id="big_graph5">
 <h2>The Graph</h2>
 <figure class="graph-diagram big-graph">
@@ -1674,18 +1543,15 @@ RETURN movie.title</textarea>
   <li class="relationship" data-from="9" data-to="3"></li>
 </ul>
 </figure>
-
 <section class="notitle slide" id="bg5_one_node">
 <h3>notitle</h3>
 
 </section>
-
 <section class="notitle slide" id="bg5_one_node_outgoing">
 <h3>notitle</h3>
 
 </section>
 </section>
-
 <section class="slide" id="_start_with_a_specific_labeled_node_2">
 <h2>Start with a specific labeled node</h2>
 <div class="listingblock slide">
@@ -1696,10 +1562,8 @@ WHERE tom.name="Tom Hanks"
 RETURN director.name</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Directors who worked with Tom Hanks)</p></div>
 </section>
-
 <section class="slide" id="big_graph6">
 <h2>The Graph</h2>
 <figure class="graph-diagram big-graph">
@@ -1731,14 +1595,10 @@ RETURN director.name</textarea>
   <li class="relationship" data-from="9" data-to="3"></li>
 </ul>
 </figure>
-
 <div class="paragraph slide" id="bg6_one_node"><p><span class="red">Tom Hanks</span></p></div>
-
 <div class="paragraph slide" id="bg6_one_node_outgoing"><p><span class="orange">Movies</span></p></div>
-
 <div class="paragraph slide" id="bg6_one_node_outgoing_incoming"><p><span class="blue">Directors</span></p></div>
 </section>
-
 <section class="slide" id="_start_with_a_specific_labeled_node_3">
 <h2>Start with a specific labeled node</h2>
 <div class="listingblock slide">
@@ -1748,10 +1608,8 @@ WHERE tom.name="Tom Hanks"
 RETURN DISTINCT director.name</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Directors who worked with Tom Hanks)</p></div>
 </section>
-
 <section class="slide" id="_create_label_specific_index">
 <h2>Create label-specific index</h2>
 <div class="listingblock slide">
@@ -1759,14 +1617,12 @@ RETURN DISTINCT director.name</textarea>
 <textarea class="code" mode="cypher">CREATE INDEX ON :Person(name)</textarea>
 </div>
 </div>
-
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">CREATE INDEX ON :Movie(title)</textarea>
 </div>
 </div>
 </section>
-
 <section class="labslide slide" id="_create_two_indexes">
 <h2>Create two indexes.</h2>
 <div class="ulist">
@@ -1776,7 +1632,6 @@ RETURN DISTINCT director.name</textarea>
 </ul>
 </div>
 </section>
-
 <section class="slide" id="_labels_on_pattern_anchors">
 <h2>Labels on pattern "anchors"</h2>
 <div class="listingblock slide">
@@ -1788,10 +1643,8 @@ WHERE tom.name="Tom Hanks" AND
 RETURN DISTINCT movie.title</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Movies featuring both Tom Hanks and Kevin Bacon)</p></div>
 </section>
-
 <section class="slide" id="_conditions">
 <h2>Conditions</h2>
 <div class="listingblock slide">
@@ -1802,10 +1655,8 @@ AND movie.released &lt; 1992
 RETURN DISTINCT movie.title</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Movies in which Tom Hanks acted, that were released before 1992)</p></div>
 </section>
-
 <section class="slide" id="big_graph7">
 <h2>The Graph</h2>
 <figure class="graph-diagram big-graph">
@@ -1837,12 +1688,9 @@ RETURN DISTINCT movie.title</textarea>
   <li class="relationship" data-from="9" data-to="3"></li>
 </ul>
 </figure>
-
 <div class="paragraph slide" id="bg7_one_node"><p><span class="red">Tom Hanks</span></p></div>
-
 <div class="paragraph slide" id="bg7_one_node_outgoing"><p><span class="orange">Movies</span></p></div>
 </section>
-
 <section class="slide" id="_conditions_on_properties">
 <h2>Conditions on properties</h2>
 <div class="listingblock slide">
@@ -1853,10 +1701,8 @@ AND "Neo" IN (r.roles)
 RETURN DISTINCT movie.title</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Movies in which Keanu Reeves played Neo)</p></div>
 </section>
-
 <section class="slide" id="_conditions_on_properties_2">
 <h2>Conditions on properties</h2>
 <div class="listingblock slide">
@@ -1867,10 +1713,8 @@ AND ANY( x IN r.roles WHERE x = "Neo")
 RETURN DISTINCT movie.title</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Movies in which Keanu Reeves played Neo)</p></div>
 </section>
-
 <section class="slide" id="_conditions_based_on_comparisons">
 <h2>Conditions based on comparisons</h2>
 <div class="listingblock slide">
@@ -1882,10 +1726,8 @@ AND a.born &lt; tom.born
 RETURN DISTINCT a.name</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Actors who worked with Tom and are older than he was)</p></div>
 </section>
-
 <section class="slide" id="_conditions_based_on_comparisons_2">
 <h2>Conditions based on comparisons</h2>
 <div class="listingblock slide">
@@ -1897,10 +1739,8 @@ AND a.born &lt; tom.born
 RETURN DISTINCT a.name, (tom.born - a.born) AS diff</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Actors who worked with Tom and are older than he was)</p></div>
 </section>
-
 <section class="slide" id="_conditions_based_on_patterns">
 <h2>Conditions based on patterns</h2>
 <div class="listingblock slide">
@@ -1911,10 +1751,8 @@ WHERE gene.name="Gene Hackman"
 RETURN DISTINCT n.name</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Actors who worked with Gene Hackman)</p></div>
 </section>
-
 <section class="slide" id="_conditions_based_on_patterns_2">
 <h2>Conditions based on patterns</h2>
 <div class="listingblock slide">
@@ -1926,10 +1764,8 @@ AND (n)-[:DIRECTED]-&gt;()
 RETURN DISTINCT n.name</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Actors who worked with Gene and were directors of their own films)</p></div>
 </section>
-
 <section class="slide" id="_conditions_based_on_patterns_3">
 <h2>Conditions based on patterns</h2>
 <div class="listingblock slide">
@@ -1944,7 +1780,6 @@ RETURN DISTINCT n.name</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_wildcard_matching_on_properties">
 <h2>Wildcard matching on properties</h2>
 <div class="listingblock slide">
@@ -1955,10 +1790,8 @@ AND a.name =~ ".*Emil.*"
 RETURN a</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Actors who worked with Keanu, but not when he was also working with Hugo)</p></div>
 </section>
-
 <section class="labslide slide" id="_lab_2">
 <h2>Lab</h2>
 <section class="slide" id="_who_are_the_five_busiest_actors">
@@ -1973,7 +1806,6 @@ LIMIT 5</textarea>
 </div>
 </section>
 </section>
-
 <section class="labslide slide" id="_advanced_lab">
 <h2>Advanced lab</h2>
 <section class="slide" id="_recommend_3_actors_that_keanu_reeves_should_work_with_but_hasn_t">
@@ -1992,17 +1824,14 @@ LIMIT 3</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_coffee_lunch">
 <h2>Coffee? Lunch?</h2>
 
 </section>
-
 <section class="slide" id="_updating_graphs_with_cypher">
 <h2>Updating graphs with Cypher</h2>
 
 </section>
-
 <section class="slide" id="_creating_nodes">
 <h2>Creating nodes</h2>
 <div class="listingblock slide">
@@ -2010,7 +1839,6 @@ LIMIT 3</textarea>
 <textarea class="code" mode="cypher">CREATE (p:Person {name:"Emil"})</textarea>
 </div>
 </div>
-
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (p:Person)
@@ -2019,7 +1847,6 @@ RETURN p</textarea>
 </div>
 </div>
 </section>
-
 <section class="labslide slide" id="_lab_3">
 <h2>Lab</h2>
 <section class="slide" id="_insert_a_movie_with_the_title_of_mystic_river_an_a_released_year_of_1993">
@@ -2031,7 +1858,6 @@ RETURN p</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_adding_properties">
 <h2>Adding properties</h2>
 <div class="listingblock slide">
@@ -2044,7 +1870,6 @@ RETURN movie</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_changing_properties">
 <h2>Changing properties</h2>
 <div class="listingblock slide">
@@ -2057,7 +1882,6 @@ RETURN movie</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_creating_relationships">
 <h2>Creating relationships</h2>
 <div class="listingblock slide">
@@ -2069,7 +1893,6 @@ WHERE movie.title="Mystic River" AND
 CREATE UNIQUE (kevin)-[:ACTED_IN {roles:["Sean"]}]-&gt;(movie)</textarea>
 </div>
 </div>
-
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (kevin)-[:ACTED_IN]-&gt;(movie)
@@ -2078,7 +1901,6 @@ RETURN movie.title</textarea>
 </div>
 </div>
 </section>
-
 <section class="labslide slide" id="_lab_4">
 <h2>Lab</h2>
 <section class="slide" id="_set_kevin_bacon_s_roles_in_mystic_river_from_to_sean_dev">
@@ -2094,7 +1916,6 @@ RETURN r.roles</textarea>
 </div>
 </section>
 </section>
-
 <section class="labslide slide" id="_lab_5">
 <h2>Lab</h2>
 <section class="slide" id="_change_kevin_bacon_s_role_in_mystic_river_from_sean_dev_to_sean_devine">
@@ -2110,7 +1931,6 @@ RETURN r.roles</textarea>
 </div>
 </section>
 </section>
-
 <section class="labslide slide" id="_lab_6">
 <h2>Lab</h2>
 <section class="slide" id="_add_clint_eastwood_as_the_director_of_mystic_river">
@@ -2125,7 +1945,6 @@ CREATE UNIQUE (clint)-[:DIRECTED]-&gt;(movie)</textarea>
 </div>
 </section>
 </section>
-
 <section class="labslide slide" id="_lab_7">
 <h2>Lab</h2>
 <section class="slide" id="_list_all_the_characters_in_the_movie_the_matrix">
@@ -2139,7 +1958,6 @@ RETURN r.roles</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_deleting_nodes">
 <h2>Deleting nodes</h2>
 <div class="listingblock slide">
@@ -2149,10 +1967,8 @@ WHERE emil.name="Emil Eifrem"
 DELETE emil</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Wrong Error Message)</p></div>
 </section>
-
 <section class="slide" id="_deleting_relationships">
 <h2>Deleting relationships</h2>
 <div class="listingblock slide">
@@ -2163,7 +1979,6 @@ DELETE r</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_deleting_nodes_and_relationships">
 <h2>Deleting nodes and relationships</h2>
 <div class="listingblock slide">
@@ -2173,10 +1988,8 @@ OPTIONAL MATCH (n)-[r]-&gt;()
 DELETE n, r</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(delete all content in the database)</p></div>
 </section>
-
 <section class="labslide slide" id="_lab_8">
 <h2>Lab</h2>
 <section class="slide" id="_add_knows_relationships_between_all_actors_who_were_in_the_same_movie">
@@ -2190,7 +2003,6 @@ CREATE UNIQUE (a)-[:KNOWS]-&gt;(b);</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_match_or_create_is_merge">
 <h2>Match or Create is MERGE</h2>
 <div class="listingblock slide">
@@ -2199,10 +2011,8 @@ CREATE UNIQUE (a)-[:KNOWS]-&gt;(b);</textarea>
 RETURN p</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>Uses indexes, constraints and locks to guarantee unique lookup and creation</p></div>
 </section>
-
 <section class="slide" id="_match_or_create_is_merge_2">
 <h2>Match or Create is MERGE</h2>
 <div class="listingblock slide">
@@ -2213,7 +2023,6 @@ ON MATCH SET p.accessed = coalesce(p.accessed,0)+1
 RETURN p</textarea>
 </div>
 </div>
-
 <div class="ulist">
 <ul>
 <li class="slide"><span class="highlight">ON CREATE x SET</span> - executed on create</li>
@@ -2221,17 +2030,14 @@ RETURN p</textarea>
 </ul>
 </div>
 </section>
-
 <section class="slide" id="_coffee_2">
 <h2>Coffee?</h2>
 
 </section>
-
 <section class="slide" id="_more_cypher">
 <h2>More Cypher!</h2>
 
 </section>
-
 <section class="slide" id="_matching_multiple_relationships">
 <h2>Matching multiple relationships</h2>
 <div class="listingblock slide">
@@ -2240,10 +2046,8 @@ RETURN p</textarea>
 CREATE UNIQUE (a)-[:KNOWS]-&gt;(b)</textarea>
 </div>
 </div>
-
 <div class="paragraph slide"><p>(Create KNOWS relationships between anyone, Actors or Directors, who worked together)</p></div>
 </section>
-
 <section class="slide" id="_variable_length_paths">
 <h2>Variable length paths</h2>
 <section class="slide" id="_the_pattern_2">
@@ -2279,11 +2083,9 @@ CREATE UNIQUE (a)-[:KNOWS]-&gt;(b)</textarea>
   <li class="relationship" data-from="7" data-to="8"></li>
 </ul>
 </figure>
-
-<div class="paragraph slide"><p><code>(a)-[*1..3]&#8594;(b)</code></p></div>
+<div class="paragraph slide"><p>(a)-[*1..3]-&gt;(b)</p></div>
 </section>
 </section>
-
 <section class="slide" id="_friends_of_friends">
 <h2>Friends-of-Friends</h2>
 <div class="listingblock slide">
@@ -2294,7 +2096,6 @@ RETURN DISTINCT fof.name</textarea>
 </div>
 </div>
 </section>
-
 <section class="labslide slide" id="_lab_9">
 <h2>Lab</h2>
 <section class="slide" id="_return_friends_of_friends_of_keanu_reeves_who_are_not_immediate_friends">
@@ -2309,7 +2110,6 @@ RETURN DISTINCT fof.name</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="_bacon_number">
 <h2>Bacon Number!</h2>
 <div class="listingblock slide">
@@ -2323,7 +2123,6 @@ RETURN length(rels(p))</textarea>
 </div>
 </div>
 </section>
-
 <section class="labslide slide" id="_lab_10">
 <h2>Lab</h2>
 <section class="slide" id="_return_the_names_of_the_people_joining_charlize_to_kevin">
@@ -2338,12 +2137,10 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </section>
 </section>
-
 <section class="slide" id="case_studies">
 <h2>Case Studies</h2>
 
 </section>
-
 <section class="slide" id="_customers">
 <h2>Customers</h2>
 <div class="imageblock">
@@ -2352,7 +2149,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_cisco">
 <h2>Cisco</h2>
 <div class="imageblock">
@@ -2361,7 +2157,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_cisco_2">
 <h2>Cisco</h2>
 <div class="imageblock">
@@ -2370,7 +2165,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_accenture">
 <h2>Accenture</h2>
 <div class="imageblock">
@@ -2379,7 +2173,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_adobe">
 <h2>Adobe</h2>
 <div class="imageblock">
@@ -2388,7 +2181,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_glassdor">
 <h2>GLassdor</h2>
 <div class="imageblock">
@@ -2397,7 +2189,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_hp">
 <h2>HP</h2>
 <div class="imageblock">
@@ -2406,7 +2197,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_junisphere">
 <h2>Junisphere</h2>
 <div class="imageblock">
@@ -2415,7 +2205,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_maaii">
 <h2>Maaii</h2>
 <div class="imageblock">
@@ -2424,7 +2213,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_seven_bridges_genomics">
 <h2>Seven Bridges Genomics</h2>
 <div class="imageblock">
@@ -2433,7 +2221,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_sfr">
 <h2>SFR</h2>
 <div class="imageblock">
@@ -2442,7 +2229,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_teachscape">
 <h2>Teachscape</h2>
 <div class="imageblock">
@@ -2451,7 +2237,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_deutsche_telekom">
 <h2>Deutsche Telekom</h2>
 <div class="imageblock">
@@ -2460,7 +2245,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_telenor">
 <h2>Telenor</h2>
 <div class="imageblock">
@@ -2469,7 +2253,6 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_viadeo">
 <h2>Viadeo</h2>
 <div class="imageblock">
@@ -2478,35 +2261,29 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 </div>
 </div>
 </section>
-
 <section class="slide" id="_next_steps">
 <h2>Next steps</h2>
 <section class="slide" id="_the_rise_of_the_graph">
 <h3>The rise of the graph</h3>
 
 </section>
-
 <section class="slide" id="_it_s_not_just_social">
 <h3>It&#8217;s not just social</h3>
 
 </section>
-
 <section class="slide" id="_find_the_graphs_in_your_domain_and_model_them">
 <h3>Find the graphs in your domain, and model them</h3>
 
 </section>
 </section>
-
 <section class="slide" id="_get_involved_in_the_community">
 <h2>Get involved in the community</h2>
 
 </section>
-
 <section class="slide" id="_graphgists">
 <h2>Graphgists</h2>
-<div class="paragraph"><p><a href="http://gist.neo4j.org">http://gist.neo4j.org</a></p></div>
+<div class="paragraph"><p><a class="bare" href="http://gist.neo4j.org">http://gist.neo4j.org</a></p></div>
 </section>
-
 <section class="slide" id="_stackoverflow">
 <h2>StackOverflow</h2>
 <div class="imageblock">
@@ -2514,10 +2291,8 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 <img alt="so" src="../../img/so.png">
 </div>
 </div>
-
-<div class="paragraph"><p><a href="http://stackoverflow.com/questions/tagged/neo4j">http://stackoverflow.com/questions/tagged/neo4j</a></p></div>
+<div class="paragraph"><p><a class="bare" href="http://stackoverflow.com/questions/tagged/neo4j">http://stackoverflow.com/questions/tagged/neo4j</a></p></div>
 </section>
-
 <section class="slide" id="_neo4j_google_group">
 <h2>Neo4j Google Group</h2>
 <div class="imageblock">
@@ -2525,10 +2300,8 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 <img alt="google group" src="../../img/google_group.png">
 </div>
 </div>
-
-<div class="paragraph"><p><a href="http://groups.google.com/group/neo4j">http://groups.google.com/group/neo4j</a></p></div>
+<div class="paragraph"><p><a class="bare" href="http://groups.google.com/group/neo4j">http://groups.google.com/group/neo4j</a></p></div>
 </section>
-
 <section class="slide" id="_github_issues_and_code">
 <h2>Github Issues and code</h2>
 <div class="imageblock">
@@ -2536,10 +2309,8 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 <img alt="github" src="../../img/github.png">
 </div>
 </div>
-
-<div class="paragraph"><p><a href="https://github.com/neo4j/neo4j/issues">https://github.com/neo4j/neo4j/issues</a></p></div>
+<div class="paragraph"><p><a class="bare" href="https://github.com/neo4j/neo4j/issues">https://github.com/neo4j/neo4j/issues</a></p></div>
 </section>
-
 <section class="slide" id="_meetups_user_groups">
 <h2>Meetups/User groups</h2>
 <div class="imageblock">
@@ -2547,10 +2318,8 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 <img alt="meetups" src="../../img/meetups.png">
 </div>
 </div>
-
-<div class="paragraph"><p><a href="http://neo4j.meetup.com/">http://neo4j.meetup.com/</a></p></div>
+<div class="paragraph"><p><a class="bare" href="http://neo4j.meetup.com/">http://neo4j.meetup.com/</a></p></div>
 </section>
-
 <section class="slide" id="_the_graphistas_map">
 <h2>The Graphistas map</h2>
 <div class="imageblock">
@@ -2558,26 +2327,22 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 <img alt="graphistas map" src="../../img/graphistas_map.png">
 </div>
 </div>
-
-<div class="paragraph"><p><a href="http://www.neo4j.org/participate/contributors#map">http://www.neo4j.org/participate/contributors#map</a></p></div>
+<div class="paragraph"><p><a class="bare" href="http://www.neo4j.org/participate/contributors#map">http://www.neo4j.org/participate/contributors#map</a></p></div>
 </section>
-
 <section class="slide" id="__thank_you">
 <h2>(Thank You)</h2>
 <div class="ulist">
 <ul>
-<li><a href="http://www.neo4j.org">http://www.neo4j.org</a></li>
-<li><a href="http://groups.google.com/group/neo4j">http://groups.google.com/group/neo4j</a></li>
-<li><a href="http://www.neo4j.org/develop">http://www.neo4j.org/develop</a></li>
+<li><a class="bare" href="http://www.neo4j.org">http://www.neo4j.org</a></li>
+<li><a class="bare" href="http://groups.google.com/group/neo4j">http://groups.google.com/group/neo4j</a></li>
+<li><a class="bare" href="http://www.neo4j.org/develop">http://www.neo4j.org/develop</a></li>
 </ul>
 </div>
 </section>
-
 <section class="slide" id="__graphs_are_everywhere">
 <h2>(Graphs are everywhere)</h2>
 
 </section>
-
 <a class="deck-prev-link" href="#" title="Previous">&#8592;</a>
 <a class="deck-next-link" href="#" title="Next">&#8594;</a>
 <p class="deck-status">
@@ -2605,6 +2370,7 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
 <script src="../../../../asciidoc/deck.js/extensions/arrows/home.js"></script>
 <script src="../../../../asciidoc/deck.js/extensions/arrows/d3.v3.js"></script>
 <script src="../../../../asciidoc/deck.js/extensions/arrows/arrows-graph-diagram.js"></script>
+<script src="../../../../asciidoc/deck.js/extensions/arrows/arrows-init.js"></script>
 <footer>Copyright (c) 2014, Neo Technology, Inc. All rights reserved. The reproduction or distribution of this copyrighted work is strictly prohibited.</footer>
 <img id="logo" src="../../img/Neo_Technology.jpg">
 <div class="slide">
