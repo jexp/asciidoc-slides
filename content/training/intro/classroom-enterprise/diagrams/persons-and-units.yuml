@@ -1,0 +1,7 @@
+http://yuml.me/77ea5f33.svg
+
+[Person|canonicalName;address]^-[NaturalPerson|birthDate], 
+[Person]^-[LegalEntity|legalForm], 
+[OrganizationalUnit|-name]-lead->[NaturalPerson], 
+[OrganizationalUnit]-parentUnit->[OrganizationalUnit], 
+[OrganizationalUnit]^-[LegalEntity]
