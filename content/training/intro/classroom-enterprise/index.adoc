@@ -3,7 +3,7 @@
 :twitter: neo4j
 :email: info@neotechnology.com
 :backend: deckjs
-:deckjs_theme: neotech
+:deckjs_theme: neotech-iq
 :deckjs_transition: none
 :deckjsdir: ../../../../asciidoc/deck.js
 // horizontal-slide
