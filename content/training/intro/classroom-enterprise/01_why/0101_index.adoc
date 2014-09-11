@@ -1,5 +1,9 @@
 [position="center-up"]
-== Why did you come?
+== Who are you?
+
+- Where are you from?
+- What are you doing all day?
+- What are your expectations?
 
 ////
 Get the class to introduce themselves, and learn what they want.
