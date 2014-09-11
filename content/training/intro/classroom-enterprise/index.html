@@ -454,24 +454,123 @@ Grab a coffee and get ready to begin!
 </ul>
 </div>
 </section>
-<section class="slide" id="_it_s_all_about_patterns">
-<h2>It&#8217;s all about patterns</h2>
+<section class="slide" id="_enterprise_model_revisited">
+<h2>Enterprise model revisited</h2>
+<div class="paragraph"><p>TODO ER model or tables</p></div>
+</section>
+<section class="slide" id="_find_member_of_the_it_department">
+<h2>Find member of the IT-Department</h2>
+<div class="ulist">
+<ul>
+<li class="slide">with SQL:</li>
+</ul>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="sql">SELECT * FROM NaturalPerson
+LEFT JOIN NaturalPerson_OrganizationalUnit
+  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
+LEFT JOIN OrganizationalUnit
+  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
+WHERE OrganizationalUnit.name = "IT-Department"</textarea>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li class="slide">with Cypher&#8230;&#8203;</li>
+</ul>
+</div>
+</section>
+<section class="slide canvas-image" id="_it_s_all_about_patterns" style="background-image: url(./img/pattern.jpg)">
+<div class="paragraph canvas-caption"><p class="center">It&#8217;s all about patterns</p></div>
+</section>
+<section class="slide" id="_from_tables_to_patterns">
+<h2>From Tables to Patterns</h2>
+<div class="ulist">
+<ul>
+<li class="slide">What graph pattern we are looking for?</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_from_tables_to_patterns_2">
+<h2>From Tables to Patterns</h2>
+<div class="ulist">
+<ul>
+<li>What graph pattern we are looking for?</li>
+</ul>
+</div>
 <figure class="graph-diagram">
- <ul class="graph-diagram-markup" data-internal-scale="0.1" data-external-scale="1">
-   <li class="node" data-node-id="0" data-x="-3721.668487548828" data-y="110.88548278808594">
-     <span class="caption">b</span>
-   </li>
-   <li class="node" data-node-id="1" data-x="-580" data-y="110.88548278808594">
-     <span class="caption">c</span>
-   </li>
-   <li class="node" data-node-id="4" data-x="-2265.906596183777" data-y="-2229.114517211914">
-     <span class="caption">a</span>
-   </li>
-   <li class="relationship" data-from="4" data-to="0"></li>
-   <li class="relationship" data-from="0" data-to="1"></li>
-   <li class="relationship" data-from="4" data-to="1"></li>
- </ul>
+  <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
+    <li class="node" data-node-id="1" data-x="-676" data-y="-19">
+      <span class="caption">NaturalPerson</span>
+    </li>
+    <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
+      <span class="caption">OrganizationalUnit</span>
+    </li>
+    <li class="relationship" data-from="1" data-to="2">
+      <span class="type">MEMBER</span>
+    </li>
+  </ul>
 </figure>
+<div class="ulist">
+<ul>
+<li class="slide">The pattern in Cypher:</li>
+</ul>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">(p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_from_sql_to_cypher">
+<h2>From SQL to Cypher</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><code>MATCH</code> allows you to find a pattern in the graph</li>
+</ul>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
+RETURN p.canonicalName, u.name</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_filter_your_results">
+<h2>Filter your results</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><code>WHERE</code> allows you to filter the results</li>
+</ul>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
+WHERE u.name = "IT-Department"
+RETURN p.canonicalName, u.name</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_sql_vs_cypher">
+<h2>SQL vs. Cypher</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="sql">SELECT * FROM NaturalPerson
+LEFT JOIN NaturalPerson_OrganizationalUnit
+  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
+LEFT JOIN OrganizationalUnit
+  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
+WHERE OrganizationalUnit.name = "IT-Department"</textarea>
+</div>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
+WHERE u.name = "IT-Department"
+RETURN p.canonicalName, u.name</textarea>
+</div>
+</div>
 </section>
 <section class="slide" id="_it_s_all_about_patterns_2">
 <h2>It&#8217;s all about patterns</h2>

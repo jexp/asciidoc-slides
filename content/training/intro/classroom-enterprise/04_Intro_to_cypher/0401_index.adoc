@@ -1,5 +1,6 @@
 == Intro to Cypher
 
+
 == Cypher is Neo4j's graph query language
 
 [options="step"]

@@ -1,20 +1,114 @@
+
+
+== Enterprise model revisited
+
+TODO ER model or tables
+
+== Find member of the IT-Department
+
+[options="step"]
+- with SQL:
+
+[options="step"]
+[source,sql]
+----
+SELECT * FROM NaturalPerson
+LEFT JOIN NaturalPerson_OrganizationalUnit 
+  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
+LEFT JOIN OrganizationalUnit
+  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
+WHERE OrganizationalUnit.name = "IT-Department"
+----
+
+
+[options="step"]
+- with Cypher...
+
+[canvas-image="./img/pattern.jpg"]
 == It's all about patterns
 
+[role="canvas-caption", position="center"]
+It's all about patterns
+
+== From Tables to Patterns
+
+[options="step"]
+- What graph pattern we are looking for?
+
+
+== From Tables to Patterns
+
+- What graph pattern we are looking for?
+
+
+[options="step"]
 ++++
 <figure class="graph-diagram">
- <ul class="graph-diagram-markup" data-internal-scale="0.1" data-external-scale="1">
-   <li class="node" data-node-id="0" data-x="-3721.668487548828" data-y="110.88548278808594">
-     <span class="caption">b</span>
-   </li>
-   <li class="node" data-node-id="1" data-x="-580" data-y="110.88548278808594">
-     <span class="caption">c</span>
-   </li>
-   <li class="node" data-node-id="4" data-x="-2265.906596183777" data-y="-2229.114517211914">
-     <span class="caption">a</span>
-   </li>
-   <li class="relationship" data-from="4" data-to="0"></li>
-   <li class="relationship" data-from="0" data-to="1"></li>
-   <li class="relationship" data-from="4" data-to="1"></li>
- </ul>
+  <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
+    <li class="node" data-node-id="1" data-x="-676" data-y="-19">
+      <span class="caption">NaturalPerson</span>
+    </li>
+    <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
+      <span class="caption">OrganizationalUnit</span>
+    </li>
+    <li class="relationship" data-from="1" data-to="2">
+      <span class="type">MEMBER</span>
+    </li>
+  </ul>
 </figure>
 ++++
+
+[options="step"]
+- The pattern in Cypher:
+
+[options="step"]
+[source,cypher]
+----
+(p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
+----
+
+== From SQL to Cypher
+
+[options="step"]
+- `MATCH` allows you to find a pattern in the graph
+
+[options="step"]
+[source,cypher]
+----
+MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
+RETURN p.canonicalName, u.name
+----
+
+== Filter your results
+
+[options="step"]
+- `WHERE` allows you to filter the results
+
+[options="step"]
+[source,cypher]
+----
+MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
+WHERE u.name = "IT-Department"
+RETURN p.canonicalName, u.name
+----
+
+== SQL vs. Cypher
+
+[options="step"]
+[source,sql]
+----
+SELECT * FROM NaturalPerson
+LEFT JOIN NaturalPerson_OrganizationalUnit 
+  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
+LEFT JOIN OrganizationalUnit
+  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
+WHERE OrganizationalUnit.name = "IT-Department"
+----
+
+[options="step"]
+[source,cypher]
+----
+MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
+WHERE u.name = "IT-Department"
+RETURN p.canonicalName, u.name
+----
