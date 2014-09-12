@@ -155,7 +155,6 @@ CodeMirror.defineMode("plsql", function(config, parserConfig) {
       // get the whole word
       stream.eatWhile(/[\w\$_]/);
       // is it one of the listed keywords?
-      console.log("PLSQL", stream.current().toLowerCase())
       if (keywords && keywords[stream.current().toLowerCase()]) 
         return ret("keyword", "keyword");
       // is it one of the listed functions?
