@@ -1,4 +1,14 @@
+[canvas-image="./img/enigma-sw.jpg"]
 == Intro to Cypher
+
+[role="canvas-caption", position="center"]
+Let's talk about Cypher
+
+++++
+<div class="img-ref">
+derivative of <a href="http://www.flickr.com/photos/sixteenmilesofstring/8256206923/in/set-72157632200936657">"ENIGMA machine"</a> by <a href="https://www.flickr.com/photos/epitti/">Erik Pitti</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
 
 
 == What is Cypher? 
@@ -10,8 +20,6 @@
 - Designed for graphs
 
 include::0402_its_all_about_patterns.adoc[]
-
-include::0403_graph1.adoc[]
 
 == How?
 

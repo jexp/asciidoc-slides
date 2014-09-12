@@ -642,5 +642,16 @@ figure,table {
     color: #0000ff;
 }
 
+.img-ref {
+    font-size: 0.5em;
+    position: absolute;
+    right: 0.5em;
+    bottom: 2.5em;
+}
+
+.img-ref, .img-ref a {
+    color: white;
+    text-decoration: none;
+}
 
 

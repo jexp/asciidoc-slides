@@ -28,6 +28,12 @@ with Cypher...
 [role="canvas-caption", position="center"]
 It's all about patterns
 
+++++
+<div class="img-ref">
+<a href="https://www.flickr.com/photos/just-textures/14225505282">"16_22_inv"</a> by <a href="https://www.flickr.com/photos/just-textures/">Ed Jones</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
 == From Tables to Patterns
 
 [options="step"]
