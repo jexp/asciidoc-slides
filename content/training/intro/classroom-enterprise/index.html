@@ -15,6 +15,7 @@
 <script src="../../../../asciidoc/deck.js/extensions/codemirror/mode/javascript/javascript.js"></script>
 <script src="../../../../asciidoc/deck.js/extensions/codemirror/mode/css/css.js"></script>
 <script src="../../../../asciidoc/deck.js/extensions/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../../../asciidoc/deck.js/extensions/codemirror/mode/plsql/plsql.js"></script>
 <script src="../../../../asciidoc/deck.js/extensions/cypher/deck.cypher.js"></script>
 <link href="../../../../asciidoc/deck.js/extensions/cypher/deck.cypher.css" rel="stylesheet">
 <link href="../../../../asciidoc/deck.js/core/deck.core.css" rel="stylesheet">
@@ -514,14 +515,39 @@ Grab a coffee and get ready to begin!
 <h2>Coffee?</h2>
 
 </section>
+<section class="slide" id="__domain_modelling_with_graphs">
+<h2>(Domain Modelling with Graphs)</h2>
+
+</section>
+<section class="slide" id="_but_first_an_important_message_2">
+<h2>But first an important message &#8230;&#8203;</h2>
+
+</section>
+<section class="slide" id="_these_are_charts_2">
+<h2>These are Charts &#8230;&#8203;</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="charts" src="../../img/charts.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_not_graphs_2">
+<h2>Not Graphs</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="charts not graphs" src="../../img/charts_not_graphs.png">
+</div>
+</div>
+</section>
 <section class="slide" id="_intro_to_cypher">
 <h2>Intro to Cypher</h2>
 
 </section>
-<section class="slide" id="_cypher_is_neo4j_s_graph_query_language">
-<h2>Cypher is Neo4j&#8217;s graph query language</h2>
+<section class="slide" id="_what_is_cypher">
+<h2>What is Cypher?</h2>
 <div class="ulist">
 <ul>
+<li class="slide">Neo4j&#8217;s graph query language</li>
 <li class="slide">Declarative Pattern-Matching language</li>
 <li class="slide">SQL-like syntax</li>
 <li class="slide">Designed for graphs</li>
@@ -534,14 +560,10 @@ Grab a coffee and get ready to begin!
 </section>
 <section class="slide" id="_find_member_of_the_it_department">
 <h2>Find member of the IT-Department</h2>
-<div class="ulist">
-<ul>
-<li class="slide">with SQL:</li>
-</ul>
-</div>
+<div class="paragraph slide"><p>with SQL:</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="sql">SELECT * FROM NaturalPerson
+<textarea class="code" mode="plsql">SELECT * FROM NaturalPerson
 LEFT JOIN NaturalPerson_OrganizationalUnit
   ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
 LEFT JOIN OrganizationalUnit
@@ -549,30 +571,18 @@ LEFT JOIN OrganizationalUnit
 WHERE OrganizationalUnit.name = "IT-Department"</textarea>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li class="slide">with Cypher&#8230;&#8203;</li>
-</ul>
-</div>
+<div class="paragraph slide"><p>with Cypher&#8230;&#8203;</p></div>
 </section>
 <section class="slide canvas-image" id="_it_s_all_about_patterns" style="background-image: url(./img/pattern.jpg)">
 <div class="paragraph canvas-caption"><p class="center">It&#8217;s all about patterns</p></div>
 </section>
 <section class="slide" id="_from_tables_to_patterns">
 <h2>From Tables to Patterns</h2>
-<div class="ulist">
-<ul>
-<li class="slide">What graph pattern we are looking for?</li>
-</ul>
-</div>
+<div class="paragraph slide"><p>What graph pattern are we looking for?</p></div>
 </section>
 <section class="slide" id="_from_tables_to_patterns_2">
 <h2>From Tables to Patterns</h2>
-<div class="ulist">
-<ul>
-<li>What graph pattern we are looking for?</li>
-</ul>
-</div>
+<div class="paragraph"><p>What graph pattern are we looking for?</p></div>
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
@@ -586,11 +596,7 @@ WHERE OrganizationalUnit.name = "IT-Department"</textarea>
     </li>
   </ul>
 </figure>
-<div class="ulist">
-<ul>
-<li class="slide">The pattern in Cypher:</li>
-</ul>
-</div>
+<div class="paragraph slide"><p>The pattern in Cypher:</p></div>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">(p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)</textarea>
@@ -599,25 +605,14 @@ WHERE OrganizationalUnit.name = "IT-Department"</textarea>
 </section>
 <section class="slide" id="_from_sql_to_cypher">
 <h2>From SQL to Cypher</h2>
-<div class="ulist">
-<ul>
-<li class="slide"><code>MATCH</code> allows you to find a pattern in the graph</li>
-</ul>
-</div>
+<div class="paragraph slide"><p><code>MATCH</code> allows you to find a pattern in the graph</p></div>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
 RETURN p.canonicalName, u.name</textarea>
 </div>
 </div>
-</section>
-<section class="slide" id="_filter_your_results">
-<h2>Filter your results</h2>
-<div class="ulist">
-<ul>
-<li class="slide"><code>WHERE</code> allows you to filter the results</li>
-</ul>
-</div>
+<div class="paragraph slide"><p><code>WHERE</code> allows you to filter the results</p></div>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
@@ -630,7 +625,7 @@ RETURN p.canonicalName, u.name</textarea>
 <h2>SQL vs. Cypher</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="sql">SELECT * FROM NaturalPerson
+<textarea class="code" mode="plsql">SELECT * FROM NaturalPerson
 LEFT JOIN NaturalPerson_OrganizationalUnit
   ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
 LEFT JOIN OrganizationalUnit
@@ -2616,23 +2611,24 @@ RETURN [n in nodes(p) | n.name] AS names;</textarea>
     bottom: 1%;
   }
   .canvas-image .canvas-caption p {
+    left: 0;
+    right: 0;
+    top: 50%;
     text-align: center;
-    padding-top: 0;
-    padding: 0;
-    -moz-transform: none;
-    -webkit-transform: none;
-    -o-transform: none;
-    -ms-transform: none;
-    transform: none;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
     display: inline;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
     font-weight: bold;
-    font-size: 58px;
+    font-size: 3em;
     -webkit-box-shadow: 2px 2px 2px #000;
     -moz-box-shadow: 2px 2px 2px #000;
     box-shadow: 2px 2px 2px #000;
-    padding: 1rem;
+    padding: 1em;
     color: white; }
   kbd.keyseq { color: #555555; }
   kbd:not(.keyseq) {

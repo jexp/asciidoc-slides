@@ -1,5 +1,3 @@
-
-
 == Enterprise model revisited
 
 TODO ER model or tables
@@ -7,10 +5,10 @@ TODO ER model or tables
 == Find member of the IT-Department
 
 [options="step"]
-- with SQL:
+with SQL:
 
 [options="step"]
-[source,sql]
+[source,plsql]
 ----
 SELECT * FROM NaturalPerson
 LEFT JOIN NaturalPerson_OrganizationalUnit 
@@ -22,7 +20,7 @@ WHERE OrganizationalUnit.name = "IT-Department"
 
 
 [options="step"]
-- with Cypher...
+with Cypher...
 
 [canvas-image="./img/pattern.jpg"]
 == It's all about patterns
@@ -33,12 +31,11 @@ It's all about patterns
 == From Tables to Patterns
 
 [options="step"]
-- What graph pattern we are looking for?
-
+What graph pattern are we looking for?
 
 == From Tables to Patterns
 
-- What graph pattern we are looking for?
+What graph pattern are we looking for?
 
 
 [options="step"]
@@ -59,7 +56,7 @@ It's all about patterns
 ++++
 
 [options="step"]
-- The pattern in Cypher:
+The pattern in Cypher:
 
 [options="step"]
 [source,cypher]
@@ -70,7 +67,7 @@ It's all about patterns
 == From SQL to Cypher
 
 [options="step"]
-- `MATCH` allows you to find a pattern in the graph
+`MATCH` allows you to find a pattern in the graph
 
 [options="step"]
 [source,cypher]
@@ -79,10 +76,8 @@ MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
 RETURN p.canonicalName, u.name
 ----
 
-== Filter your results
-
 [options="step"]
-- `WHERE` allows you to filter the results
+`WHERE` allows you to filter the results
 
 [options="step"]
 [source,cypher]
@@ -95,7 +90,7 @@ RETURN p.canonicalName, u.name
 == SQL vs. Cypher
 
 [options="step"]
-[source,sql]
+[source,plsql]
 ----
 SELECT * FROM NaturalPerson
 LEFT JOIN NaturalPerson_OrganizationalUnit 

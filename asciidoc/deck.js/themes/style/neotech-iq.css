@@ -265,8 +265,12 @@ video, iframe, img {
     margin: 0 auto;
 }
 
-p, blockquote, iframe, img, ul, ol, pre, video {
+blockquote, iframe, img, ul, ol, pre, video {
     margin-bottom: 1em;
+}
+
+p {
+    margin-bottom: 0.5em;
 }
 
 pre {
@@ -291,8 +295,8 @@ pre {
 }
 
 .CodeMirror {
-    margin-top: 1em;
-    margin-bottom: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 3em;
 }
 
 .deck-container .slide .CodeMirror {
@@ -307,6 +311,10 @@ li {
     padding: .25em 0;
     font-size: 2em;
     vertical-align: middle;
+}
+
+p {
+    font-size: 2em;
 }
 
 li ol li, li ul li {
@@ -399,7 +407,7 @@ pre {
 }*/
 
 code {
-    color: #000000;
+    color: #B0362B;
     font-size: 80%;
     font:bold;
 }

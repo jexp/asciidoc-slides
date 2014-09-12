@@ -1,9 +1,10 @@
 == Intro to Cypher
 
 
-== Cypher is Neo4j's graph query language
+== What is Cypher? 
 
 [options="step"]
+- Neo4j's graph query language
 - Declarative Pattern-Matching language
 - SQL-like syntax
 - Designed for graphs
