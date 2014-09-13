@@ -49,13 +49,13 @@ What graph pattern are we looking for?
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">NaturalPerson</span>
+      <span class="caption">p:NaturalPerson</span>
     </li>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
-      <span class="caption">OrganizationalUnit</span>
+      <span class="caption">u:OrganizationalUnit</span>
     </li>
     <li class="relationship" data-from="1" data-to="2">
-      <span class="type">MEMBER</span>
+      <span class="type">:MEMBER</span>
     </li>
   </ul>
 </figure>

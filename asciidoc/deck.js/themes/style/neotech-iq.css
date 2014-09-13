@@ -106,6 +106,10 @@ nav ul, nav li {
     list-style-image: none;
 }
 
+li {
+    list-style-type: circle;
+}
+
 small {
     font-size: 85%;
 }
