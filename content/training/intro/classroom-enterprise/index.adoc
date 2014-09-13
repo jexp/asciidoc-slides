@@ -24,7 +24,6 @@
 :toc:
 :split:
 
-
 include::01_welcome.adoc[]
 
 include::02_title.adoc[]
@@ -41,7 +40,17 @@ include::xy_domain_modelling/dm_01_index.adoc[]
 
 include::04_Intro_to_cypher/0401_index.adoc[]
 
-== Coffee? Lunch?
+[canvas-image="./img/lunch-sw.png"]
+== Lunch?
+
+[role="canvas-caption", position="center"]
+Lunch?
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/dinnerseries/9680684142">"Chilewich Placemats"</a> by <a href="https://www.flickr.com/photos/dinnerseries/">Didriks</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
 
 include::05_Updating_with_cypher/0501_index.adoc[]
 
@@ -50,4 +59,3 @@ include::06_case_studies/0601_index.adoc[]
 include::07_next_steps.adoc[]
 
 == (Graphs are everywhere)
-

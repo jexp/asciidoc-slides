@@ -16,5 +16,14 @@ image::{img}/browser3.png[]
 
 image::{img}/browser4.png[]
 
+[canvas-image="./img/coffee1-sw.jpg"]
 == Coffee?
 
+[role="canvas-caption", position="center"]
+Coffee?
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/greencolander/432856237">"Espresso"</a> by <a href="https://www.flickr.com/photos/greencolander/">Michelle Tribe</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
