@@ -1,0 +1,30 @@
+[canvas-image="./img/binary-sw.jpg"]
+== Datatypes
+
+[role="canvas-caption", position="center"]
+Datatypes
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary"</a> by <a href="https://www.flickr.com/photos/x1brett/">brett jordan</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== Datatypes
+
+[options="step"]
+- decimal: double or integer (hexadecimal and octal as well)
+- string
+- boolean
+- lists
+- maps
+
+
+== Operators
+
+[options="step"]
+- mathematical: `+`, `-`, `*`, `/`, `%`, `^`
+- comparison: `=`, `<>`, `<`, `>`, `<=`, `>=`, `IS NULL`, `IS NOT NULL`
+- boolean: `AND`, `OR`, `XOR`, `NOT`
+- string concatenation: `+`
+- collections: `+`, `IN`

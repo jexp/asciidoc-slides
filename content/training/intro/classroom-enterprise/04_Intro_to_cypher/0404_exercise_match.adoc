@@ -1,0 +1,205 @@
+[canvas-image="./img/coding-sw.jpg"]
+== Start coding!
+
+[role="canvas-caption", position="center"]
+Start coding!
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== First Excercise
+
+- Find the names of all legal persons.
+- Find the names of all "Customer Support" members working for "GraphIT".
+- Who is the lead of "Q&A" at "GraphIT"?
+- Which companies have offices in Paris?
+- In which countries has "GraphIT" offices? 
+
+== Find all legal persons
+
+[options="step"]
+Pattern
+
+
+== Find all legal persons
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-676" data-y="-19">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+  </ul>
+</figure>
+++++
+
+[options="step"]
+Cypher
+
+[source,options="step"]
+----
+MATCH (c:LegalPerson)
+RETURN c.canonicalName;
+----
+
+
+== "Customer Support" members of "GraphIT"
+
+[options="step"]
+Pattern
+
+== "Customer Support" members of "GraphIT"
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
+      <span class="caption">u:OrganzationalUnit</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
+      <span class="caption">p:NaturalPerson</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="4" data-to="3">
+      <span class="type">:MEMBER</span>
+    </li>
+  </ul>
+</figure>
+++++
+
+[options="step"]
+Cypher
+
+[source,options="step"]
+----
+MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)-->(c:LegalPerson)
+WHERE u.name = "Customer Support" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;
+----
+
+== Lead of "Q&A" at "GraphIT"
+
+[options="step"]
+Pattern
+
+== Lead of "Q&A" at "GraphIT"
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
+      <span class="caption">u:OrganzationalUnit</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
+      <span class="caption">p:NaturalPerson</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="3" data-to="4">
+      <span class="type">:LEAD</span>
+    </li>
+  </ul>
+</figure>
+++++
+
+[options="step"]
+Cypher
+
+[source,options="step"]
+----
+MATCH (p:NaturalPerson)<-[:LEAD]-(u:OrganizationalUnit)-->(c:LegalPerson)
+WHERE u.name = "Q&A" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;
+----
+
+== Companies with offices in Paris
+
+[options="step"]
+Pattern
+
+== Companies with offices in Paris
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-926.9929027097343" data-y="-31.244897959183675">
+      <span class="caption">city:City</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
+      <span class="caption">:Office</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="4" data-to="3"></li>
+  </ul>
+</figure>
+++++
+
+[options="step"]
+Cypher
+
+[source,options="step"]
+----
+MATCH (c:LegalPerson)-->(:Office)-->(city:City)
+WHERE city.name = "Paris"
+RETURN c.canonicalName;
+----
+
+== Countries with "GraphIT" offices
+
+[options="step"]
+Pattern
+
+== Countries with "GraphIT" offices
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-1035.4194005283218" data-y="-31.244897959183675">
+      <span class="caption">:City</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1316.3285051769287" data-y="-31.244897959183675">
+      <span class="caption">:Office</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="node" data-node-id="5" data-x="-734.977202670841" data-y="-31.244897959183675">
+      <span class="caption">country:Country</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="4" data-to="3"></li>
+    <li class="relationship" data-from="1" data-to="5"></li>
+  </ul>
+</figure>
+++++
+
+[options="step"]
+Cypher
+
+[source,options="step"]
+----
+MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
+WHERE c.canonicalName = "GraphIT"
+RETURN country.name;
+----

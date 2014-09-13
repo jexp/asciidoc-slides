@@ -937,74 +937,171 @@ RETURN country.name;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_two_nodes_one_relationship">
-<h2>Two nodes, one relationship</h2>
+<section class="slide" id="_remove_result_duplicates">
+<h2>Remove result duplicates</h2>
+<div class="paragraph slide"><p><code>RETURN DISTINCT</code> returns only unique rows</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (a)--(b)
-RETURN a, b</textarea>
+<textarea class="code">MATCH (c:LegalPerson)--&gt;(:Office)--&gt;(:City)--&gt;(country:Country)
+WHERE c.canonicalName = "GraphIT"
+RETURN DISTINCT country.name;</textarea>
 </div>
 </div>
-<section class="slide" id="_the_pattern">
-<h3>The pattern</h3>
+</section>
+<section class="slide" id="_optional_relationships">
+<h2>Optional relationships</h2>
+<div class="paragraph"><p>Pattern</p></div>
 <figure class="graph-diagram">
-<ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
-  <li class="node" data-node-id="0" data-x="-50" data-y="-40">
-    <span class="caption">a</span>
-  </li>
-  <li class="node" data-node-id="1" data-x="-20" data-y="-40">
-    <span class="caption"></span>
-  </li>
-  <li class="relationship graph_pattern_optional_rel" data-from="0" data-to="1"></li>
-</ul>
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="1">
+    <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
+      <span class="caption">a</span>
+    </li>
+  </ul>
 </figure>
-</section>
-</section>
-<section class="slide" id="big_graph2">
-<h2>The graph</h2>
-<figure class="graph-diagram big-graph">
-<ul class="graph-diagram-markup" data-internal-scale="0.1" data-external-scale="0.5">
-  <li class="node triangle1 one_node" data-node-id="0" data-x="-5921.668487548828" data-y="130.88548278808594"></li>
-  <li class="node triangle1 triangle2 graph_pattern_ab2 one_node_outgoing" data-node-id="1" data-x="-3190" data-y="-530"></li>
-  <li class="node graph_pattern_ab1" data-node-id="3" data-x="880" data-y="2180"></li>
-  <li class="node triangle1 one_node_outgoing_incoming" data-node-id="4" data-x="-5505.906596183777" data-y="-2989.114517211914"></li>
-  <li class="node triangle2 graph_pattern_ab3 one_node_outgoing_incoming" data-node-id="5" data-x="450" data-y="-380"></li>
-  <li class="node" data-node-id="6" data-x="2180" data-y="-2790"></li>
-  <li class="node triangle2 graph_pattern_ab2 one_node_outgoing_incoming" data-node-id="7" data-x="-2080" data-y="-3230"></li>
-  <li class="node graph_pattern_ab1 graph_pattern_ab3 one_node_outgoing" data-node-id="8" data-x="-3600" data-y="2360"></li>
-  <li class="node" data-node-id="9" data-x="2750" data-y="340"></li>
-  <li class="relationship triangle1 " data-from="4" data-to="0"></li>
-  <li class="relationship triangle1 one_node_outgoing" data-from="0" data-to="1"></li>
-  <li class="relationship triangle1 one_node_outgoing_incoming" data-from="4" data-to="1"></li>
-  <li class="relationship triangle2 graph_pattern_ab2 one_node_outgoing_incoming" data-from="7" data-to="1"></li>
-  <li class="relationship " data-from="5" data-to="7"></li>
-  <li class="relationship triangle2" data-from="1" data-to="5"></li>
-  <li class="relationship triangle2" data-from="7" data-to="5"></li>
-  <li class="relationship graph_pattern_ab1" data-from="8" data-to="3"></li>
-  <li class="relationship" data-from="5" data-to="3"></li>
-  <li class="relationship graph_pattern_ab3 one_node_outgoing_incoming" data-from="5" data-to="8"></li>
-  <li class="relationship" data-from="4" data-to="7"></li>
-  <li class="relationship" data-from="7" data-to="6"></li>
-  <li class="relationship" data-from="5" data-to="6"></li>
-  <li class="relationship one_node_outgoing" data-from="0" data-to="8"></li>
-  <li class="relationship" data-from="9" data-to="6"></li>
-  <li class="relationship" data-from="9" data-to="3"></li>
-</ul>
+<div class="paragraph"><p>or</p></div>
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="1">
+    <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
+      <span class="caption">a</span>
+    </li>
+    <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
+      <span class="caption">b</span>
+    </li>
+    <li class="relationship" data-from="4" data-to="5"></li>
+  </ul>
 </figure>
-<section class="notitle slide" id="bg2_graph_pattern_ab1">
-<h3>ab1</h3>
-
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH a
+OPTIONAL MATCH (a)-[r]-&gt;(b)
+RETURN a, b;</textarea>
+</div>
+</div>
 </section>
-<section class="notitle slide" id="bg2_graph_pattern_ab2">
-<h3>ab2</h3>
-
+<section class="slide" id="_result_with_alias">
+<h2>Result with alias</h2>
+<div class="paragraph slide"><p><code>AS</code> sets name for result column</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (p)-[:MEMBER]-&gt;(u)
+RETURN p.canonicalName as member, u.name as `organizational unit`;</textarea>
+</div>
+</div>
 </section>
-<section class="notitle slide" id="bg2_graph_pattern_ab3">
-<h3>ab3</h3>
-
+<section class="slide canvas-image" id="_aggregation" style="background-image: url(./img/aggregation-sw.jpg)">
+<div class="paragraph canvas-caption"><p class="center">Aggregation</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/zscheyge/49012397">"Building Blocks"</a> by <a href="https://www.flickr.com/photos/zscheyge/">Holger Zscheyge</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
 </section>
+<section class="slide" id="_aggregation_2">
+<h2>Aggregation</h2>
+<div class="paragraph slide"><p><code>count(*)</code> counts matching rows</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (p)-[:MEMBER]-&gt;(u)
+RETURN u.name, count(*);</textarea>
+</div>
+</div>
+<div class="paragraph slide"><p><code>count(x)</code> counts non-NULL values in x</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (u:OrganizationalUnit)
+OPTIONAL MATCH (p)-[:MEMBER]-&gt;(u)
+RETURN u.name, count(p);</textarea>
+</div>
+</div>
 </section>
-<section class="slide" id="_two_nodes_one_relationship_2">
+<section class="slide" id="_aggregation_3">
+<h2>Aggregation</h2>
+<div class="paragraph slide"><p>returns only organizational units with at least one member</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (p)-[:MEMBER]-&gt;(u)
+RETURN u.name, count(*);</textarea>
+</div>
+</div>
+<div class="paragraph slide"><p>returns all organizational units</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (u:OrganizationalUnit)
+OPTIONAL MATCH (p)-[:MEMBER]-&gt;(u)
+RETURN u.name, count(p);</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_statistics">
+<h2>Statistics</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><code>min(x)</code> returns the lowest value</li>
+<li class="slide"><code>max(x)</code> returns the highest value</li>
+<li class="slide"><code>avg(x)</code> returns the average of a numeric value</li>
+<li class="slide"><code>sum(x)</code> returns the sum of all values</li>
+<li class="slide">and some more</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_sorting">
+<h2>Sorting</h2>
+<div class="paragraph slide"><p><code>ORDER BY</code> sorts the results (by multiple properties)</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (city:City)--(c:Country)
+RETURN country.name, city.name
+ORDER BY country.name, city.name;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_limit_and_skip">
+<h2>Limit and skip</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><code>LIMIT x</code> returns only the first x entries</li>
+<li class="slide"><code>SKIP y</code> omits the first y entries</li>
+</ul>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (p:NaturalPerson)
+RETURN p.canonicalName
+ORDER BY p.canonicalName
+SKIP 3
+LIMIT 5</textarea>
+</div>
+</div>
+</section>
+<section class="slide canvas-image" id="_datatypes" style="background-image: url(./img/binary-sw.jpg)">
+<div class="paragraph canvas-caption"><p class="center">Datatypes</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary"</a> by <a href="https://www.flickr.com/photos/x1brett/">brett jordan</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+</section>
+<section class="slide" id="_datatypes_2">
+<h2>Datatypes</h2>
+<div class="ulist">
+<ul>
+<li class="slide">decimal: double or integer (hexadecimal and octal as well)</li>
+<li class="slide">string</li>
+<li class="slide">boolean</li>
+<li class="slide">lists</li>
+<li class="slide">maps</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_operators">
+<h2>Operators</h2>
+<div class="ulist">
+<ul>
+<li class="slide">mathematical: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code></li>
+<li class="slide">comparison: <code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&#8656;</code>, <code>&gt;=</code>, <code>IS NULL</code>, <code>IS NOT NULL</code></li>
+<li class="slide">boolean: <code>AND</code>, <code>OR</code>, <code>XOR</code>, <code>NOT</code></li>
+<li class="slide">string concatenation: <code>+</code></li>
+<li class="slide">collections: <code>+</code>, <code>IN</code></li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_two_nodes_one_relationship">
 <h2>Two nodes, one relationship</h2>
 <section class="notitle slide" id="_the_graph">
 <h3>The graph</h3>
@@ -1029,6 +1126,26 @@ RETURN a, b</textarea>
 </div>
 </section>
 </section>
+<section class="slide" id="_two_nodes_one_relationship_2">
+<h2>Two nodes, one relationship</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (a)--&gt;()
+RETURN a.name</textarea>
+</div>
+</div>
+<figure class="graph-diagram">
+<ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
+  <li class="node" data-node-id="0" data-x="-50" data-y="-40">
+    <span class="caption">a</span>
+  </li>
+  <li class="node" data-node-id="1" data-x="-20" data-y="-40">
+    <span class="caption"></span>
+  </li>
+  <li class="relationship graph_pattern_optional_rel" data-from="0" data-to="1"></li>
+</ul>
+</figure>
+</section>
 <section class="slide" id="_two_nodes_one_relationship_3">
 <h2>Two nodes, one relationship</h2>
 <div class="listingblock slide">
@@ -1051,26 +1168,6 @@ RETURN a.name</textarea>
 </section>
 <section class="slide" id="_two_nodes_one_relationship_4">
 <h2>Two nodes, one relationship</h2>
-<div class="listingblock slide">
-<div class="content">
-<textarea class="code" mode="cypher">MATCH (a)--&gt;()
-RETURN a.name</textarea>
-</div>
-</div>
-<figure class="graph-diagram">
-<ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
-  <li class="node" data-node-id="0" data-x="-50" data-y="-40">
-    <span class="caption">a</span>
-  </li>
-  <li class="node" data-node-id="1" data-x="-20" data-y="-40">
-    <span class="caption"></span>
-  </li>
-  <li class="relationship graph_pattern_optional_rel" data-from="0" data-to="1"></li>
-</ul>
-</figure>
-</section>
-<section class="slide" id="_two_nodes_one_relationship_5">
-<h2>Two nodes, one relationship</h2>
 <section class="notitle slide" id="_the_graph_2">
 <h3>The graph</h3>
 <figure class="graph-diagram">
@@ -1092,7 +1189,7 @@ RETURN a.name</textarea>
 <div class="paragraph"><p>(a)-[highlight]#[r]# - &gt;()</p></div>
 </section>
 </section>
-<section class="slide" id="_two_nodes_one_relationship_6">
+<section class="slide" id="_two_nodes_one_relationship_5">
 <h2>Two nodes, one relationship</h2>
 <div class="listingblock slide">
 <div class="content">
@@ -1140,7 +1237,7 @@ RETURN a.name, type(r)</textarea>
 </div>
 </section>
 </section>
-<section class="slide" id="_two_nodes_one_relationship_7">
+<section class="slide" id="_two_nodes_one_relationship_6">
 <h2>Two nodes, one relationship</h2>
 <section class="notitle slide" id="graph_optional_match">
 <h3>The graph</h3>
@@ -1537,7 +1634,7 @@ RETURN p1, p2</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_aggregation">
+<section class="slide" id="_aggregation_4">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
 <div class="content">
@@ -1590,7 +1687,7 @@ RETURN a.name, m.title, d.name;</textarea>
 </ul>
 </div>
 </section>
-<section class="slide" id="_aggregation_2">
+<section class="slide" id="_aggregation_5">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
 <div class="content">
@@ -1630,7 +1727,7 @@ RETURN a.name, d.name, count(*);</textarea>
 </tbody>
 </table>
 </section>
-<section class="slide" id="_aggregation_3">
+<section class="slide" id="_aggregation_6">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
 <div class="content">
@@ -1745,7 +1842,7 @@ LIMIT 5</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_aggregation_4">
+<section class="slide" id="_aggregation_7">
 <h2>Aggregation</h2>
 <div class="listingblock slide">
 <div class="content">
@@ -2449,7 +2546,7 @@ CREATE UNIQUE (a)-[:KNOWS]-&gt;(b)</textarea>
 </section>
 <section class="slide" id="_variable_length_paths">
 <h2>Variable length paths</h2>
-<section class="slide" id="_the_pattern_2">
+<section class="slide" id="_the_pattern">
 <h3>The pattern</h3>
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="0.1" data-external-scale="1">

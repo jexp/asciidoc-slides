@@ -23,7 +23,11 @@ include::0402_its_all_about_patterns.adoc[]
 
 include::0403_patterns.adoc[]
 
-include::0406_two_nodes_one_rel.adoc[]
+include::0404_exercise_match.adoc[]
+
+include::0405_advanced_patterns.adoc[]
+
+include::0406_datatypes.adoc[]
 
 include::0407_two_nodes_one_rel.adoc[]
 

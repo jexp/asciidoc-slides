@@ -1,0 +1,150 @@
+== Remove result duplicates
+
+[options="step"]
+`RETURN DISTINCT` returns only unique rows 
+
+[source,options="step"]
+----
+MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
+WHERE c.canonicalName = "GraphIT"
+RETURN DISTINCT country.name;
+----
+
+== Optional relationships
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="1">
+    <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
+      <span class="caption">a</span>
+    </li>
+  </ul>
+</figure>
+++++
+
+or
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="1">
+    <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
+      <span class="caption">a</span>
+    </li>
+    <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
+      <span class="caption">b</span>
+    </li>
+    <li class="relationship" data-from="4" data-to="5"></li>
+  </ul>
+</figure>
+++++
+
+[source,options="step"]
+----
+MATCH a
+OPTIONAL MATCH (a)-[r]->(b)
+RETURN a, b;
+----
+
+== Result with alias
+
+[options="step"]
+`AS` sets name for result column
+
+[source,options="step"]
+----
+MATCH (p)-[:MEMBER]->(u)
+RETURN p.canonicalName as member, u.name as `organizational unit`;
+----
+
+[canvas-image="./img/aggregation-sw.jpg"]
+== Aggregation
+
+[role="canvas-caption", position="center"]
+Aggregation
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/zscheyge/49012397">"Building Blocks"</a> by <a href="https://www.flickr.com/photos/zscheyge/">Holger Zscheyge</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== Aggregation
+
+[options="step"]
+`count(*)` counts matching rows
+
+[source,options="step"]
+----
+MATCH (p)-[:MEMBER]->(u)
+RETURN u.name, count(*);
+----
+
+[options="step"]
+`count(x)` counts non-NULL values in x
+
+[source,options="step"]
+----
+MATCH (u:OrganizationalUnit)
+OPTIONAL MATCH (p)-[:MEMBER]->(u)
+RETURN u.name, count(p);
+----
+
+
+== Aggregation
+
+[options="step"]
+returns only organizational units with at least one member
+
+[source,options="step"]
+----
+MATCH (p)-[:MEMBER]->(u)
+RETURN u.name, count(*);
+----
+
+
+[options="step"]
+returns all organizational units
+
+[source,options="step"]
+----
+MATCH (u:OrganizationalUnit)
+OPTIONAL MATCH (p)-[:MEMBER]->(u)
+RETURN u.name, count(p);
+----
+
+== Statistics
+
+[options="step"]
+- `min(x)` returns the lowest value
+- `max(x)` returns the highest value
+- `avg(x)` returns the average of a numeric value
+- `sum(x)` returns the sum of all values
+- and some more
+
+== Sorting
+
+[options="step"]
+`ORDER BY` sorts the results (by multiple properties)
+
+[source,options="step"]
+----
+MATCH (city:City)--(c:Country)
+RETURN country.name, city.name
+ORDER BY country.name, city.name;
+----
+
+== Limit and skip
+
+[options="step"]
+- `LIMIT x` returns only the first x entries
+- `SKIP y` omits the first y entries
+
+[source,options="step"]
+----
+MATCH (p:NaturalPerson)
+RETURN p.canonicalName
+ORDER BY p.canonicalName
+SKIP 3
+LIMIT 5
+----
