@@ -28,3 +28,29 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 - boolean: `AND`, `OR`, `XOR`, `NOT`
 - string concatenation: `+`
 - collections: `+`, `IN`
+
+[canvas-image="./img/functions.jpg"]
+== Functions
+
+[role="canvas-caption", position="center"]
+Functions
+
+++++
+<div class="img-ref">
+<a href="https://www.flickr.com/photos/vestman/4908148942">"Function"</a> by <a href="https://www.flickr.com/photos/vestman/">Vestman</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== Scalar functions
+
+== Mathematical functions
+
+== String functions
+
+== Predicates
+
+== Collection functions
+
+== Exercise
+
+TODO

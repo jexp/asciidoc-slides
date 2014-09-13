@@ -46,6 +46,10 @@ OPTIONAL MATCH (a)-[r]->(b)
 RETURN a, b;
 ----
 
+== Paths
+
+TODO
+
 == Result with alias
 
 [options="step"]
@@ -162,3 +166,7 @@ ORDER BY p.canonicalName
 SKIP 3
 LIMIT 5
 ----
+
+== Exercise
+
+TODO
