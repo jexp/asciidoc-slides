@@ -984,7 +984,8 @@ RETURN a, b;</textarea>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code">MATCH (p)-[:MEMBER]-&gt;(u)
-RETURN p.canonicalName as member, u.name as `organizational unit`;</textarea>
+RETURN p.canonicalName as member,
+  u.name as `organizational unit`;</textarea>
 </div>
 </div>
 </section>
@@ -1027,6 +1028,22 @@ RETURN u.name, count(*);</textarea>
 <textarea class="code">MATCH (u:OrganizationalUnit)
 OPTIONAL MATCH (p)-[:MEMBER]-&gt;(u)
 RETURN u.name, count(p);</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_collecting">
+<h2>Collecting</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><code>collect(x)</code> inserts all values into a list</li>
+<li class="slide">can be combined with <code>DISTINCT</code></li>
+</ul>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (c:LegalPerson)--&gt;(:Office)--&gt;(:City)--&gt;(country:Country)
+RETURN c.canonicalName AS company,
+  collect(DISTINCT country.name) as countries;</textarea>
 </div>
 </div>
 </section>
