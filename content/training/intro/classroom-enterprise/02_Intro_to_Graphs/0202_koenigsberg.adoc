@@ -15,7 +15,7 @@ Königsberg (Prussia) - 1736
 
 == 7 Bridges of Königsberg - Approach
 
-image::{img}/konigsberg1.png[]
+image::{img}/konigsberg1.png[align="right"]
 
 
 Identify parts -> Landmasses & Bridges
@@ -38,3 +38,6 @@ Path finding -> There was no route
 - Navgiation / Routing / Logistics
 - git
 - recommendations
+
+image::{img}/Facebook.png[align="right"]
+image::{img}/Octocat.png[align="right"]

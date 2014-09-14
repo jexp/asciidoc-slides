@@ -4,16 +4,34 @@
 
 == Our sample domain for today
 
-* TODO: Textual description of domain
-* TODO: Use cases with organizations, people, locations and projects
+Today we will deal with entities present in typical enterprise scenarios:
 
-== Relevant extract for next steps
+* People and Companies
+* Orginizational structures, projects and teams
+
+== Description of sample domain
+
+* 'Persons' can be natural persons (humans) or legal entities (companies)
+* Legal entities are structured in hierarchical organizational units
+* Projects belong organizational units and have teams with poeple
+* People have addresses, working places, birthplaces, Organizations and teams have places of business
+* Addresses belont to cities, cities to countries and countries to continents
 
 == Excercise 1: Draw domain model
 
-== Proposed solution
+* Identify entity types (maybe abstract and concrete ones)
+* Define some important attributes
+* Define the relations between them
 
-* TODO: Show model we had in mind
+== Possible solution
+
+* The model we had in mind:
+
+image::{img}/persons-and-units.png[]
+
+== Relevant extract for next steps
+
+* TODO: show simplified version
 
 == Excercise 2: Transfer to Relational Data Model
 
