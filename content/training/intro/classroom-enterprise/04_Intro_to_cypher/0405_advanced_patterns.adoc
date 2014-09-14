@@ -27,15 +27,17 @@ Pattern
 or
 ++++
 <figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="1">
+  <ul class="graph-diagram-markup" data-internal-scale="4.26" data-external-scale="1">
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
       <span class="caption">a</span>
     </li>
-    <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
+    <li class="node" data-node-id="5" data-x="-1612.13025747108" data-y="-31.244897959183675">
       <span class="caption">b</span>
     </li>
-    <li class="relationship" data-from="4" data-to="5"></li>
-  </ul>
+    <li class="relationship" data-from="4" data-to="5">
+      <span class="type">r</span>
+    </li>
+</ul>
 </figure>
 ++++
 
@@ -46,9 +48,42 @@ OPTIONAL MATCH (a)-[r]->(b)
 RETURN a, b;
 ----
 
+== Relationship attributes
+
+[options="step"]
+Relationships can have attributes as well
+
+[source,options="step"]
+----
+MATCH (c:NaturalPerson)-[m:MEMBER]->(u:OrganizationalUnit)
+WHERE c.canonicalName = "Charlene Davis"
+RETURN m.role, m.hoursPerWeek;
+----
+
+
 == Paths
 
-TODO
+[source,options="step"]
+----
+MATCH p=(a:NaturalPerson)-[:MEMBER]->(u)<-[:MEMBER]-(b:NaturalPerson)
+WHERE a.canonicalName = "Alice Miller"
+RETURN p;
+----
+
+== Variable length paths
+
+[source,options="step"]
+----
+MATCH p = (a)-[:X*0..]->(b)
+RETURN p;
+----
+
+[source,options="step"]
+----
+MATCH p = (a)-[:X*1..3]->(b)
+RETURN p;
+----
+
 
 == Result with alias
 
@@ -167,6 +202,103 @@ SKIP 3
 LIMIT 5
 ----
 
-== Exercise
+[canvas-image="./img/coding-sw.jpg"]
+== It's your turn!
+
+[role="canvas-caption", position="center"]
+It's your turn!
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== Advanced queries 
+
+- Who is working in "Project X" at "GraphIT"?
+- Who is the lead of "Q&A" at "GraphIT"?
+- Is Alice Miller a superior of Daniel Fisher? 
+- How many hourse per week is Daniel Fisher working?
+- Who is having the same role in different units?
+
+
+== Lead of "Q&A" at "GraphIT"
 
 TODO
+[options="step"]
+Pattern
+
+== Lead of "Q&A" at "GraphIT"
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
+      <span class="caption">u:OrganzationalUnit</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
+      <span class="caption">p:NaturalPerson</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="3" data-to="4">
+      <span class="type">:LEAD</span>
+    </li>
+  </ul>
+</figure>
+++++
+
+[options="step"]
+Cypher
+
+[source,options="step"]
+----
+MATCH (p:NaturalPerson)<-[:LEAD]-(u:OrganizationalUnit)-->(c:LegalPerson)
+WHERE u.name = "Q&A" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;
+----
+
+
+== "Project X" members of "GraphIT"
+
+[options="step"]
+Pattern
+
+== "Project X" members of "GraphIT"
+
+Pattern
+
+++++
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
+      <span class="caption">u:OrganzationalUnit</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
+      <span class="caption">p:NaturalPerson</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="4" data-to="3">
+      <span class="type">:MEMBER</span>
+    </li>
+  </ul>
+</figure>
+++++
+
+[options="step"]
+Cypher
+
+[source,options="step"]
+----
+MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)-->(c:LegalPerson)
+WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;
+----

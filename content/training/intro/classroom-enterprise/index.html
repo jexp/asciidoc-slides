@@ -776,8 +776,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <div class="ulist">
 <ul>
 <li>Find the names of all legal persons.</li>
-<li>Find the names of all "Customer Support" members working for "GraphIT".</li>
-<li>Who is the lead of "Q&amp;A" at "GraphIT"?</li>
+<li>Works in the same teams as "Alice Miller"?</li>
 <li>Which companies have offices in Paris?</li>
 <li>In which countries has "GraphIT" offices?</li>
 </ul>
@@ -805,26 +804,28 @@ RETURN c.canonicalName;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="__customer_support_members_of_graphit">
-<h2>"Customer Support" members of "GraphIT"</h2>
+<section class="slide" id="_colleagues_of_alice_miller">
+<h2>Colleagues of Alice Miller</h2>
 <div class="paragraph slide"><p>Pattern</p></div>
 </section>
-<section class="slide" id="__customer_support_members_of_graphit_2">
-<h2>"Customer Support" members of "GraphIT"</h2>
+<section class="slide" id="_colleagues_of_alice_miller_2">
+<h2>Colleagues of Alice Miller</h2>
 <div class="paragraph"><p>Pattern</p></div>
 <figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
-    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
+  <ul class="graph-diagram-markup" data-internal-scale="4.26" data-external-scale="0.6">
+    <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
+      <span class="caption">a:NaturalPerson</span>
     </li>
-    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
-      <span class="caption">u:OrganzationalUnit</span>
+    <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
+      <span class="caption">u:OrganizationalUnit</span>
     </li>
-    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
-      <span class="caption">p:NaturalPerson</span>
+    <li class="node" data-node-id="6" data-x="-1297.1275555499185" data-y="-31.244897959183675">
+      <span class="caption">b:NaturalPerson</span>
     </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="4" data-to="3">
+    <li class="relationship" data-from="4" data-to="5">
+      <span class="type">:MEMBER</span>
+    </li>
+    <li class="relationship" data-from="6" data-to="5">
       <span class="type">:MEMBER</span>
     </li>
   </ul>
@@ -832,42 +833,10 @@ RETURN c.canonicalName;</textarea>
 <div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)--&gt;(c:LegalPerson)
-WHERE u.name = "Customer Support" AND c.canonicalName = "GraphIT"
-RETURN p.canonicalName;</textarea>
-</div>
-</div>
-</section>
-<section class="slide" id="_lead_of_q_a_at_graphit">
-<h2>Lead of "Q&amp;A" at "GraphIT"</h2>
-<div class="paragraph slide"><p>Pattern</p></div>
-</section>
-<section class="slide" id="_lead_of_q_a_at_graphit_2">
-<h2>Lead of "Q&amp;A" at "GraphIT"</h2>
-<div class="paragraph"><p>Pattern</p></div>
-<figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
-    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
-    </li>
-    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
-      <span class="caption">u:OrganzationalUnit</span>
-    </li>
-    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
-      <span class="caption">p:NaturalPerson</span>
-    </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="3" data-to="4">
-      <span class="type">:LEAD</span>
-    </li>
-  </ul>
-</figure>
-<div class="paragraph slide"><p>Cypher</p></div>
-<div class="listingblock slide">
-<div class="content">
-<textarea class="code">MATCH (p:NaturalPerson)&lt;-[:LEAD]-(u:OrganizationalUnit)--&gt;(c:LegalPerson)
-WHERE u.name = "Q&amp;A" AND c.canonicalName = "GraphIT"
-RETURN p.canonicalName;</textarea>
+<textarea class="code">MATCH (a:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit),
+  u&lt;-[:MEMBER]-(b:NaturalPerson)
+WHERE a.canonicalName = "Alice Miller"
+RETURN b.canonicalName;</textarea>
 </div>
 </div>
 </section>
@@ -960,15 +929,17 @@ RETURN DISTINCT country.name;</textarea>
 </figure>
 <div class="paragraph"><p>or</p></div>
 <figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="1">
+  <ul class="graph-diagram-markup" data-internal-scale="4.26" data-external-scale="1">
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
       <span class="caption">a</span>
     </li>
-    <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
+    <li class="node" data-node-id="5" data-x="-1612.13025747108" data-y="-31.244897959183675">
       <span class="caption">b</span>
     </li>
-    <li class="relationship" data-from="4" data-to="5"></li>
-  </ul>
+    <li class="relationship" data-from="4" data-to="5">
+      <span class="type">r</span>
+    </li>
+</ul>
 </figure>
 <div class="listingblock slide">
 <div class="content">
@@ -978,9 +949,41 @@ RETURN a, b;</textarea>
 </div>
 </div>
 </section>
+<section class="slide" id="_relationship_attributes">
+<h2>Relationship attributes</h2>
+<div class="paragraph slide"><p>Relationships can have attributes as well</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (c:NaturalPerson)-[m:MEMBER]-&gt;(u:OrganizationalUnit)
+WHERE c.canonicalName = "Charlene Davis"
+RETURN m.role, m.hoursPerWeek;</textarea>
+</div>
+</div>
+</section>
 <section class="slide" id="_paths">
 <h2>Paths</h2>
-<div class="paragraph"><p>TODO</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH p=(a:NaturalPerson)-[:MEMBER]-&gt;(u)&lt;-[:MEMBER]-(b:NaturalPerson)
+WHERE a.canonicalName = "Alice Miller"
+RETURN p;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_variable_length_paths">
+<h2>Variable length paths</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH p = (a)-[:X*0..]-&gt;(b)
+RETURN p;</textarea>
+</div>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH p = (a)-[:X*1..3]-&gt;(b)
+RETURN p;</textarea>
+</div>
+</div>
 </section>
 <section class="slide" id="_result_with_alias">
 <h2>Result with alias</h2>
@@ -1092,9 +1095,90 @@ LIMIT 5</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_exercise_2">
-<h2>Exercise</h2>
+<section class="slide canvas-image" id="_it_s_your_turn" style="background-image: url(./img/coding-sw.jpg)">
+<div class="paragraph canvas-caption"><p class="center">It&#8217;s your turn!</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+</section>
+<section class="slide" id="_advanced_queries">
+<h2>Advanced queries</h2>
+<div class="ulist">
+<ul>
+<li>Who is working in "Project X" at "GraphIT"?</li>
+<li>Who is the lead of "Q&amp;A" at "GraphIT"?</li>
+<li>Is Alice Miller a superior of Daniel Fisher?</li>
+<li>How many hourse per week is Daniel Fisher working?</li>
+<li>Who is having the same role in different units?</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_lead_of_q_a_at_graphit">
+<h2>Lead of "Q&amp;A" at "GraphIT"</h2>
 <div class="paragraph"><p>TODO</p></div>
+<div class="paragraph slide"><p>Pattern</p></div>
+</section>
+<section class="slide" id="_lead_of_q_a_at_graphit_2">
+<h2>Lead of "Q&amp;A" at "GraphIT"</h2>
+<div class="paragraph"><p>Pattern</p></div>
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
+      <span class="caption">u:OrganzationalUnit</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
+      <span class="caption">p:NaturalPerson</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="3" data-to="4">
+      <span class="type">:LEAD</span>
+    </li>
+  </ul>
+</figure>
+<div class="paragraph slide"><p>Cypher</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (p:NaturalPerson)&lt;-[:LEAD]-(u:OrganizationalUnit)--&gt;(c:LegalPerson)
+WHERE u.name = "Q&amp;A" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="__project_x_members_of_graphit">
+<h2>"Project X" members of "GraphIT"</h2>
+<div class="paragraph slide"><p>Pattern</p></div>
+</section>
+<section class="slide" id="__project_x_members_of_graphit_2">
+<h2>"Project X" members of "GraphIT"</h2>
+<div class="paragraph"><p>Pattern</p></div>
+<figure class="graph-diagram">
+  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
+    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
+      <span class="caption">c:LegalPerson</span>
+    </li>
+    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
+      <span class="caption">u:OrganzationalUnit</span>
+    </li>
+    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
+      <span class="caption">p:NaturalPerson</span>
+    </li>
+    <li class="relationship" data-from="3" data-to="1"></li>
+    <li class="relationship" data-from="4" data-to="3">
+      <span class="type">:MEMBER</span>
+    </li>
+  </ul>
+</figure>
+<div class="paragraph slide"><p>Cypher</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)--&gt;(c:LegalPerson)
+WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;</textarea>
+</div>
+</div>
 </section>
 <section class="slide canvas-image" id="_datatypes" style="background-image: url(./img/binary-sw.jpg)">
 <div class="paragraph canvas-caption"><p class="center">Datatypes</p></div>
@@ -1109,8 +1193,8 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 <li class="slide">decimal: double or integer (hexadecimal and octal as well)</li>
 <li class="slide">string</li>
 <li class="slide">boolean</li>
-<li class="slide">lists</li>
-<li class="slide">maps</li>
+<li class="slide">lists: [3, 4, 5]</li>
+<li class="slide">maps: {name: "Alice Miller", email: "<a href="mailto:alice@miller.com">alice@miller.com</a>"}</li>
 </ul>
 </div>
 </section>
@@ -1134,32 +1218,104 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 </section>
 <section class="slide" id="_scalar_functions">
 <h2>Scalar functions</h2>
-
+<div class="ulist">
+<ul>
+<li class="slide"><code>length(x)</code>: the length of a path or collection</li>
+<li class="slide"><code>type(r)</code>: the type of an relationship</li>
+<li class="slide"><code>id(x)</code>: the ID of a node or relationship</li>
+<li class="slide"><code>timestamp()</code>: the milliseconds since January 1, 1970 UTC (will be same during the whole query)</li>
+<li class="slide"><code>coalesce(x1, x2, &#8230;&#8203;)</code>: the first non-null argument</li>
+<li class="slide"><code>head(c)</code> / <code>last(c)</code>: the first / last element of the collection</li>
+<li class="slide"><code>startnode(r)</code> / <code>endnode(r)</code>: start / end node of a relationship</li>
+</ul>
+</div>
 </section>
-<section class="slide" id="_mathematical_functions">
-<h2>Mathematical functions</h2>
-
-</section>
-<section class="slide" id="_string_functions">
-<h2>String functions</h2>
-
+<section class="slide" id="_mathematical_and_string_functions">
+<h2>Mathematical and string functions</h2>
+<div class="ulist">
+<ul>
+<li class="slide">mathematical functions like <code>abs</code>, <code>sin</code>, <code>floor</code>, <code>sqrt</code>, &#8230;&#8203;</li>
+<li class="slide">string functions like <code>trim</code>, substring, <code>replace</code>, &#8230;&#8203;</li>
+<li class="slide"><code>toint</code> / <code>tofloat</code> / <code>tostring</code>: converting to int / float / string</li>
+</ul>
+</div>
 </section>
 <section class="slide" id="_predicates">
 <h2>Predicates</h2>
-
+<div class="ulist">
+<ul>
+<li class="slide"><code>ALL(x IN coll WHERE pred)</code>: tests if pred is true for all values in coll</li>
+<li class="slide"><code>ANY(x IN coll WHERE pred)</code>: tests if pred is true for at least one value in coll</li>
+<li class="slide"><code>NONE(x IN coll WHERE pred)</code>: tests if pred is true for no value in coll</li>
+<li class="slide"><code>SINGLE(x IN coll WHERE pred)</code>: tests if pred is true for exactly one value in coll</li>
+<li class="slide"><code>EXISTS(x.prop)</code>: tests if x has the property prop</li>
+<li class="slide"><code>EXISTS(pattern)</code>: tests if the given pattern exists</li>
+</ul>
+</div>
 </section>
 <section class="slide" id="_collection_functions">
 <h2>Collection functions</h2>
-
+<div class="ulist">
+<ul>
+<li class="slide"><code>nodes(p)</code> / <code>relationships(p)</code>: nodes / relationships of a path</li>
+<li class="slide"><code>labels(n)</code>: labels of a node</li>
+<li class="slide"><code>range(start, end [,step])</code>: integer values in the given range with optional step</li>
+</ul>
+</div>
 </section>
-<section class="slide" id="_exercise_3">
-<h2>Exercise</h2>
-<div class="paragraph"><p>TODO</p></div>
+<section class="slide" id="_collection_functions_2">
+<h2>Collection functions</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><code>tail(c)</code>: all but the first element of a collection</li>
+<li class="slide"><code>extract(x IN coll | expr)</code>: maps all values in coll using expr</li>
+<li class="slide"><code>filter(x IN COLL | pred)</code>: returns a collection with all elements for that pred is true</li>
+<li class="slide"><code>reduce(acc = inital, x IN coll | expr)</code>: reduces values in coll using acc and expr</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_advanced_filtering">
+<h2>Advanced filtering</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><code>=~ "regexp"</code> allows to filter using regular expressions</li>
+<li class="slide">patterns can be used as well</li>
+</ul>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">MATCH (u: OrganizationalUnit), (p:NaturalPerson)
+WHERE p.canonicalName =~ "A.*" AND p-[:LEAD]-&gt;(u)
+RETURN p.canonicalName, u.name</textarea>
+</div>
+</div>
+</section>
+<section class="slide canvas-image" id="_it_s_your_turn_2" style="background-image: url(./img/coding-sw.jpg)">
+<div class="paragraph canvas-caption"><p class="center">It&#8217;s your turn!</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+</section>
+<section class="slide" id="_more_queries">
+<h2>More queries</h2>
+<div class="ulist">
+<ul>
+<li>List all organizational units of "GraphIT" and their members.</li>
+<li>Through whom/how many persons do Alice Miller and Charlene Davis know each other?</li>
+<li>Who is working for at least 2 organizational units?</li>
+<li>Find all persons with first name Eve.</li>
+<li>Explore the database. What labels do exist? How many nodes/relationships are stored? &#8230;&#8203;</li>
+</ul>
+</div>
 </section>
 <section class="slide" id="_two_nodes_one_relationship">
 <h2>Two nodes, one relationship</h2>
-<section class="notitle slide" id="_the_graph">
-<h3>The graph</h3>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (a)--&gt;()
+RETURN a.name</textarea>
+</div>
+</div>
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
   <li class="node" data-node-id="0" data-x="-50" data-y="-40">
@@ -1171,59 +1327,10 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
   <li class="relationship graph_pattern_optional_rel" data-from="0" data-to="1"></li>
 </ul>
 </figure>
-</section>
-<section class="notitle slide" id="_the_code">
-<h3>The code</h3>
-<div class="listingblock">
-<div class="content">
-<textarea class="code">(a)--&gt;()</textarea>
-</div>
-</div>
-</section>
 </section>
 <section class="slide" id="_two_nodes_one_relationship_2">
 <h2>Two nodes, one relationship</h2>
-<div class="listingblock slide">
-<div class="content">
-<textarea class="code" mode="cypher">MATCH (a)--&gt;()
-RETURN a.name</textarea>
-</div>
-</div>
-<figure class="graph-diagram">
-<ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
-  <li class="node" data-node-id="0" data-x="-50" data-y="-40">
-    <span class="caption">a</span>
-  </li>
-  <li class="node" data-node-id="1" data-x="-20" data-y="-40">
-    <span class="caption"></span>
-  </li>
-  <li class="relationship graph_pattern_optional_rel" data-from="0" data-to="1"></li>
-</ul>
-</figure>
-</section>
-<section class="slide" id="_two_nodes_one_relationship_3">
-<h2>Two nodes, one relationship</h2>
-<div class="listingblock slide">
-<div class="content">
-<textarea class="code" mode="cypher">MATCH (a)--&gt;()
-RETURN a.name</textarea>
-</div>
-</div>
-<figure class="graph-diagram">
-<ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
-  <li class="node" data-node-id="0" data-x="-50" data-y="-40">
-    <span class="caption">a</span>
-  </li>
-  <li class="node" data-node-id="1" data-x="-20" data-y="-40">
-    <span class="caption"></span>
-  </li>
-  <li class="relationship graph_pattern_optional_rel" data-from="0" data-to="1"></li>
-</ul>
-</figure>
-</section>
-<section class="slide" id="_two_nodes_one_relationship_4">
-<h2>Two nodes, one relationship</h2>
-<section class="notitle slide" id="_the_graph_2">
+<section class="notitle slide" id="_the_graph">
 <h3>The graph</h3>
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
@@ -1239,12 +1346,12 @@ RETURN a.name</textarea>
 </ul>
 </figure>
 </section>
-<section class="notitle slide" id="_the_code_2">
+<section class="notitle slide" id="_the_code">
 <h3>The code</h3>
 <div class="paragraph"><p>(a)-[highlight]#[r]# - &gt;()</p></div>
 </section>
 </section>
-<section class="slide" id="_two_nodes_one_relationship_5">
+<section class="slide" id="_two_nodes_one_relationship_3">
 <h2>Two nodes, one relationship</h2>
 <div class="listingblock slide">
 <div class="content">
@@ -1292,7 +1399,7 @@ RETURN a.name, type(r)</textarea>
 </div>
 </section>
 </section>
-<section class="slide" id="_two_nodes_one_relationship_6">
+<section class="slide" id="_two_nodes_one_relationship_4">
 <h2>Two nodes, one relationship</h2>
 <section class="notitle slide" id="graph_optional_match">
 <h3>The graph</h3>
@@ -1310,7 +1417,7 @@ RETURN a.name, type(r)</textarea>
 </ul>
 </figure>
 </section>
-<section class="notitle slide" id="_the_code_3">
+<section class="notitle slide" id="_the_code_2">
 <h3>The code</h3>
 <div class="paragraph"><p>(a)-[:ACTED_IN]-&gt;(m)</p></div>
 <div class="listingblock slide">
@@ -1332,7 +1439,7 @@ RETURN a.name, r.roles, m.title</textarea>
 </section>
 <section class="slide" id="_paths_2">
 <h2>Paths</h2>
-<section class="notitle slide" id="_the_graph_3">
+<section class="notitle slide" id="_the_graph_2">
 <h3>The graph</h3>
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
@@ -1354,14 +1461,14 @@ RETURN a.name, r.roles, m.title</textarea>
 </ul>
 </figure>
 </section>
-<section class="notitle slide" id="_the_code_4">
+<section class="notitle slide" id="_the_code_3">
 <h3>The code</h3>
 <div class="paragraph"><p>(a) - - &gt;(b) - - &gt;(c)</p></div>
 </section>
 </section>
 <section class="slide" id="_paths_3">
 <h2>Paths</h2>
-<section class="notitle slide" id="_the_graph_4">
+<section class="notitle slide" id="_the_graph_3">
 <h3>The graph</h3>
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
@@ -1383,14 +1490,14 @@ RETURN a.name, r.roles, m.title</textarea>
 </ul>
 </figure>
 </section>
-<section class="notitle slide" id="_the_code_5">
+<section class="notitle slide" id="_the_code_4">
 <h3>The code</h3>
 <div class="paragraph"><p>(a) - - &gt;(b)&lt; - - (c)</p></div>
 </section>
 </section>
 <section class="slide" id="_paths_4">
 <h2>Paths</h2>
-<section class="notitle slide" id="_the_graph_5">
+<section class="notitle slide" id="_the_graph_4">
 <h3>The graph</h3>
 <figure class="graph-diagram">
 <ul class="graph-diagram-markup" data-internal-scale="10" data-external-scale="1">
@@ -1421,7 +1528,7 @@ RETURN a.name, m.title, d.name</textarea>
 </section>
 <section class="slide" id="_a_movies_query">
 <h2>A Movies Query</h2>
-<section class="notitle slide" id="_the_code_6">
+<section class="notitle slide" id="_the_code_5">
 <h3>The code</h3>
 <div class="listingblock">
 <div class="content">
@@ -1472,7 +1579,7 @@ RETURN a.name, m.title, d.name;</textarea>
 </section>
 <section class="slide" id="_a_movies_query_with_alias">
 <h2>A Movies Query with alias</h2>
-<section class="notitle slide" id="_the_code_7">
+<section class="notitle slide" id="_the_code_6">
 <h3>The code</h3>
 <div class="listingblock">
 <div class="content">
@@ -1549,7 +1656,7 @@ RETURN a.name AS actor, m.title AS movie,
 </ul>
 </figure>
 </section>
-<section class="notitle slide" id="_the_code_8">
+<section class="notitle slide" id="_the_code_7">
 <h3>The code</h3>
 <div class="listingblock">
 <div class="content">
@@ -1616,7 +1723,7 @@ RETURN a.name, m.title, d.name</textarea>
 </ul>
 </figure>
 </section>
-<section class="notitle slide" id="_the_code_9">
+<section class="notitle slide" id="_the_code_8">
 <h3>The code</h3>
 <div class="listingblock">
 <div class="content">
@@ -2599,7 +2706,7 @@ CREATE UNIQUE (a)-[:KNOWS]-&gt;(b)</textarea>
 </div>
 <div class="paragraph slide"><p>(Create KNOWS relationships between anyone, Actors or Directors, who worked together)</p></div>
 </section>
-<section class="slide" id="_variable_length_paths">
+<section class="slide" id="_variable_length_paths_2">
 <h2>Variable length paths</h2>
 <section class="slide" id="_the_pattern">
 <h3>The pattern</h3>

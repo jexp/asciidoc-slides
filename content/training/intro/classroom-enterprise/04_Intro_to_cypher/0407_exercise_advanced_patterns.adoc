@@ -1,0 +1,21 @@
+[canvas-image="./img/coding-sw.jpg"]
+== It's your turn!
+
+[role="canvas-caption", position="center"]
+It's your turn!
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== More queries
+
+- List all organizational units of "GraphIT" and their members.
+- Through whom/how many persons do Alice Miller and Charlene Davis know each other?
+- Who is working for at least 2 organizational units?
+- Find all persons with first name Eve.
+- Explore the database. What labels do exist? How many nodes/relationships are stored? ...
+
+

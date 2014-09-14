@@ -16,8 +16,8 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 - decimal: double or integer (hexadecimal and octal as well)
 - string
 - boolean
-- lists
-- maps
+- lists: [3, 4, 5]
+- maps: {name: "Alice Miller", email: "alice@miller.com"}
 
 
 == Operators
@@ -43,14 +43,54 @@ Functions
 
 == Scalar functions
 
-== Mathematical functions
+[options="step"]
+- `length(x)`: the length of a path or collection
+- `type(r)`: the type of an relationship
+- `id(x)`: the ID of a node or relationship
+- `timestamp()`: the milliseconds since January 1, 1970 UTC (will be same during the whole query)
+- `coalesce(x1, x2, ...)`: the first non-null argument
+- `head(c)` / `last(c)`: the first / last element of the collection
+- `startnode(r)` / `endnode(r)`: start / end node of a relationship
 
-== String functions
+== Mathematical and string functions
+[options="step"]
+- mathematical functions like `abs`, `sin`, `floor`, `sqrt`, ...
+- string functions like `trim`, substring, `replace`, ...
+- `toint` / `tofloat` / `tostring`: converting to int / float / string
+
 
 == Predicates
+[options="step"]
+- `ALL(x IN coll WHERE pred)`: tests if pred is true for all values in coll
+- `ANY(x IN coll WHERE pred)`: tests if pred is true for at least one value in coll
+- `NONE(x IN coll WHERE pred)`: tests if pred is true for no value in coll
+- `SINGLE(x IN coll WHERE pred)`: tests if pred is true for exactly one value in coll
+- `EXISTS(x.prop)`: tests if x has the property prop
+- `EXISTS(pattern)`: tests if the given pattern exists
+
 
 == Collection functions
+[options="step"]
+- `nodes(p)` / `relationships(p)`: nodes / relationships of a path
+- `labels(n)`: labels of a node
+- `range(start, end [,step])`: integer values in the given range with optional step 
 
-== Exercise
+== Collection functions
+[options="step"]
+- `tail(c)`: all but the first element of a collection
+- `extract(x IN coll | expr)`: maps all values in coll using expr
+- `filter(x IN COLL | pred)`: returns a collection with all elements for that pred is true
+- `reduce(acc = inital, x IN coll | expr)`: reduces values in coll using acc and expr
 
-TODO
+== Advanced filtering
+
+[options="step"]
+- `=~ "regexp"` allows to filter using regular expressions
+- patterns can be used as well
+
+[source,options="step"]
+----
+MATCH (u: OrganizationalUnit), (p:NaturalPerson)
+WHERE p.canonicalName =~ "A.*" AND p-[:LEAD]->(u)
+RETURN p.canonicalName, u.name
+----

@@ -29,7 +29,7 @@ include::0405_advanced_patterns.adoc[]
 
 include::0406_datatypes.adoc[]
 
-include::0407_two_nodes_one_rel.adoc[]
+include::0407_exercise_advanced_patterns.adoc[]
 
 include::0408_two_nodes_one_rel.adoc[]
 
