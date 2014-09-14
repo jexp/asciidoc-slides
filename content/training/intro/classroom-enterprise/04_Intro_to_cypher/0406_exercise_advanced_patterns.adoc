@@ -16,7 +16,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 - Who is the lead of "Q&A" at "GraphIT"?
 - Is Alice Miller a superior of Daniel Fisher? 
 - How many hours per week is Daniel Fisher working?
-- Who is having the same role in different units?
+- Who is having the same role in different units? 
 - Find the three persons with the lowest hours per week.
 
 
