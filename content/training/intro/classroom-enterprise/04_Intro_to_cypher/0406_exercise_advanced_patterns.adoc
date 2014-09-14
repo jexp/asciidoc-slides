@@ -14,88 +14,67 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 
 - Who is working in "Project X" at "GraphIT"?
 - Who is the lead of "Q&A" at "GraphIT"?
-- Is Alice Miller a superior of Daniel Fisher? 
 - How many hours per week is Daniel Fisher working?
-- Who is having the same role in different units? 
 - Find the three persons with the lowest hours per week.
+- Who is having the same role in different units? 
+- Is Alice Miller a superior of Daniel Fisher? 
 
-
-== Lead of "Q&A" at "GraphIT"
-
-TODO
-[options="step"]
-Pattern
-
-== Lead of "Q&A" at "GraphIT"
-
-Pattern
-
-++++
-<figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
-    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
-    </li>
-    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
-      <span class="caption">u:OrganzationalUnit</span>
-    </li>
-    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
-      <span class="caption">p:NaturalPerson</span>
-    </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="3" data-to="4">
-      <span class="type">:LEAD</span>
-    </li>
-  </ul>
-</figure>
-++++
-
-[options="step"]
-Cypher
+== Members of "Project X"
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)<-[:LEAD]-(u:OrganizationalUnit)-->(c:LegalPerson)
+MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit),
+  u-[:PARENT*0..]->(c:LegalPerson)
+WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;
+----
+
+== Lead of "Q&A" at "GraphIT"
+
+[source,cypher,options="step"]
+----
+MATCH (p:NaturalPerson)-[:LEAD]-(u:OrganizationalUnit),
+  u-[:PARENT*0..]->(c:LegalPerson)
 WHERE u.name = "Q&A" AND c.canonicalName = "GraphIT"
 RETURN p.canonicalName;
 ----
 
-
-== "Project X" members of "GraphIT"
-
-[options="step"]
-Pattern
-
-== "Project X" members of "GraphIT"
-
-Pattern
-
-++++
-<figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
-    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
-    </li>
-    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
-      <span class="caption">u:OrganzationalUnit</span>
-    </li>
-    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
-      <span class="caption">p:NaturalPerson</span>
-    </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="4" data-to="3">
-      <span class="type">:MEMBER</span>
-    </li>
-  </ul>
-</figure>
-++++
-
-[options="step"]
-Cypher
+== Hours per week of Daniel
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)-->(c:LegalPerson)
-WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"
-RETURN p.canonicalName;
+MATCH (p:NaturalPerson)-[m:MEMBER]-(u:OrganizationalUnit)
+WHERE p.canonicalName = "Daniel Fisher"
+RETURN sum(m.hoursPerWeek) as `hours per week`;
+----
+
+== People with lowest hours per week
+
+[source,cypher,options="step"]
+----
+MATCH (p:NaturalPerson)-[m:MEMBER]-(u:OrganizationalUnit)
+RETURN p.canonicalName AS name, sum(m.hoursPerWeek) as `hours per week`
+ORDER BY name DESC
+LIMIT 3;
+----
+
+== People with same role in different units
+
+[source,cypher,options="step"]
+----
+MATCH (p:NaturalPerson)-[m1:MEMBER]-(u1:OrganizationalUnit),
+p-[m2:MEMBER]->(u2:OrganizationalUnit)
+WHERE m1.role = m2.role
+RETURN p.canonicalName AS name, u1.name, u2.name, m1.role as role;
+----
+
+== Is Alice a superior of Daniel?
+
+[source,cypher,options="step"]
+----
+MATCH (a:NaturalPerson)-[:LEAD]-(u1),
+  u1<-[:PARENT*0..]-()<-[:MEMBER]-(d:NaturalPerson)
+WHERE a.canonicalName = "Alice Miller" 
+  AND d.canonicalName = "Daniel Fisher"
+RETURN a, d;
 ----

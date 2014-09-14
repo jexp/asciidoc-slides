@@ -91,6 +91,11 @@ a:hover, a:active {
     outline: none;
 }
 
+.slide a {
+    text-decoration: none;
+    color: inherit;
+}
+
 ul, ol {
     margin-left: 2em;
     vertical-align: top;

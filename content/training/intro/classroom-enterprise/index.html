@@ -1107,77 +1107,76 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <ul>
 <li>Who is working in "Project X" at "GraphIT"?</li>
 <li>Who is the lead of "Q&amp;A" at "GraphIT"?</li>
-<li>Is Alice Miller a superior of Daniel Fisher?</li>
 <li>How many hours per week is Daniel Fisher working?</li>
-<li>Who is having the same role in different units?</li>
 <li>Find the three persons with the lowest hours per week.</li>
+<li>Who is having the same role in different units?</li>
+<li>Is Alice Miller a superior of Daniel Fisher?</li>
 </ul>
+</div>
+</section>
+<section class="slide" id="_members_of_project_x">
+<h2>Members of "Project X"</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit),
+  u-[:PARENT*0..]-&gt;(c:LegalPerson)
+WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"
+RETURN p.canonicalName;</textarea>
+</div>
 </div>
 </section>
 <section class="slide" id="_lead_of_q_a_at_graphit">
 <h2>Lead of "Q&amp;A" at "GraphIT"</h2>
-<div class="paragraph"><p>TODO</p></div>
-<div class="paragraph slide"><p>Pattern</p></div>
-</section>
-<section class="slide" id="_lead_of_q_a_at_graphit_2">
-<h2>Lead of "Q&amp;A" at "GraphIT"</h2>
-<div class="paragraph"><p>Pattern</p></div>
-<figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
-    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
-    </li>
-    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
-      <span class="caption">u:OrganzationalUnit</span>
-    </li>
-    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
-      <span class="caption">p:NaturalPerson</span>
-    </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="3" data-to="4">
-      <span class="type">:LEAD</span>
-    </li>
-  </ul>
-</figure>
-<div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)&lt;-[:LEAD]-(u:OrganizationalUnit)--&gt;(c:LegalPerson)
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:LEAD]-(u:OrganizationalUnit),
+  u-[:PARENT*0..]-&gt;(c:LegalPerson)
 WHERE u.name = "Q&amp;A" AND c.canonicalName = "GraphIT"
 RETURN p.canonicalName;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="__project_x_members_of_graphit">
-<h2>"Project X" members of "GraphIT"</h2>
-<div class="paragraph slide"><p>Pattern</p></div>
-</section>
-<section class="slide" id="__project_x_members_of_graphit_2">
-<h2>"Project X" members of "GraphIT"</h2>
-<div class="paragraph"><p>Pattern</p></div>
-<figure class="graph-diagram">
-  <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
-    <li class="node" data-node-id="1" data-x="-738.3950625616012" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
-    </li>
-    <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
-      <span class="caption">u:OrganzationalUnit</span>
-    </li>
-    <li class="node" data-node-id="4" data-x="-1851.9610105761099" data-y="-31.244897959183675">
-      <span class="caption">p:NaturalPerson</span>
-    </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="4" data-to="3">
-      <span class="type">:MEMBER</span>
-    </li>
-  </ul>
-</figure>
-<div class="paragraph slide"><p>Cypher</p></div>
+<section class="slide" id="_hours_per_week_of_daniel">
+<h2>Hours per week of Daniel</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)--&gt;(c:LegalPerson)
-WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"
-RETURN p.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[m:MEMBER]-(u:OrganizationalUnit)
+WHERE p.canonicalName = "Daniel Fisher"
+RETURN sum(m.hoursPerWeek) as `hours per week`;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_people_with_lowest_hours_per_week">
+<h2>People with lowest hours per week</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[m:MEMBER]-(u:OrganizationalUnit)
+RETURN p.canonicalName AS name, sum(m.hoursPerWeek) as `hours per week`
+ORDER BY name DESC
+LIMIT 3;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_people_with_same_role_in_different_units">
+<h2>People with same role in different units</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[m1:MEMBER]-(u1:OrganizationalUnit),
+p-[m2:MEMBER]-&gt;(u2:OrganizationalUnit)
+WHERE m1.role = m2.role
+RETURN p.canonicalName AS name, u1.name, u2.name, m1.role as role;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_is_alice_a_superior_of_daniel">
+<h2>Is Alice a superior of Daniel?</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (a:NaturalPerson)-[:LEAD]-(u1),
+  u1&lt;-[:PARENT*0..]-()&lt;-[:MEMBER]-(d:NaturalPerson)
+WHERE a.canonicalName = "Alice Miller"
+  AND d.canonicalName = "Daniel Fisher"
+RETURN a, d;</textarea>
 </div>
 </div>
 </section>
@@ -1302,11 +1301,93 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <div class="ulist">
 <ul>
 <li>List all organizational units of "GraphIT" and their members.</li>
-<li>Through whom/how many persons do Alice Miller and Charlene Davis know each other?</li>
 <li>Who is working for at least 2 organizational units?</li>
 <li>Find all persons with first name Eve.</li>
-<li>Explore the database. What labels do exist? How many nodes/relationships are stored? &#8230;&#8203;</li>
+<li>Through whom/how many persons do Alice Miller and Charlene Davis know each other?</li>
+<li>Explore the database. What labels do exist? How many nodes/relationships are stored?</li>
 </ul>
+</div>
+</section>
+<section class="slide" id="_organizational_units_of_graphit">
+<h2>Organizational units of "GraphIT"</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (u:OrganizationalUnit)-[:PARENT*0..]-&gt;(c:LegalPerson)
+OPTIONAL MATCH (p:NaturalPerson)-[:MEMBER]-&gt;u
+WHERE c.canonicalName = "GraphIT"
+RETURN u.name, collect(p.canonicalName) as members;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_who_is_working_for_at_least_two_units">
+<h2>Who is working for at least two units?</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u1:OrganizationalUnit),
+(p:NaturalPerson)-[:MEMBER]-&gt;(u2:OrganizationalUnit)
+RETURN DISTINCT p.canonicalName;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_persons_with_first_name_eve">
+<h2>Persons with first name Eve</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)
+WHERE p.canonicalName =~ "Eve .*"
+RETURN DISTINCT p.canonicalName;</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_connection_from_alice_to_charlene">
+<h2>Connection from Alice to Charlene</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
+WHERE p.canonicalName = "Alice Miller"
+  AND p2.canonicalName = "Charlene Davis"
+RETURN
+  length(filter(n IN nodes(path) WHERE "NaturalPerson" IN LABELS(n)))</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_connection_from_alice_to_charlene_2">
+<h2>Connection from Alice to Charlene</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
+WHERE p.canonicalName = "Alice Miller"
+  AND p2.canonicalName = "Charlene Davis"
+RETURN extract(n IN nodes(path) | coalesce(n.canonicalName, n.name))</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_connection_from_alice_to_charlene_3">
+<h2>Connection from Alice to Charlene</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
+WHERE p.canonicalName = "Alice Miller"
+  AND p2.canonicalName = "Charlene Davis"
+WITH
+  filter(n IN nodes(path) WHERE "NaturalPerson" IN labels(n))
+  AS persons
+RETURN extract(n IN persons | n.canonicalName)</textarea>
+</div>
+</div>
+<div class="paragraph"><p><code>WITH</code> allows you to modify/filter result sets</p></div>
+</section>
+<section class="slide" id="_explore_the_database">
+<h2>Explore the database</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (a)-[r]-&gt;(b)
+WHERE labels(a) &lt;&gt; [] AND labels(b) &lt;&gt; []
+RETURN DISTINCT
+  head(labels(a)) AS This,
+  type(r) AS To,
+  head(labels(b)) AS That</textarea>
+</div>
 </div>
 </section>
 <section class="slide canvas-image" id="_lunch" style="background-image: url(./img/lunch-sw.png)">
