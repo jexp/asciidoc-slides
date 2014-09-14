@@ -1,8 +1,14 @@
 == Updating graphs with Cypher
 
 include::0502_create.adoc[]
+
 include::0503_delete.adoc[]
+
 include::0504_merge.adoc[]
+
+include::0505_more_cypher.adoc[]
+
+include::0506_exercise_modify.adoc[]
 
 [canvas-image="./img/coffee2-sw.jpg"]
 == Coffee?
@@ -15,6 +21,3 @@ Coffee?
 derivative of <a href="https://www.flickr.com/photos/bortescristian/8442828274">"Coffee cupping at Olivo Caffe with barista Marius Nica"</a> by <a href="https://www.flickr.com/photos/bortescristian/">Cristian Bortes</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
 <div>
 ++++
-
-include::0505_more_cypher.adoc[]
-

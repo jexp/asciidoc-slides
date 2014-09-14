@@ -3,7 +3,7 @@
 [options="step"]
 `RETURN DISTINCT` returns only unique rows 
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
 WHERE c.canonicalName = "GraphIT"
@@ -41,7 +41,7 @@ or
 </figure>
 ++++
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH a
 OPTIONAL MATCH (a)-[r]->(b)
@@ -53,7 +53,7 @@ RETURN a, b;
 [options="step"]
 Relationships can have attributes as well
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (c:NaturalPerson)-[m:MEMBER]->(u:OrganizationalUnit)
 WHERE c.canonicalName = "Charlene Davis"
@@ -63,7 +63,7 @@ RETURN m.role, m.hoursPerWeek;
 
 == Paths
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH p=(a:NaturalPerson)-[:MEMBER]->(u)<-[:MEMBER]-(b:NaturalPerson)
 WHERE a.canonicalName = "Alice Miller"
@@ -72,13 +72,13 @@ RETURN p;
 
 == Variable length paths
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH p = (a)-[:X*0..]->(b)
 RETURN p;
 ----
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH p = (a)-[:X*1..3]->(b)
 RETURN p;
@@ -90,7 +90,7 @@ RETURN p;
 [options="step"]
 `AS` sets name for result column
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (p)-[:MEMBER]->(u)
 RETURN p.canonicalName as member, 
@@ -114,7 +114,7 @@ derivative of <a href="https://www.flickr.com/photos/zscheyge/49012397">"Buildin
 [options="step"]
 `count(*)` counts matching rows
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (p)-[:MEMBER]->(u)
 RETURN u.name, count(*);
@@ -123,7 +123,7 @@ RETURN u.name, count(*);
 [options="step"]
 `count(x)` counts non-NULL values in x
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (u:OrganizationalUnit)
 OPTIONAL MATCH (p)-[:MEMBER]->(u)
@@ -136,7 +136,7 @@ RETURN u.name, count(p);
 [options="step"]
 returns only organizational units with at least one member
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (p)-[:MEMBER]->(u)
 RETURN u.name, count(*);
@@ -146,7 +146,7 @@ RETURN u.name, count(*);
 [options="step"]
 returns all organizational units
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (u:OrganizationalUnit)
 OPTIONAL MATCH (p)-[:MEMBER]->(u)
@@ -159,7 +159,7 @@ RETURN u.name, count(p);
 - `collect(x)` inserts all values into a list
 - can be combined with `DISTINCT`
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
 RETURN c.canonicalName AS company, 
@@ -180,7 +180,7 @@ RETURN c.canonicalName AS company,
 [options="step"]
 `ORDER BY` sorts the results (by multiple properties)
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (city:City)--(c:Country)
 RETURN country.name, city.name
@@ -193,7 +193,7 @@ ORDER BY country.name, city.name;
 - `LIMIT x` returns only the first x entries
 - `SKIP y` omits the first y entries
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (p:NaturalPerson)
 RETURN p.canonicalName

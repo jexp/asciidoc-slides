@@ -40,7 +40,7 @@ Pattern
 [options="step"]
 Cypher
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (c:LegalPerson)
 RETURN c.canonicalName;
@@ -80,7 +80,7 @@ Pattern
 [options="step"]
 Cypher
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (a:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit),
   u<-[:MEMBER]-(b:NaturalPerson)
@@ -118,7 +118,7 @@ Pattern
 [options="step"]
 Cypher
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (c:LegalPerson)-->(:Office)-->(city:City)
 WHERE city.name = "Paris"
@@ -159,7 +159,7 @@ Pattern
 [options="step"]
 Cypher
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
 WHERE c.canonicalName = "GraphIT"

@@ -53,7 +53,7 @@ Pattern
 [options="step"]
 Cypher
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (p:NaturalPerson)<-[:LEAD]-(u:OrganizationalUnit)-->(c:LegalPerson)
 WHERE u.name = "Q&A" AND c.canonicalName = "GraphIT"
@@ -93,7 +93,7 @@ Pattern
 [options="step"]
 Cypher
 
-[source,options="step"]
+[source,cypher,options="step"]
 ----
 MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)-->(c:LegalPerson)
 WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"

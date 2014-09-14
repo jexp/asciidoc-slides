@@ -2,45 +2,29 @@
 
 [source,cypher,options="step"]
 ----
-MATCH (emil:Person)
-WHERE emil.name="Emil Eifrem"
-DELETE emil
+MATCH (gina:NaturalPerson)
+WHERE gina.canonicalName="Gina Smith"
+DELETE gina
 ----
 
 [options="step"]
-(Wrong Error Message)
+This will not work because the node has relationships!
 
 
 == Deleting relationships
 
 [source,cypher,options="step"]
 ----
-MATCH (emil:Person)-[r]-()
-WHERE emil.name="Emil Eifrem"
-DELETE r
+MATCH (gina:NaturalPerson)-[r]-()
+WHERE gina.canonicalName="Gina Smith"
+DELETE r, gina
 ----
 
-== Deleting nodes and relationships
+== Clearing the database
 
 [source,cypher,options="step"]
 ----
 MATCH (n)
 OPTIONAL MATCH (n)-[r]->()
 DELETE n, r
-----
-
-[options="step"]
-(delete all content in the database)
-
-
-[.labslide]
-== Lab
-
-=== Add KNOWS relationships between all actors who were in the same movie
-
-[source,cypher,options="step"]
-----
-MATCH (a:Person)-[:ACTED_IN]->()<-[:ACTED_IN]-(b:Person)
-//ATT!
-CREATE UNIQUE (a)-[:KNOWS]->(b);
 ----
