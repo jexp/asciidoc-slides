@@ -1,3 +1,20 @@
+[canvas-image="./img/acid-sw.jpg"]
+== ACID
+
+[role="canvas-caption", position="center"]
+ACID?
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/somegeekintn/3458948437">"Medicine Cabinet"</a> by <a href="https://www.flickr.com/photos/somegeekintn/">Casey Fleser</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== Transactions
+
+[options="step"]
+Every modifying cypher statement runs in a transaction.
+
 == Creating nodes
 
 [source,cypher,options="step"]

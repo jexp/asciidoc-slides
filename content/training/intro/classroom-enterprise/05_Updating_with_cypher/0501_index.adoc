@@ -1,5 +1,3 @@
-== Updating graphs with Cypher
-
 include::0502_create.adoc[]
 
 include::0503_delete.adoc[]
