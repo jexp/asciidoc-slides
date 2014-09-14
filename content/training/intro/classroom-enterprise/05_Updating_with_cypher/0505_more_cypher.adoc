@@ -26,9 +26,9 @@ RETURN length(nodes(p))
 == More cypher features
 
 [options="step"]
-- WITH
-- UNION
-- UNWIND
-- FOREACH
+- `WITH`
+- `UNION`
+- `UNWIND`
+- `FOREACH`
+- `START`
 - CSV import
-- START

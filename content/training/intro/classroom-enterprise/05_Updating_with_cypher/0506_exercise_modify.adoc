@@ -12,7 +12,62 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 
 == Modify the database
 
-- Create a new company "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and London.
+- Create a new company "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and Madrid.
 - Let John Doe work for "Department 3" with 30 hours per week as interpreter and let Karen King the lead of this department.
 - Remove all natural persons that are not member or lead of any organizational unit.
 - Create a CSV file with some names and e-mail addresses and import these persons with `LOAD CSV` into your database and let they become members of "Department 4".
+
+== Create a company
+
+[source,cypher,options="step"]
+----
+CREATE (c:LegalPerson:OrganizationalUnit {canonicalName: "MyCom"})
+FOREACH (num IN range(1,4) | 
+  CREATE c<-[:PARENT]-(u:OrganizationalUnit {name: "Department " + num}))
+MERGE (n:Country {name: "Netherlands"})
+MERGE (s:Country {name: "Spain"})
+MERGE (a:City {name: "Amsterdam"})-[:IS_IN]->n
+MERGE (l:City {name: "Madrid"})-[:IS_IN]->s
+CREATE c-[:OFFICE]->(:Office)-[:IS_IN]->a
+CREATE c-[:OFFICE]->(:Office)-[:IS_IN]->l
+RETURN c
+----
+
+== Add persons to "Department 3"
+[source,cypher,options="step"]
+----
+MATCH (c:LegalPerson:OrganizationalUnit)-[:PARENT]-(u:OrganizationalUnit)
+WHERE c.canonicalName = "MyCom" 
+  AND u.name = "Department 3"
+CREATE (j:NaturalPerson {canonicalName: "John Doe"}),
+  j-[:MEMBER {role: "interpreter", hoursPerWeek: 30}]->u
+CREATE (k:NaturalPerson {canonicalName: "Karen King"}),
+  k<-[:LEAD]-u
+RETURN j, k
+----
+
+== Remove persons without organizational unit
+[source,cypher,options="step"]
+----
+MATCH (n:NaturalPerson)
+WHERE NOT n-[:MEMBER]-() AND NOT n-[:LEAD]-()
+DELETE n
+----
+
+== Import CSV
+
+[options="step"]
+persons.csv 
+
+[source,options="step"]
+----
+"Lars Higgs","lars@higgs.com"
+"Maura Wilson","maura@wilson.com"
+----
+
+[source,cypher,options="step"]
+----
+LOAD CSV FROM 'file:///tmp/persons.csv' AS line
+CREATE (n:NaturalPerson {canonicalName: line[0], email: line[1]})
+----
+

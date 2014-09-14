@@ -1541,12 +1541,12 @@ RETURN length(nodes(p))</textarea>
 <h2>More cypher features</h2>
 <div class="ulist">
 <ul>
-<li class="slide">WITH</li>
-<li class="slide">UNION</li>
-<li class="slide">UNWIND</li>
-<li class="slide">FOREACH</li>
+<li class="slide"><code>WITH</code></li>
+<li class="slide"><code>UNION</code></li>
+<li class="slide"><code>UNWIND</code></li>
+<li class="slide"><code>FOREACH</code></li>
+<li class="slide"><code>START</code></li>
 <li class="slide">CSV import</li>
-<li class="slide">START</li>
 </ul>
 </div>
 </section>
@@ -1560,11 +1560,69 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <h2>Modify the database</h2>
 <div class="ulist">
 <ul>
-<li>Create a new company "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and London.</li>
+<li>Create a new company "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and Madrid.</li>
 <li>Let John Doe work for "Department 3" with 30 hours per week as interpreter and let Karen King the lead of this department.</li>
 <li>Remove all natural persons that are not member or lead of any organizational unit.</li>
 <li>Create a CSV file with some names and e-mail addresses and import these persons with <code>LOAD CSV</code> into your database and let they become members of "Department 4".</li>
 </ul>
+</div>
+</section>
+<section class="slide" id="_create_a_company">
+<h2>Create a company</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">CREATE (c:LegalPerson:OrganizationalUnit {canonicalName: "MyCom"})
+FOREACH (num IN range(1,4) |
+  CREATE c&lt;-[:PARENT]-(u:OrganizationalUnit {name: "Department " + num}))
+MERGE (n:Country {name: "Netherlands"})
+MERGE (s:Country {name: "Spain"})
+MERGE (a:City {name: "Amsterdam"})-[:IS_IN]-&gt;n
+MERGE (l:City {name: "Madrid"})-[:IS_IN]-&gt;s
+CREATE c-[:OFFICE]-&gt;(:Office)-[:IS_IN]-&gt;a
+CREATE c-[:OFFICE]-&gt;(:Office)-[:IS_IN]-&gt;l
+RETURN c</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_add_persons_to_department_3">
+<h2>Add persons to "Department 3"</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (c:LegalPerson:OrganizationalUnit)-[:PARENT]-(u:OrganizationalUnit)
+WHERE c.canonicalName = "MyCom"
+  AND u.name = "Department 3"
+CREATE (j:NaturalPerson {canonicalName: "John Doe"}),
+  j-[:MEMBER {role: "interpreter", hoursPerWeek: 30}]-&gt;u
+CREATE (k:NaturalPerson {canonicalName: "Karen King"}),
+  k&lt;-[:LEAD]-u
+RETURN j, k</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_remove_persons_without_organizational_unit">
+<h2>Remove persons without organizational unit</h2>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (n:NaturalPerson)
+WHERE NOT n-[:MEMBER]-() AND NOT n-[:LEAD]-()
+DELETE n</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_import_csv">
+<h2>Import CSV</h2>
+<div class="paragraph slide"><p>persons.csv</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code">"Lars Higgs","lars@higgs.com"
+"Maura Wilson","maura@wilson.com"</textarea>
+</div>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">LOAD CSV FROM 'file:///tmp/persons.csv' AS line
+CREATE (n:NaturalPerson {canonicalName: line[0], email: line[1]})</textarea>
+</div>
 </div>
 </section>
 <section class="slide canvas-image" id="_coffee_2" style="background-image: url(./img/coffee2-sw.jpg)">
