@@ -27,38 +27,10 @@ include::0404_exercise_match.adoc[]
 
 include::0405_advanced_patterns.adoc[]
 
-include::0406_datatypes.adoc[]
+include::0406_exercise_advanced_patterns.adoc[]
 
-include::0407_exercise_advanced_patterns.adoc[]
+include::0407_datatypes.adoc[]
 
-include::0408_two_nodes_one_rel.adoc[]
-
-include::0409_two_nodes_one_rel.adoc[]
-
-include::0410_optional_match.adoc[]
-
-include::0411_relationship_type.adoc[]
-
-include::0412_paths.adoc[]
-
-include::0413_paths.adoc[]
-
-include::0414_aggregation.adoc[]
-
-include::0415_lab.adoc[]
-
-include::0416_unique_rels_in_paths.adoc[]
-
-include::0417_sort_and_limit.adoc[]
-
-include::0418_aggregation.adoc[]
-
-include::0419_start.adoc[]
-
-include::0420_index.adoc[]
-
-include::0421_labels_on_patterns.adoc[]
-
-include::0422_conditions.adoc[]
+include::0408_exercise_datatypes.adoc[]
 
 
