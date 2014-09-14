@@ -1,0 +1,59 @@
+== And in my domain?
+
+(Motivation for typical enterprise domains)
+
+== Our sample domain for today
+
+* TODO: Textual description of domain
+* TODO: Use cases with organizations, people, locations and projects
+
+== Relevant extract for next steps
+
+== Excercise 1: Draw domain model
+
+== Proposed solution
+
+* TODO: Show model we had in mind
+
+== Excercise 2: Transfer to Relational Data Model
+
+== Relational world
+
+* Define tables / typical cases n:m, hierarchy, 1:n
+* Tables with data in rows
+* Joins
+
+== Excercise 3: Transfer to Graph Model
+
+== Discussion: Compare relational and graph model
+
+* What do thex have in common?
+* What Are differences?
+* Is any of them easier to create?
+* Which one feels more natural to you?
+
+== Now add some sample data
+
+First remember: how is data organized in tables?
+
+== and as a graph?
+
+- same data as graph
+- object model
+- two persons
+- their attriubtes
+- relationship person to organizational units
+- properties of relationship
+- nodes of different types -> label
+
+== Property graphs
+
+- nodes have labels and properties
+- relationships have types/labels and properties
+- picture with highlighting of different elements
+
+== Relational database vs. graph database
+
+pictures
+
+

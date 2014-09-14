@@ -12,6 +12,8 @@ image::{img}/charts_not_graphs.png[]
 
 include::0202_koenigsberg.adoc[]
 
+include::../dm_domain_modeling/dm_01_index.adoc[]
+
 include::0203_what_about_data.adoc[]
 
 include::0204_relational.adoc[]
