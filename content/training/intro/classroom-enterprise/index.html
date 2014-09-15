@@ -582,7 +582,7 @@ WHERE Department.name = "IT-Department"</textarea>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
       <span class="caption">d:Dept</span>
     </li>
-    <li class="relationship" data-from="1" data-to="2">
+    <li class="relationship" data-from="2" data-to="1">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
@@ -590,7 +590,7 @@ WHERE Department.name = "IT-Department"</textarea>
 <div class="paragraph slide"><p>The pattern in Cypher:</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">(h:Human)-[:EMPLOYEE]-&gt;(d:Dept)</textarea>
+<textarea class="code" mode="cypher">(h:Human)&lt;-[:EMPLOYEE]-(d:Dept)</textarea>
 </div>
 </div>
 </section>
@@ -599,14 +599,14 @@ WHERE Department.name = "IT-Department"</textarea>
 <div class="paragraph slide"><p><code>MATCH</code> allows you to find a pattern in the graph</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:EMPLOYEE]-(d:Dept)
 RETURN h.name, d.name</textarea>
 </div>
 </div>
 <div class="paragraph slide"><p><code>WHERE</code> allows you to filter the results</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:EMPLOYEE]-(d:Dept)
 WHERE d.name = "IT-Department"
 RETURN h.name, d.name</textarea>
 </div>
@@ -626,7 +626,7 @@ WHERE Department.name = "IT-Department</textarea>
 </div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:EMPLOYEE]-(d:Dept)
 WHERE d.name = "IT-Department"
 RETURN h.name, d.name</textarea>
 </div>
@@ -714,14 +714,14 @@ RETURN h.name;</textarea>
     <li class="node" data-node-id="2" data-x="-351.03516361989097" data-y="-19">
       <span class="caption">d</span>
     </li>
-    <li class="relationship" data-from="1" data-to="2">
+    <li class="relationship" data-from="2" data-to="1">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (h)-[:EMPLOYEE]-&gt;(d)
+<textarea class="code" mode="cypher">MATCH (h)&lt;-[:EMPLOYEE]-(d)
 RETURN h.name, d.name;</textarea>
 </div>
 </div>
@@ -737,14 +737,14 @@ RETURN h.name, d.name;</textarea>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
       <span class="caption">d:Dept</span>
     </li>
-    <li class="relationship" data-from="1" data-to="2">
+    <li class="relationship" data-from="2" data-to="1">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:EMPLOYEE]-(d:Dept)
 RETURN h.name, d.name;</textarea>
 </div>
 </div>
@@ -808,10 +808,10 @@ RETURN o.name;</textarea>
     <li class="node" data-node-id="6" data-x="-1297.1275555499185" data-y="-31.244897959183675">
       <span class="caption">b:Human</span>
     </li>
-    <li class="relationship" data-from="4" data-to="5">
+    <li class="relationship" data-from="5" data-to="4">
       <span class="type">:EMPLOYEE</span>
     </li>
-    <li class="relationship" data-from="6" data-to="5">
+    <li class="relationship" data-from="5" data-to="6">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
@@ -819,8 +819,8 @@ RETURN o.name;</textarea>
 <div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (a:Human)-[:EMPLOYEE]-&gt;(d:Dept),
-  u&lt;-[:EMPLOYEE]-(b:Human)
+<textarea class="code" mode="cypher">MATCH (a:Human)&lt;-[:EMPLOYEE]-(d:Dept),
+  u-[:EMPLOYEE]-&gt;(b:Human)
 WHERE a.name = "Alice"
 RETURN b.name;</textarea>
 </div>
@@ -907,9 +907,9 @@ RETURN c.name;</textarea>
 <div class="paragraph slide"><p><code>RETURN DISTINCT</code> returns only unique rows</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (c:LegalPerson)--&gt;(:Office)--&gt;(:City)--&gt;(country:Country)
-WHERE c.canonicalName = "GraphIT"
-RETURN DISTINCT country.name;</textarea>
+<textarea class="code" mode="cypher">MATCH (o:Org)--&gt;(:Office)--&gt;(:City)--&gt;(c:Country)
+WHERE o.name = "GraphIT"
+RETURN DISTINCT c.name;</textarea>
 </div>
 </div>
 </section>
@@ -945,14 +945,25 @@ RETURN a, b;</textarea>
 </div>
 </div>
 </section>
+<section class="slide" id="_optional_relationships_2">
+<h2>Optional relationships</h2>
+<div class="paragraph"><p>List organizations and their countries</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">MATCH (o:Org)
+OPTIONAL MATCH o--&gt;(:Office)--&gt;(:City)--&gt;(c:Country)
+RETURN DISTINCT o.name, c.name;</textarea>
+</div>
+</div>
+</section>
 <section class="slide" id="_relationship_attributes">
 <h2>Relationship attributes</h2>
 <div class="paragraph slide"><p>Relationships can have attributes as well</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (c:NaturalPerson)-[m:MEMBER]-&gt;(u:OrganizationalUnit)
-WHERE c.canonicalName = "Charlene Davis"
-RETURN m.role, m.hoursPerWeek;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[m:MEMBER]-(p:Project)
+WHERE h.name = "Charlene"
+RETURN m.role;</textarea>
 </div>
 </div>
 </section>
@@ -960,8 +971,8 @@ RETURN m.role, m.hoursPerWeek;</textarea>
 <h2>Paths</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH p=(a:NaturalPerson)-[:MEMBER]-&gt;(u)&lt;-[:MEMBER]-(b:NaturalPerson)
-WHERE a.canonicalName = "Alice Miller"
+<textarea class="code" mode="cypher">MATCH p=(a:Human)&lt;-[:EMPLOYEE]-(d)-[:EMPLOYEE]-&gt;(b:Human)
+WHERE a.name = "Alice"
 RETURN p;</textarea>
 </div>
 </div>
@@ -986,9 +997,9 @@ RETURN p;</textarea>
 <div class="paragraph slide"><p><code>AS</code> sets name for result column</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p)-[:MEMBER]-&gt;(u)
-RETURN p.canonicalName as member,
-  u.name as `organizational unit`;</textarea>
+<textarea class="code" mode="cypher">MATCH (h)&lt;-[:EMPLOYEE]-(d)
+RETURN h.name as employee,
+  d.name as `department`;</textarea>
 </div>
 </div>
 </section>
@@ -1003,34 +1014,34 @@ derivative of <a href="https://www.flickr.com/photos/zscheyge/49012397">"Buildin
 <div class="paragraph slide"><p><code>count(*)</code> counts matching rows</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p)-[:MEMBER]-&gt;(u)
-RETURN u.name, count(*);</textarea>
+<textarea class="code" mode="cypher">MATCH (h)&lt;-[:EMPLOYEE]-(d)
+RETURN d.name, count(*);</textarea>
 </div>
 </div>
 <div class="paragraph slide"><p><code>count(x)</code> counts non-NULL values in x</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (u:OrganizationalUnit)
-OPTIONAL MATCH (p)-[:MEMBER]-&gt;(u)
-RETURN u.name, count(p);</textarea>
+<textarea class="code" mode="cypher">MATCH (d:Dept)
+OPTIONAL MATCH (h)&lt;-[:EMPLOYEE]-(d)
+RETURN d.name, count(h);</textarea>
 </div>
 </div>
 </section>
 <section class="slide" id="_aggregation_3">
 <h2>Aggregation</h2>
-<div class="paragraph slide"><p>returns only organizational units with at least one member</p></div>
+<div class="paragraph slide"><p>returns only departments with at least one member</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p)-[:MEMBER]-&gt;(u)
-RETURN u.name, count(*);</textarea>
+<textarea class="code" mode="cypher">MATCH (h)&lt;-[:EMPLOYEE]-(d)
+RETURN d.name, count(*);</textarea>
 </div>
 </div>
-<div class="paragraph slide"><p>returns all organizational units</p></div>
+<div class="paragraph slide"><p>returns all departments</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (u:OrganizationalUnit)
-OPTIONAL MATCH (p)-[:MEMBER]-&gt;(u)
-RETURN u.name, count(p);</textarea>
+<textarea class="code" mode="cypher">MATCH (d:Dept)
+OPTIONAL MATCH (h)&lt;-[:EMPLOYEE]-(d)
+RETURN d.name, count(h);</textarea>
 </div>
 </div>
 </section>
@@ -1044,9 +1055,9 @@ RETURN u.name, count(p);</textarea>
 </div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (c:LegalPerson)--&gt;(:Office)--&gt;(:City)--&gt;(country:Country)
-RETURN c.canonicalName AS company,
-  collect(DISTINCT country.name) as countries;</textarea>
+<textarea class="code" mode="cypher">MATCH (o:Org)--&gt;(:Office)--&gt;(:City)--&gt;(c:Country)
+RETURN o.name AS organization,
+  collect(DISTINCT c.name) as countries;</textarea>
 </div>
 </div>
 </section>
@@ -1067,7 +1078,7 @@ RETURN c.canonicalName AS company,
 <div class="paragraph slide"><p><code>ORDER BY</code> sorts the results (by multiple properties)</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (city:City)--(c:Country)
+<textarea class="code" mode="cypher">MATCH (city:City)--(country:Country)
 RETURN country.name, city.name
 ORDER BY country.name, city.name;</textarea>
 </div>
@@ -1083,11 +1094,11 @@ ORDER BY country.name, city.name;</textarea>
 </div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)
-RETURN p.canonicalName
-ORDER BY p.canonicalName
+<textarea class="code" mode="cypher">MATCH (h:Human)
+RETURN h.name
+ORDER BY h.name
 SKIP 3
-LIMIT 5</textarea>
+LIMIT 5;</textarea>
 </div>
 </div>
 </section>
@@ -1102,11 +1113,11 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <div class="ulist">
 <ul>
 <li>Who is working in "Project X" at "GraphIT"?</li>
-<li>Who is the lead of "Q&amp;A" at "GraphIT"?</li>
+<li>Who is the lead of the "Q&amp;A" department at "GraphIT"?</li>
 <li>How many hours per week is Daniel Fisher working?</li>
 <li>Find the three persons with the lowest hours per week.</li>
-<li>Who is having the same role in different units?</li>
-<li>Is Alice Miller a superior of Daniel Fisher?</li>
+<li>Who is having the same role in projects?</li>
+<li>Is Alice a superior of Daniel?</li>
 </ul>
 </div>
 </section>
@@ -1114,10 +1125,10 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <h2>Members of "Project X"</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit),
-  u-[:PARENT*0..]-&gt;(c:LegalPerson)
-WHERE u.name = "Project X" AND c.canonicalName = "GraphIT"
-RETURN p.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:MEMBER]-(p:Project),
+  p-[:BELONGS_TO]-&gt;(:Dept)-[:PARENT*0..]-&gt;(o:Org)
+WHERE p.name = "Project X" AND o.name = "GraphIT"
+RETURN h.name;</textarea>
 </div>
 </div>
 </section>
@@ -1125,10 +1136,10 @@ RETURN p.canonicalName;</textarea>
 <h2>Lead of "Q&amp;A" at "GraphIT"</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:LEAD]-(u:OrganizationalUnit),
-  u-[:PARENT*0..]-&gt;(c:LegalPerson)
-WHERE u.name = "Q&amp;A" AND c.canonicalName = "GraphIT"
-RETURN p.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:LEAD]-(d:Dept),
+  d-[:PARENT*0..]-&gt;(o:Org)
+WHERE d.name = "Q&amp;A" AND o.name = "GraphIT"
+RETURN h.name;</textarea>
 </div>
 </div>
 </section>
@@ -1136,9 +1147,9 @@ RETURN p.canonicalName;</textarea>
 <h2>Hours per week of Daniel</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[m:MEMBER]-(u:OrganizationalUnit)
-WHERE p.canonicalName = "Daniel Fisher"
-RETURN sum(m.hoursPerWeek) as `hours per week`;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[e:EMPLOYEE]-(d:Dept)
+WHERE h.name = "Daniel Fisher"
+RETURN sum(e.hoursPerWeek) as `hours per week`;</textarea>
 </div>
 </div>
 </section>
@@ -1146,21 +1157,21 @@ RETURN sum(m.hoursPerWeek) as `hours per week`;</textarea>
 <h2>People with lowest hours per week</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[m:MEMBER]-(u:OrganizationalUnit)
-RETURN p.canonicalName AS name, sum(m.hoursPerWeek) as `hours per week`
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[e:EMPLOYEE]-(d:Dept)
+RETURN h.name AS name, sum(e.hoursPerWeek) as `hours per week`
 ORDER BY name DESC
 LIMIT 3;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_people_with_same_role_in_different_units">
-<h2>People with same role in different units</h2>
+<section class="slide" id="_people_with_same_role_in_different_projects">
+<h2>People with same role in different projects</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[m1:MEMBER]-(u1:OrganizationalUnit),
-p-[m2:MEMBER]-&gt;(u2:OrganizationalUnit)
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[m1:MEMBER]-(p1:Project),
+h&lt;-[m2:MEMBER]-(p1:Project)
 WHERE m1.role = m2.role
-RETURN p.canonicalName AS name, u1.name, u2.name, m1.role as role;</textarea>
+RETURN h.name AS name, p1.name, p2.name, m1.role as role;</textarea>
 </div>
 </div>
 </section>
@@ -1168,10 +1179,10 @@ RETURN p.canonicalName AS name, u1.name, u2.name, m1.role as role;</textarea>
 <h2>Is Alice a superior of Daniel?</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (a:NaturalPerson)-[:LEAD]-(u1),
-  u1&lt;-[:PARENT*0..]-()&lt;-[:MEMBER]-(d:NaturalPerson)
-WHERE a.canonicalName = "Alice Miller"
-  AND d.canonicalName = "Daniel Fisher"
+<textarea class="code" mode="cypher">MATCH (a:Human)&lt;-[:LEAD]-(d1:Dept),
+  d1&lt;-[:PARENT*0..]-(:Dept)-[:EMPLOYEE]-&gt;(d:Human)
+WHERE a.name = "Alice"
+  AND d.name = "Daniel"
 RETURN a, d;</textarea>
 </div>
 </div>
@@ -1190,7 +1201,7 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 <li class="slide">string</li>
 <li class="slide">boolean</li>
 <li class="slide">lists: [3, 4, 5]</li>
-<li class="slide">maps: {name: "Alice Miller", email: "<a href="mailto:alice@miller.com">alice@miller.com</a>"}</li>
+<li class="slide">maps: {name: "Alice", email: "<a href="mailto:alice@miller.com">alice@miller.com</a>"}</li>
 </ul>
 </div>
 </section>
@@ -1280,9 +1291,9 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 </div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (u: OrganizationalUnit), (p:NaturalPerson)
-WHERE p.canonicalName =~ "A.*" AND p-[:LEAD]-&gt;(u)
-RETURN p.canonicalName, u.name</textarea>
+<textarea class="code" mode="cypher">MATCH (d:Dept), (h:Human)
+WHERE h.name =~ "A.*" AND h-[:LEAD]-&gt;d
+RETURN h.name, d.name;</textarea>
 </div>
 </div>
 </section>
@@ -1296,42 +1307,42 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <h2>More queries</h2>
 <div class="ulist">
 <ul>
-<li>List all organizational units of "GraphIT" and their members.</li>
-<li>Who is working for at least 2 organizational units?</li>
-<li>Find all persons with first name Eve.</li>
-<li>Through whom/how many persons do Alice Miller and Charlene Davis know each other?</li>
+<li>List all departments of "GraphIT" and their employees.</li>
+<li>Who is working for at least two departments?</li>
+<li>Find all persons with a name starting with an E.</li>
+<li>Through whom/how many persons do Alice and Charlene know each other?</li>
 <li>Explore the database. What labels do exist? How many nodes/relationships are stored?</li>
 </ul>
 </div>
 </section>
-<section class="slide" id="_organizational_units_of_graphit">
-<h2>Organizational units of "GraphIT"</h2>
+<section class="slide" id="_departments_of_graphit">
+<h2>Departments of "GraphIT"</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (u:OrganizationalUnit)-[:PARENT*0..]-&gt;(c:LegalPerson)
-OPTIONAL MATCH (p:NaturalPerson)-[:MEMBER]-&gt;u
-WHERE c.canonicalName = "GraphIT"
-RETURN u.name, collect(p.canonicalName) as members;</textarea>
+<textarea class="code" mode="cypher">MATCH (d:Dept)-[:PARENT*0..]-&gt;(o:Org)
+OPTIONAL MATCH (h:Human)&lt;-[:EMPLOYEE]-&gt;d
+WHERE o.name = "GraphIT"
+RETURN d.name, collect(h.name) as employees;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_who_is_working_for_at_least_two_units">
-<h2>Who is working for at least two units?</h2>
+<section class="slide" id="_who_is_working_for_at_least_two_departments">
+<h2>Who is working for at least two departments?</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u1:OrganizationalUnit),
-(p:NaturalPerson)-[:MEMBER]-&gt;(u2:OrganizationalUnit)
-RETURN DISTINCT p.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:EMPLOYEE]-&gt;(d1:Dept),
+h&lt;-[:EMPLOYEE]-&gt;(d2:Dept)
+RETURN DISTINCT h.name;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_persons_with_first_name_eve">
-<h2>Persons with first name Eve</h2>
+<section class="slide" id="_persons_with_name_starting_with_an_e">
+<h2>Persons with name starting with an E</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)
-WHERE p.canonicalName =~ "Eve .*"
-RETURN DISTINCT p.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)
+WHERE h.name =~ "E.*"
+RETURN h.name;</textarea>
 </div>
 </div>
 </section>
@@ -1339,11 +1350,11 @@ RETURN DISTINCT p.canonicalName;</textarea>
 <h2>Connection from Alice to Charlene</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
-WHERE p.canonicalName = "Alice Miller"
-  AND p2.canonicalName = "Charlene Davis"
+<textarea class="code" mode="cypher">MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+WHERE a.name = "Alice"
+  AND c.name = "Charlene"
 RETURN
-  length(filter(n IN nodes(path) WHERE "NaturalPerson" IN LABELS(n)))</textarea>
+  length(filter(n IN nodes(path) WHERE "Human" IN LABELS(n)));</textarea>
 </div>
 </div>
 </section>
@@ -1351,10 +1362,10 @@ RETURN
 <h2>Connection from Alice to Charlene</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
-WHERE p.canonicalName = "Alice Miller"
-  AND p2.canonicalName = "Charlene Davis"
-RETURN extract(n IN nodes(path) | coalesce(n.canonicalName, n.name))</textarea>
+<textarea class="code" mode="cypher">MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+WHERE a.name = "Alice"
+  AND c.name = "Charlene"
+RETURN extract(n IN nodes(path) | n.name);</textarea>
 </div>
 </div>
 </section>
@@ -1362,13 +1373,13 @@ RETURN extract(n IN nodes(path) | coalesce(n.canonicalName, n.name))</textarea>
 <h2>Connection from Alice to Charlene</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
-WHERE p.canonicalName = "Alice Miller"
-  AND p2.canonicalName = "Charlene Davis"
+<textarea class="code" mode="cypher">MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+WHERE a.name = "Alice"
+  AND c.name = "Charlene"
 WITH
-  filter(n IN nodes(path) WHERE "NaturalPerson" IN labels(n))
+  filter(n IN nodes(path) WHERE "Human" IN labels(n))
   AS persons
-RETURN extract(n IN persons | n.canonicalName)</textarea>
+RETURN extract(n IN persons | n.name);</textarea>
 </div>
 </div>
 <div class="paragraph"><p><code>WITH</code> allows you to modify/filter result sets</p></div>
@@ -1382,7 +1393,7 @@ WHERE labels(a) &lt;&gt; [] AND labels(b) &lt;&gt; []
 RETURN DISTINCT
   head(labels(a)) AS This,
   type(r) AS To,
-  head(labels(b)) AS That</textarea>
+  head(labels(b)) AS That;</textarea>
 </div>
 </div>
 </section>
@@ -1406,14 +1417,14 @@ derivative of <a href="https://www.flickr.com/photos/somegeekintn/3458948437">"M
 <h2>Creating nodes</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">CREATE (p:NaturalPerson {canonicalName: "Gina Smith"})</textarea>
+<textarea class="code" mode="cypher">CREATE (h:Human {name: "Gina"});</textarea>
 </div>
 </div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)
-WHERE p.canonicalName="Gina Smith"
-RETURN p</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)
+WHERE h.name="Gina"
+RETURN h;</textarea>
 </div>
 </div>
 </section>
@@ -1421,10 +1432,10 @@ RETURN p</textarea>
 <h2>Editing properties</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)
-WHERE p.canonicalName="Gina Smith"
-SET p.emal = "gina@smith.com"
-RETURN p</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)
+WHERE h.name="Gina"
+SET h.emal = "gina@smith.com"
+RETURN h;</textarea>
 </div>
 </div>
 </section>
@@ -1432,11 +1443,11 @@ RETURN p</textarea>
 <h2>Removing properties</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)
-WHERE p.canonicalName="Gina Smith"
-SET p.email = p.emal
-REMOVE p.emal
-RETURN p</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)
+WHERE h.name="Gina"
+SET h.email = h.emal
+REMOVE h.emal
+RETURN h;</textarea>
 </div>
 </div>
 </section>
@@ -1444,11 +1455,10 @@ RETURN p</textarea>
 <h2>Creating relationships</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson), (u:OrganizationalUnit)
-WHERE p.canonicalName="Gina Smith" AND u.name = "Project X"
-CREATE UNIQUE p-[m:MEMBER {role: "Developer"}]-&gt;u
-SET m.hoursPerWeek = 40
-RETURN p, m, u</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human), (p:Project)
+WHERE h.name="Gina" AND p.name = "Project X"
+CREATE UNIQUE p-[m:MEMBER {role: "Developer"}]-&gt;h
+RETURN h, m, p;</textarea>
 </div>
 </div>
 </section>
@@ -1456,9 +1466,9 @@ RETURN p, m, u</textarea>
 <h2>Deleting nodes</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (gina:NaturalPerson)
-WHERE gina.canonicalName="Gina Smith"
-DELETE gina</textarea>
+<textarea class="code" mode="cypher">MATCH (gina:Human)
+WHERE gina.name="Gina"
+DELETE gina;</textarea>
 </div>
 </div>
 <div class="paragraph slide"><p>This will not work because the node has relationships!</p></div>
@@ -1467,9 +1477,9 @@ DELETE gina</textarea>
 <h2>Deleting relationships</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (gina:NaturalPerson)-[r]-()
-WHERE gina.canonicalName="Gina Smith"
-DELETE r, gina</textarea>
+<textarea class="code" mode="cypher">MATCH (gina:Human)-[r]-()
+WHERE gina.name="Gina"
+DELETE r, gina;</textarea>
 </div>
 </div>
 </section>
@@ -1479,7 +1489,7 @@ DELETE r, gina</textarea>
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (n)
 OPTIONAL MATCH (n)-[r]-&gt;()
-DELETE n, r</textarea>
+DELETE n, r;</textarea>
 </div>
 </div>
 </section>
@@ -1488,8 +1498,8 @@ DELETE n, r</textarea>
 <div class="paragraph slide"><p><code>MERGE</code> finds existing nodes or creates them</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MERGE (p:NaturalPerson {name:"Harald Mayer"})
-RETURN p</textarea>
+<textarea class="code" mode="cypher">MERGE (h:Human {name:"Harald"})
+RETURN h;</textarea>
 </div>
 </div>
 <div class="paragraph slide"><p>Uses indexes, constraints and locks to guarantee unique lookup and creation.</p></div>
@@ -1498,10 +1508,10 @@ RETURN p</textarea>
 <h2>Match or Create</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MERGE (p:NaturalPerson {name:"Ina Richardson"})
-ON CREATE SET p.created = timestamp()
-ON MATCH SET p.accessed = coalesce(p.accessed,0)+1
-RETURN p</textarea>
+<textarea class="code" mode="cypher">MERGE (h:Human {name:"Ina"})
+ON CREATE SET h.created = timestamp()
+ON MATCH SET h.accessed = coalesce(h.accessed,0)+1
+RETURN h;</textarea>
 </div>
 </div>
 </section>
@@ -1509,7 +1519,7 @@ RETURN p</textarea>
 <h2>Create label-specific index</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">CREATE INDEX ON :NaturalPerson(canonicalName)</textarea>
+<textarea class="code" mode="cypher">CREATE INDEX ON :Human(name);</textarea>
 </div>
 </div>
 </section>
@@ -1517,8 +1527,8 @@ RETURN p</textarea>
 <h2>Matching multiple relationships</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER|:LEAD]-(u:OrganizationalUnit)
-return p, u</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:EMPLOYEE|:LEAD]-(d:Dept)
+return h, u;</textarea>
 </div>
 </div>
 </section>
@@ -1526,10 +1536,10 @@ return p, u</textarea>
 <h2>Shortest path</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH p=shortestPath((p:Person)-[:MEMBER]-&gt;(p2:Person))
-WHERE p.canonicalName="Alice Miller" AND
-      p2.canonicalName="Charlene Davis"
-RETURN length(nodes(p))</textarea>
+<textarea class="code" mode="cypher">MATCH p=shortestPath((h1:Human)-[:EMPLOYEE*0..]-(h2:Human))
+WHERE h1.name="Alice" AND
+      h2.name="Charlene"
+RETURN length(nodes(p));</textarea>
 </div>
 </div>
 </section>
@@ -1556,10 +1566,10 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <h2>Modify the database</h2>
 <div class="ulist">
 <ul>
-<li>Create a new company "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and Madrid.</li>
-<li>Let John Doe work for "Department 3" with 30 hours per week as interpreter and let Karen King the lead of this department.</li>
-<li>Remove all natural persons that are not member or lead of any organizational unit.</li>
-<li>Create a CSV file with some names and e-mail addresses and import these persons with <code>LOAD CSV</code> into your database and let they become members of "Department 4".</li>
+<li>Create a new organization "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and Madrid.</li>
+<li>Let John work for "Department 3" with 30 hours per week and let Karen the lead of this department.</li>
+<li>Remove all humans that are not employee or lead of any department.</li>
+<li>Create a CSV file with some names and e-mail addresses and import these persons with <code>LOAD CSV</code> into your database and let they become employees of "Department 4".</li>
 </ul>
 </div>
 </section>
@@ -1567,16 +1577,16 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <h2>Create a company</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">CREATE (c:LegalPerson:OrganizationalUnit {canonicalName: "MyCom"})
+<textarea class="code" mode="cypher">CREATE (o:Org:Dept:Person {name: "MyCom"})
 FOREACH (num IN range(1,4) |
-  CREATE c&lt;-[:PARENT]-(u:OrganizationalUnit {name: "Department " + num}))
+  CREATE o&lt;-[:PARENT]-(d:Dept {name: "Department " + num}))
 MERGE (n:Country {name: "Netherlands"})
 MERGE (s:Country {name: "Spain"})
 MERGE (a:City {name: "Amsterdam"})-[:IS_IN]-&gt;n
-MERGE (l:City {name: "Madrid"})-[:IS_IN]-&gt;s
-CREATE c-[:OFFICE]-&gt;(:Office)-[:IS_IN]-&gt;a
-CREATE c-[:OFFICE]-&gt;(:Office)-[:IS_IN]-&gt;l
-RETURN c</textarea>
+MERGE (m:City {name: "Madrid"})-[:IS_IN]-&gt;s
+CREATE o-[:SITE]-&gt;(:Office)-[:LOCATIOn]-&gt;a
+CREATE o-[:SITE]-&gt;(:Office)-[:LOCATIOn]-&gt;m
+RETURN o;</textarea>
 </div>
 </div>
 </section>
@@ -1584,14 +1594,14 @@ RETURN c</textarea>
 <h2>Add persons to "Department 3"</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (c:LegalPerson:OrganizationalUnit)-[:PARENT]-(u:OrganizationalUnit)
-WHERE c.canonicalName = "MyCom"
-  AND u.name = "Department 3"
-CREATE (j:NaturalPerson {canonicalName: "John Doe"}),
-  j-[:MEMBER {role: "interpreter", hoursPerWeek: 30}]-&gt;u
-CREATE (k:NaturalPerson {canonicalName: "Karen King"}),
-  k&lt;-[:LEAD]-u
-RETURN j, k</textarea>
+<textarea class="code" mode="cypher">MATCH (o:Org)-[:PARENT]-(d:Dept)
+WHERE o.name = "MyCom"
+  AND d.name = "Department 3"
+CREATE (j:Human {name: "John"}),
+  j&lt;-[:EMPLOYEE {hoursPerWeek: 30}]-d
+CREATE (k:Human {name: "Karen"}),
+  k&lt;-[:LEAD]-d
+RETURN j, k;</textarea>
 </div>
 </div>
 </section>
@@ -1599,9 +1609,9 @@ RETURN j, k</textarea>
 <h2>Remove persons without organizational unit</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (n:NaturalPerson)
-WHERE NOT n-[:MEMBER]-() AND NOT n-[:LEAD]-()
-DELETE n</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)
+WHERE NOT h&lt;-[:EMPLOYEE]-() AND NOT h&lt;-[:LEAD]-()
+DELETE h;</textarea>
 </div>
 </div>
 </section>
@@ -1617,7 +1627,7 @@ DELETE n</textarea>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">LOAD CSV FROM 'file:///tmp/persons.csv' AS line
-CREATE (n:NaturalPerson {canonicalName: line[0], email: line[1]})</textarea>
+CREATE (h:Human {name: line[0], email: line[1]});</textarea>
 </div>
 </div>
 </section>
@@ -1626,130 +1636,6 @@ CREATE (n:NaturalPerson {canonicalName: line[0], email: line[1]})</textarea>
 <div class="img-ref">
 derivative of <a href="https://www.flickr.com/photos/bortescristian/8442828274">"Coffee cupping at Olivo Caffe with barista Marius Nica"</a> by <a href="https://www.flickr.com/photos/bortescristian/">Cristian Bortes</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
 <div>
-</section>
-<section class="slide" id="case_studies">
-<h2>Case Studies</h2>
-
-</section>
-<section class="slide" id="_customers">
-<h2>Customers</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="customers" src="../../img/customers.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_cisco">
-<h2>Cisco</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs cisco" src="../../img/cs_cisco.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_cisco_2">
-<h2>Cisco</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs cisco hmp" src="../../img/cs_cisco_hmp.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_accenture">
-<h2>Accenture</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs accenture" src="../../img/cs_accenture.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_adobe">
-<h2>Adobe</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs adobe" src="../../img/cs_adobe.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_glassdor">
-<h2>GLassdor</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs glassdoor" src="../../img/cs_glassdoor.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_hp">
-<h2>HP</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs hp" src="../../img/cs_hp.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_junisphere">
-<h2>Junisphere</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs junisphere" src="../../img/cs_junisphere.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_maaii">
-<h2>Maaii</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs maaii" src="../../img/cs_maaii.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_seven_bridges_genomics">
-<h2>Seven Bridges Genomics</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs seven bridges" src="../../img/cs_seven_bridges.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_sfr">
-<h2>SFR</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs sfr" src="../../img/cs_sfr.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_teachscape">
-<h2>Teachscape</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs teachscape" src="../../img/cs_teachscape.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_deutsche_telekom">
-<h2>Deutsche Telekom</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs telekom" src="../../img/cs_telekom.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_telenor">
-<h2>Telenor</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs telenor" src="../../img/cs_telenor.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_viadeo">
-<h2>Viadeo</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="cs viadeo" src="../../img/cs_viadeo.png">
-</div>
-</div>
 </section>
 <section class="slide" id="_next_steps">
 <h2>Next steps</h2>

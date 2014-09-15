@@ -2,25 +2,25 @@
 
 [source,cypher,options="step"]
 ----
-CREATE INDEX ON :NaturalPerson(canonicalName)
+CREATE INDEX ON :Human(name);
 ----
 
 == Matching multiple relationships
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)-[:MEMBER|:LEAD]-(u:OrganizationalUnit)
-return p, u
+MATCH (h:Human)<-[:EMPLOYEE|:LEAD]-(d:Dept)
+return h, u;
 ----
 
 == Shortest path
 
 [source,cypher,options="step"]
 ----
-MATCH p=shortestPath((p:Person)-[:MEMBER]->(p2:Person))
-WHERE p.canonicalName="Alice Miller" AND
-      p2.canonicalName="Charlene Davis"
-RETURN length(nodes(p))
+MATCH p=shortestPath((h1:Human)-[:EMPLOYEE*0..]-(h2:Human))
+WHERE h1.name="Alice" AND
+      h2.name="Charlene"
+RETURN length(nodes(p));
 ----
 
 == More cypher features

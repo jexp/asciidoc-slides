@@ -54,7 +54,7 @@ What graph pattern are we looking for?
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
       <span class="caption">d:Dept</span>
     </li>
-    <li class="relationship" data-from="1" data-to="2">
+    <li class="relationship" data-from="2" data-to="1">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
@@ -67,7 +67,7 @@ The pattern in Cypher:
 [options="step"]
 [source,cypher]
 ----
-(h:Human)-[:EMPLOYEE]->(d:Dept)
+(h:Human)<-[:EMPLOYEE]-(d:Dept)
 ----
 
 == From SQL to Cypher
@@ -78,7 +78,7 @@ The pattern in Cypher:
 [options="step"]
 [source,cypher]
 ----
-MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
 RETURN h.name, d.name
 ----
 
@@ -88,7 +88,7 @@ RETURN h.name, d.name
 [options="step"]
 [source,cypher]
 ----
-MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
 WHERE d.name = "IT-Department"
 RETURN h.name, d.name
 ----
@@ -109,7 +109,7 @@ WHERE Department.name = "IT-Department
 [options="step"]
 [source,cypher]
 ----
-MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
 WHERE d.name = "IT-Department"
 RETURN h.name, d.name
 ----

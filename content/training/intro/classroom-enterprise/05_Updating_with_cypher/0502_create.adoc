@@ -19,43 +19,42 @@ Every modifying cypher statement runs in a transaction.
 
 [source,cypher,options="step"]
 ----
-CREATE (p:NaturalPerson {canonicalName: "Gina Smith"})
+CREATE (h:Human {name: "Gina"});
 ----
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)
-WHERE p.canonicalName="Gina Smith"
-RETURN p
+MATCH (h:Human)
+WHERE h.name="Gina"
+RETURN h;
 ----
 
 == Editing properties
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)
-WHERE p.canonicalName="Gina Smith"
-SET p.emal = "gina@smith.com"
-RETURN p
+MATCH (h:Human)
+WHERE h.name="Gina"
+SET h.emal = "gina@smith.com"
+RETURN h;
 ----
 
 == Removing properties
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)
-WHERE p.canonicalName="Gina Smith"
-SET p.email = p.emal
-REMOVE p.emal
-RETURN p
+MATCH (h:Human)
+WHERE h.name="Gina"
+SET h.email = h.emal
+REMOVE h.emal
+RETURN h;
 ----
 
 == Creating relationships
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson), (u:OrganizationalUnit)
-WHERE p.canonicalName="Gina Smith" AND u.name = "Project X"
-CREATE UNIQUE p-[m:MEMBER {role: "Developer"}]->u
-SET m.hoursPerWeek = 40
-RETURN p, m, u
+MATCH (h:Human), (p:Project)
+WHERE h.name="Gina" AND p.name = "Project X"
+CREATE UNIQUE p-[m:MEMBER {role: "Developer"}]->h
+RETURN h, m, p;
 ----
 

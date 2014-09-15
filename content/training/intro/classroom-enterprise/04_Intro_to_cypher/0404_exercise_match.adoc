@@ -71,10 +71,10 @@ Pattern
     <li class="node" data-node-id="6" data-x="-1297.1275555499185" data-y="-31.244897959183675">
       <span class="caption">b:Human</span>
     </li>
-    <li class="relationship" data-from="4" data-to="5">
+    <li class="relationship" data-from="5" data-to="4">
       <span class="type">:EMPLOYEE</span>
     </li>
-    <li class="relationship" data-from="6" data-to="5">
+    <li class="relationship" data-from="5" data-to="6">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
@@ -86,8 +86,8 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (a:Human)-[:EMPLOYEE]->(d:Dept),
-  u<-[:EMPLOYEE]-(b:Human)
+MATCH (a:Human)<-[:EMPLOYEE]-(d:Dept),
+  u-[:EMPLOYEE]->(b:Human)
 WHERE a.name = "Alice"
 RETURN b.name;
 ----

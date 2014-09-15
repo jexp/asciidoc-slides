@@ -5,9 +5,9 @@
 
 [source,cypher,options="step"]
 ----
-MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
-WHERE c.canonicalName = "GraphIT"
-RETURN DISTINCT country.name;
+MATCH (o:Org)-->(:Office)-->(:City)-->(c:Country)
+WHERE o.name = "GraphIT"
+RETURN DISTINCT c.name;
 ----
 
 == Optional relationships
@@ -48,6 +48,17 @@ OPTIONAL MATCH (a)-[r]->(b)
 RETURN a, b;
 ----
 
+== Optional relationships
+
+List organizations and their countries
+
+[source,cypher,options="step"]
+----
+MATCH (o:Org)
+OPTIONAL MATCH o-->(:Office)-->(:City)-->(c:Country)
+RETURN DISTINCT o.name, c.name;
+----
+
 == Relationship attributes
 
 [options="step"]
@@ -55,9 +66,9 @@ Relationships can have attributes as well
 
 [source,cypher,options="step"]
 ----
-MATCH (c:NaturalPerson)-[m:MEMBER]->(u:OrganizationalUnit)
-WHERE c.canonicalName = "Charlene Davis"
-RETURN m.role, m.hoursPerWeek;
+MATCH (h:Human)<-[m:MEMBER]-(p:Project)
+WHERE h.name = "Charlene"
+RETURN m.role;
 ----
 
 
@@ -65,8 +76,8 @@ RETURN m.role, m.hoursPerWeek;
 
 [source,cypher,options="step"]
 ----
-MATCH p=(a:NaturalPerson)-[:MEMBER]->(u)<-[:MEMBER]-(b:NaturalPerson)
-WHERE a.canonicalName = "Alice Miller"
+MATCH p=(a:Human)<-[:EMPLOYEE]-(d)-[:EMPLOYEE]->(b:Human)
+WHERE a.name = "Alice"
 RETURN p;
 ----
 
@@ -92,9 +103,9 @@ RETURN p;
 
 [source,cypher,options="step"]
 ----
-MATCH (p)-[:MEMBER]->(u)
-RETURN p.canonicalName as member, 
-  u.name as `organizational unit`;
+MATCH (h)<-[:EMPLOYEE]-(d)
+RETURN h.name as employee, 
+  d.name as `department`;
 ----
 
 [canvas-image="./img/aggregation-sw.jpg"]
@@ -116,8 +127,8 @@ derivative of <a href="https://www.flickr.com/photos/zscheyge/49012397">"Buildin
 
 [source,cypher,options="step"]
 ----
-MATCH (p)-[:MEMBER]->(u)
-RETURN u.name, count(*);
+MATCH (h)<-[:EMPLOYEE]-(d)
+RETURN d.name, count(*);
 ----
 
 [options="step"]
@@ -125,32 +136,32 @@ RETURN u.name, count(*);
 
 [source,cypher,options="step"]
 ----
-MATCH (u:OrganizationalUnit)
-OPTIONAL MATCH (p)-[:MEMBER]->(u)
-RETURN u.name, count(p);
+MATCH (d:Dept)
+OPTIONAL MATCH (h)<-[:EMPLOYEE]-(d)
+RETURN d.name, count(h);
 ----
 
 
 == Aggregation
 
 [options="step"]
-returns only organizational units with at least one member
+returns only departments with at least one member
 
 [source,cypher,options="step"]
 ----
-MATCH (p)-[:MEMBER]->(u)
-RETURN u.name, count(*);
+MATCH (h)<-[:EMPLOYEE]-(d)
+RETURN d.name, count(*);
 ----
 
 
 [options="step"]
-returns all organizational units
+returns all departments
 
 [source,cypher,options="step"]
 ----
-MATCH (u:OrganizationalUnit)
-OPTIONAL MATCH (p)-[:MEMBER]->(u)
-RETURN u.name, count(p);
+MATCH (d:Dept)
+OPTIONAL MATCH (h)<-[:EMPLOYEE]-(d)
+RETURN d.name, count(h);
 ----
 
 == Collecting
@@ -161,9 +172,9 @@ RETURN u.name, count(p);
 
 [source,cypher,options="step"]
 ----
-MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
-RETURN c.canonicalName AS company, 
-  collect(DISTINCT country.name) as countries;
+MATCH (o:Org)-->(:Office)-->(:City)-->(c:Country)
+RETURN o.name AS organization, 
+  collect(DISTINCT c.name) as countries;
 ----
 
 == Statistics
@@ -182,7 +193,7 @@ RETURN c.canonicalName AS company,
 
 [source,cypher,options="step"]
 ----
-MATCH (city:City)--(c:Country)
+MATCH (city:City)--(country:Country)
 RETURN country.name, city.name
 ORDER BY country.name, city.name;
 ----
@@ -195,10 +206,10 @@ ORDER BY country.name, city.name;
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)
-RETURN p.canonicalName
-ORDER BY p.canonicalName
+MATCH (h:Human)
+RETURN h.name
+ORDER BY h.name
 SKIP 3
-LIMIT 5
+LIMIT 5;
 ----
 

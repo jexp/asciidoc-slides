@@ -12,50 +12,50 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 
 == More queries
 
-- List all organizational units of "GraphIT" and their members.
-- Who is working for at least 2 organizational units?
-- Find all persons with first name Eve.
-- Through whom/how many persons do Alice Miller and Charlene Davis know each other?
+- List all departments of "GraphIT" and their employees.
+- Who is working for at least two departments?
+- Find all persons with a name starting with an E.
+- Through whom/how many persons do Alice and Charlene know each other?
 - Explore the database. What labels do exist? How many nodes/relationships are stored?
 
 
-== Organizational units of "GraphIT"
+== Departments of "GraphIT"
 
 [source,cypher,options="step"]
 ----
-MATCH (u:OrganizationalUnit)-[:PARENT*0..]->(c:LegalPerson)
-OPTIONAL MATCH (p:NaturalPerson)-[:MEMBER]->u
-WHERE c.canonicalName = "GraphIT"
-RETURN u.name, collect(p.canonicalName) as members;
+MATCH (d:Dept)-[:PARENT*0..]->(o:Org)
+OPTIONAL MATCH (h:Human)<-[:EMPLOYEE]->d
+WHERE o.name = "GraphIT"
+RETURN d.name, collect(h.name) as employees;
 ----
 
-== Who is working for at least two units?
-
-[source,cypher,options="step"]
-----
-MATCH (p:NaturalPerson)-[:MEMBER]->(u1:OrganizationalUnit),
-(p:NaturalPerson)-[:MEMBER]->(u2:OrganizationalUnit)
-RETURN DISTINCT p.canonicalName;
-----
-
-== Persons with first name Eve
+== Who is working for at least two departments?
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)
-WHERE p.canonicalName =~ "Eve .*"
-RETURN DISTINCT p.canonicalName;
+MATCH (h:Human)<-[:EMPLOYEE]->(d1:Dept),
+h<-[:EMPLOYEE]->(d2:Dept)
+RETURN DISTINCT h.name;
+----
+
+== Persons with name starting with an E
+
+[source,cypher,options="step"]
+----
+MATCH (h:Human)
+WHERE h.name =~ "E.*"
+RETURN h.name;
 ----
 
 == Connection from Alice to Charlene
 
 [source,cypher,options="step"]
 ----
-MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
-WHERE p.canonicalName = "Alice Miller"
-  AND p2.canonicalName = "Charlene Davis"
+MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+WHERE a.name = "Alice"
+  AND c.name = "Charlene"
 RETURN 
-  length(filter(n IN nodes(path) WHERE "NaturalPerson" IN LABELS(n)))
+  length(filter(n IN nodes(path) WHERE "Human" IN LABELS(n)));
 ----
 
 
@@ -63,23 +63,23 @@ RETURN
 
 [source,cypher,options="step"]
 ----
-MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
-WHERE p.canonicalName = "Alice Miller"
-  AND p2.canonicalName = "Charlene Davis"
-RETURN extract(n IN nodes(path) | coalesce(n.canonicalName, n.name))
+MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+WHERE a.name = "Alice"
+  AND c.name = "Charlene"
+RETURN extract(n IN nodes(path) | n.name);
 ----
 
 == Connection from Alice to Charlene
 
 [source,cypher,options="step"]
 ----
-MATCH path=(p:NaturalPerson)-[:MEMBER*0..]-(p2:NaturalPerson)
-WHERE p.canonicalName = "Alice Miller"
-  AND p2.canonicalName = "Charlene Davis"
+MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+WHERE a.name = "Alice"
+  AND c.name = "Charlene"
 WITH 
-  filter(n IN nodes(path) WHERE "NaturalPerson" IN labels(n)) 
+  filter(n IN nodes(path) WHERE "Human" IN labels(n)) 
   AS persons
-RETURN extract(n IN persons | n.canonicalName)
+RETURN extract(n IN persons | n.name);
 ----
 
 `WITH` allows you to modify/filter result sets
@@ -95,5 +95,5 @@ WHERE labels(a) <> [] AND labels(b) <> []
 RETURN DISTINCT 
   head(labels(a)) AS This, 
   type(r) AS To, 
-  head(labels(b)) AS That
+  head(labels(b)) AS That;
 ----

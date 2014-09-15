@@ -17,7 +17,7 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 - string
 - boolean
 - lists: [3, 4, 5]
-- maps: {name: "Alice Miller", email: "alice@miller.com"}
+- maps: {name: "Alice", email: "alice@miller.com"}
 
 
 == Operators
@@ -90,7 +90,7 @@ Functions
 
 [source,cypher,options="step"]
 ----
-MATCH (u: OrganizationalUnit), (p:NaturalPerson)
-WHERE p.canonicalName =~ "A.*" AND p-[:LEAD]->(u)
-RETURN p.canonicalName, u.name
+MATCH (d:Dept), (h:Human)
+WHERE h.name =~ "A.*" AND h-[:LEAD]->d
+RETURN h.name, d.name;
 ----

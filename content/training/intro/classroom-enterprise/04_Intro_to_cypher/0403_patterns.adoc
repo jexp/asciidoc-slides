@@ -91,7 +91,7 @@ Find employees of a department
     <li class="node" data-node-id="2" data-x="-351.03516361989097" data-y="-19">
       <span class="caption">d</span>
     </li>
-    <li class="relationship" data-from="1" data-to="2">
+    <li class="relationship" data-from="2" data-to="1">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
@@ -100,7 +100,7 @@ Find employees of a department
 
 [source,cypher,options="step"]
 ----
-MATCH (h)-[:EMPLOYEE]->(d)
+MATCH (h)<-[:EMPLOYEE]-(d)
 RETURN h.name, d.name;
 ----
 
@@ -117,7 +117,7 @@ Find employees of a department
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
       <span class="caption">d:Dept</span>
     </li>
-    <li class="relationship" data-from="1" data-to="2">
+    <li class="relationship" data-from="2" data-to="1">
       <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
@@ -126,7 +126,7 @@ Find employees of a department
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
 RETURN h.name, d.name;
 ----
 

@@ -5,8 +5,8 @@
 
 [source,cypher,options="step"]
 ----
-MERGE (p:NaturalPerson {name:"Harald Mayer"})
-RETURN p
+MERGE (h:Human {name:"Harald"})
+RETURN h;
 ----
 
 [options="step"]
@@ -16,8 +16,8 @@ Uses indexes, constraints and locks to guarantee unique lookup and creation.
 
 [source,cypher,options="step"]
 ----
-MERGE (p:NaturalPerson {name:"Ina Richardson"})
-ON CREATE SET p.created = timestamp()
-ON MATCH SET p.accessed = coalesce(p.accessed,0)+1
-RETURN p
+MERGE (h:Human {name:"Ina"})
+ON CREATE SET h.created = timestamp()
+ON MATCH SET h.accessed = coalesce(h.accessed,0)+1
+RETURN h;
 ----
