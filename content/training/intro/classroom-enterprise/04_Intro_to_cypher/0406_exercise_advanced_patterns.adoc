@@ -13,8 +13,8 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 == Advanced queries 
 
 - Who is working in "Project X" at "GraphIT"?
-- Who is the lead of the "Q&A" department at "GraphIT"?
-- How many hours per week is Daniel Fisher working?
+- Who is the lead of the "QA" department at "GraphIT"?
+- How many hours per week is Daniel working?
 - Find the three persons with the lowest hours per week.
 - Who is having the same role in projects? 
 - Is Alice a superior of Daniel? 
@@ -29,13 +29,13 @@ WHERE p.name = "Project X" AND o.name = "GraphIT"
 RETURN h.name;
 ----
 
-== Lead of "Q&A" at "GraphIT"
+== Lead of "QA" at "GraphIT"
 
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[:LEAD]-(d:Dept),
   d-[:PARENT*0..]->(o:Org)
-WHERE d.name = "Q&A" AND o.name = "GraphIT"
+WHERE d.name = "QA" AND o.name = "GraphIT"
 RETURN h.name;
 ----
 
@@ -44,7 +44,7 @@ RETURN h.name;
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[e:EMPLOYEE]-(d:Dept)
-WHERE h.name = "Daniel Fisher"
+WHERE h.name = "Daniel"
 RETURN sum(e.hoursPerWeek) as `hours per week`;
 ----
 

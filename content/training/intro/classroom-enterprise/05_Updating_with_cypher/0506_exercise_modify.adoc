@@ -17,7 +17,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 - Remove all humans that are not employee or lead of any department.
 - Create a CSV file with some names and e-mail addresses and import these persons with `LOAD CSV` into your database and let they become employees of "Department 4".
 
-== Create a company
+== Create an oarganization
 
 [source,cypher,options="step"]
 ----

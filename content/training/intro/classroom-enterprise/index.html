@@ -1113,8 +1113,8 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <div class="ulist">
 <ul>
 <li>Who is working in "Project X" at "GraphIT"?</li>
-<li>Who is the lead of the "Q&amp;A" department at "GraphIT"?</li>
-<li>How many hours per week is Daniel Fisher working?</li>
+<li>Who is the lead of the "QA" department at "GraphIT"?</li>
+<li>How many hours per week is Daniel working?</li>
 <li>Find the three persons with the lowest hours per week.</li>
 <li>Who is having the same role in projects?</li>
 <li>Is Alice a superior of Daniel?</li>
@@ -1132,13 +1132,13 @@ RETURN h.name;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_lead_of_q_a_at_graphit">
-<h2>Lead of "Q&amp;A" at "GraphIT"</h2>
+<section class="slide" id="_lead_of_qa_at_graphit">
+<h2>Lead of "QA" at "GraphIT"</h2>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:LEAD]-(d:Dept),
   d-[:PARENT*0..]-&gt;(o:Org)
-WHERE d.name = "Q&amp;A" AND o.name = "GraphIT"
+WHERE d.name = "QA" AND o.name = "GraphIT"
 RETURN h.name;</textarea>
 </div>
 </div>
@@ -1148,7 +1148,7 @@ RETURN h.name;</textarea>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[e:EMPLOYEE]-(d:Dept)
-WHERE h.name = "Daniel Fisher"
+WHERE h.name = "Daniel"
 RETURN sum(e.hoursPerWeek) as `hours per week`;</textarea>
 </div>
 </div>
@@ -1573,8 +1573,8 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 </ul>
 </div>
 </section>
-<section class="slide" id="_create_a_company">
-<h2>Create a company</h2>
+<section class="slide" id="_create_an_oarganization">
+<h2>Create an oarganization</h2>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">CREATE (o:Org:Dept:Person {name: "MyCom"})
