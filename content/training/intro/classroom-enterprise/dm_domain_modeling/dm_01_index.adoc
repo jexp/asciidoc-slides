@@ -24,7 +24,7 @@ Today we will deal with entities present in typical enterprise scenarios:
 
 * 'Persons' can be natural persons (humans) or legal entities (organizations)
 * Legal entities are structured in hierarchical departments
-* People are employees of a department and every deparment has a lead
+* People are employees of a department and every department has a lead
 * Projects belong to departments and have team member
 * Persons have addresses and locations
 * Humans have a day of birth and birthplaces, organizations have a tax ID 

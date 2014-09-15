@@ -1,4 +1,4 @@
-http://yuml.me/b2c2e51d
+http://yuml.me/96d17b55
 
 [Person|name]^-[Human|dayOfBirth], 
 [Person]^-[Organization|legalForm], 
@@ -10,7 +10,7 @@ http://yuml.me/b2c2e51d
 [Department]-lead->[Human], 
 [Department]-parent->[Department], 
 [Department]^-[Organization],
-[Organization]-has->[Office],
+[Organization]-site->[Office],
 [Office]-location->[City],
 [Project|title;startDate;endDate]-site->[Office]
 [Project]-belongsTo->[Department],
@@ -26,7 +26,7 @@ http://yuml.me/b2c2e51d
 
 SIMPLIFIED:
 
-http://yuml.me/8a6295a9
+http://yuml.me/c789ab00
 
 [Person|name]^-[Human], 
 [Person]^-[Organization], 
@@ -36,9 +36,9 @@ http://yuml.me/8a6295a9
 [Department]-lead->[Human], 
 [Department]-parent->[Department], 
 [Department]^-[Organization],
-[Organization]-has->[Office],
+[Organization]-site->[Office],
 [Office]-location->[City],
-[Project|title;startDate;endDate]-site->[Office]
+[Project|title]-site->[Office]
 [Project]-belongsTo->[Department],
 [Project]-member->[Human],
 [City]-isIn->[Country]

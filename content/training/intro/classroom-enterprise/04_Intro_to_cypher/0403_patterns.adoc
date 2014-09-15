@@ -70,29 +70,29 @@ with undirected relationship
 
 == Label
 
-Find all natural persons
+Find all humans
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)
-RETURN p.canonicalName;
+MATCH (h:Human)
+RETURN h.name;
 ----
 
 == Relationship types
 
-Find member of an organizational unit
+Find employees of a department
 
 ++++
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="1">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">p</span>
+      <span class="caption">h</span>
     </li>
     <li class="node" data-node-id="2" data-x="-351.03516361989097" data-y="-19">
-      <span class="caption">u</span>
+      <span class="caption">d</span>
     </li>
     <li class="relationship" data-from="1" data-to="2">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
@@ -100,25 +100,25 @@ Find member of an organizational unit
 
 [source,cypher,options="step"]
 ----
-MATCH (p)-[:MEMBER]->(u)
-RETURN p.canonicalName, u.name;
+MATCH (h)-[:EMPLOYEE]->(d)
+RETURN h.name, d.name;
 ----
 
 == Relationship types and labels
 
-Find member of an organizational unit
+Find employees of a department
 
 ++++
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">p:NaturalPerson</span>
+      <span class="caption">h:Human</span>
     </li>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
-      <span class="caption">u:OrganizationalUnit</span>
+      <span class="caption">d:Dept</span>
     </li>
     <li class="relationship" data-from="1" data-to="2">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
@@ -126,7 +126,7 @@ Find member of an organizational unit
 
 [source,cypher,options="step"]
 ----
-MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
-RETURN p.canonicalName, u.name;
+MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+RETURN h.name, d.name;
 ----
 

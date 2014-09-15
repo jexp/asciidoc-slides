@@ -171,7 +171,7 @@ Grab a coffee and get ready to begin!
 <ul>
 <li>'Persons' can be natural persons (humans) or legal entities (organizations)</li>
 <li>Legal entities are structured in hierarchical departments</li>
-<li>People are employees of a department and every deparment has a lead</li>
+<li>People are employees of a department and every department has a lead</li>
 <li>Projects belong to departments and have team member</li>
 <li>Persons have addresses and locations</li>
 <li>Humans have a day of birth and birthplaces, organizations have a tax ID</li>
@@ -540,19 +540,23 @@ derivative of <a href="http://www.flickr.com/photos/sixteenmilesofstring/8256206
 </section>
 <section class="slide" id="_enterprise_model_revisited">
 <h2>Enterprise model revisited</h2>
-<div class="paragraph"><p>TODO ER model or tables</p></div>
+<div class="imageblock">
+<div class="content">
+<img alt="simplified" src="./diagrams/simplified.png">
+</div>
+</div>
 </section>
-<section class="slide" id="_find_member_of_the_it_department">
-<h2>Find member of the IT-Department</h2>
+<section class="slide" id="_find_employees_of_the_it_department">
+<h2>Find employees of the IT-Department</h2>
 <div class="paragraph slide"><p>with SQL:</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="plsql">SELECT * FROM NaturalPerson
-LEFT JOIN NaturalPerson_OrganizationalUnit
-  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
-LEFT JOIN OrganizationalUnit
-  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
-WHERE OrganizationalUnit.name = "IT-Department"</textarea>
+<textarea class="code" mode="plsql">SELECT * FROM Human
+LEFT JOIN Human_Department
+  ON Human.Id = Human_Department.HumanId
+LEFT JOIN Department
+  ON Department.Id = Human_Department.DepartmentId
+WHERE Department.name = "IT-Department"</textarea>
 </div>
 </div>
 <div class="paragraph slide"><p>with Cypher&#8230;&#8203;</p></div>
@@ -573,20 +577,20 @@ WHERE OrganizationalUnit.name = "IT-Department"</textarea>
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">p:NaturalPerson</span>
+      <span class="caption">h:Human</span>
     </li>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
-      <span class="caption">u:OrganizationalUnit</span>
+      <span class="caption">d:Dept</span>
     </li>
     <li class="relationship" data-from="1" data-to="2">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
 <div class="paragraph slide"><p>The pattern in Cypher:</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">(p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)</textarea>
+<textarea class="code" mode="cypher">(h:Human)-[:EMPLOYEE]-&gt;(d:Dept)</textarea>
 </div>
 </div>
 </section>
@@ -595,16 +599,16 @@ WHERE OrganizationalUnit.name = "IT-Department"</textarea>
 <div class="paragraph slide"><p><code>MATCH</code> allows you to find a pattern in the graph</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
-RETURN p.canonicalName, u.name</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+RETURN h.name, d.name</textarea>
 </div>
 </div>
 <div class="paragraph slide"><p><code>WHERE</code> allows you to filter the results</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
-WHERE u.name = "IT-Department"
-RETURN p.canonicalName, u.name</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+WHERE d.name = "IT-Department"
+RETURN h.name, d.name</textarea>
 </div>
 </div>
 </section>
@@ -612,19 +616,19 @@ RETURN p.canonicalName, u.name</textarea>
 <h2>SQL vs. Cypher</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="plsql">SELECT * FROM NaturalPerson
-LEFT JOIN NaturalPerson_OrganizationalUnit
-  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
-LEFT JOIN OrganizationalUnit
-  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
-WHERE OrganizationalUnit.name = "IT-Department"</textarea>
+<textarea class="code" mode="plsql">SELECT * FROM Human
+LEFT JOIN Human_Department
+  ON Human.Id = Human_Department.HumanId
+LEFT JOIN Department
+  ON Department.Id = Human_Department.DepartmentId
+WHERE Department.name = "IT-Department</textarea>
 </div>
 </div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
-WHERE u.name = "IT-Department"
-RETURN p.canonicalName, u.name</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+WHERE d.name = "IT-Department"
+RETURN h.name, d.name</textarea>
 </div>
 </div>
 </section>
@@ -691,57 +695,57 @@ RETURN p.canonicalName, u.name</textarea>
 </section>
 <section class="slide" id="_label">
 <h2>Label</h2>
-<div class="paragraph"><p>Find all natural persons</p></div>
+<div class="paragraph"><p>Find all humans</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)
-RETURN p.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)
+RETURN h.name;</textarea>
 </div>
 </div>
 </section>
 <section class="slide" id="_relationship_types">
 <h2>Relationship types</h2>
-<div class="paragraph"><p>Find member of an organizational unit</p></div>
+<div class="paragraph"><p>Find employees of a department</p></div>
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="1">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">p</span>
+      <span class="caption">h</span>
     </li>
     <li class="node" data-node-id="2" data-x="-351.03516361989097" data-y="-19">
-      <span class="caption">u</span>
+      <span class="caption">d</span>
     </li>
     <li class="relationship" data-from="1" data-to="2">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p)-[:MEMBER]-&gt;(u)
-RETURN p.canonicalName, u.name;</textarea>
+<textarea class="code" mode="cypher">MATCH (h)-[:EMPLOYEE]-&gt;(d)
+RETURN h.name, d.name;</textarea>
 </div>
 </div>
 </section>
 <section class="slide" id="_relationship_types_and_labels">
 <h2>Relationship types and labels</h2>
-<div class="paragraph"><p>Find member of an organizational unit</p></div>
+<div class="paragraph"><p>Find employees of a department</p></div>
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">p:NaturalPerson</span>
+      <span class="caption">h:Human</span>
     </li>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
-      <span class="caption">u:OrganizationalUnit</span>
+      <span class="caption">d:Dept</span>
     </li>
     <li class="relationship" data-from="1" data-to="2">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (p:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit)
-RETURN p.canonicalName, u.name;</textarea>
+<textarea class="code" mode="cypher">MATCH (h:Human)-[:EMPLOYEE]-&gt;(d:Dept)
+RETURN h.name, d.name;</textarea>
 </div>
 </div>
 </section>
@@ -755,99 +759,105 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <h2>First Excercise</h2>
 <div class="ulist">
 <ul>
-<li>Find the names of all legal persons.</li>
-<li>Works in the same teams as "Alice Miller"?</li>
-<li>Which companies have offices in Paris?</li>
+<li>Find the names of all organizations.</li>
+<li>Who works in the same departments as Alice?</li>
+<li>Which organizations have offices in Paris?</li>
 <li>In which countries has "GraphIT" offices?</li>
 </ul>
 </div>
+<div class="paragraph"><p><em>Labels: Human, Org, Dept, Person, Office</em></p></div>
+<div class="paragraph"><p><em>Relationship Types: EMPLOYEE, SITE, LOCATION, IS_IN</em></p></div>
 </section>
-<section class="slide" id="_find_all_legal_persons">
-<h2>Find all legal persons</h2>
+<section class="slide" id="_find_all_organizations">
+<h2>Find all organizations</h2>
 <div class="paragraph slide"><p>Pattern</p></div>
 </section>
-<section class="slide" id="_find_all_legal_persons_2">
-<h2>Find all legal persons</h2>
+<section class="slide" id="_find_all_organizations_2">
+<h2>Find all organizations</h2>
 <div class="paragraph"><p>Pattern</p></div>
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.6">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">c:LegalPerson</span>
+      <span class="caption">o:Org</span>
     </li>
   </ul>
 </figure>
 <div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (c:LegalPerson)
-RETURN c.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (o:Org)
+RETURN o.name;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_colleagues_of_alice_miller">
-<h2>Colleagues of Alice Miller</h2>
+<section class="slide" id="_colleagues_of_alice">
+<h2>Colleagues of Alice</h2>
 <div class="paragraph slide"><p>Pattern</p></div>
 </section>
-<section class="slide" id="_colleagues_of_alice_miller_2">
-<h2>Colleagues of Alice Miller</h2>
+<section class="slide" id="_colleagues_of_alice_2">
+<h2>Colleagues of Alice</h2>
 <div class="paragraph"><p>Pattern</p></div>
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="4.26" data-external-scale="0.6">
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">a:NaturalPerson</span>
+      <span class="caption">a:Human</span>
     </li>
     <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
-      <span class="caption">u:OrganizationalUnit</span>
+      <span class="caption">d:Dept</span>
     </li>
     <li class="node" data-node-id="6" data-x="-1297.1275555499185" data-y="-31.244897959183675">
-      <span class="caption">b:NaturalPerson</span>
+      <span class="caption">b:Human</span>
     </li>
     <li class="relationship" data-from="4" data-to="5">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
     <li class="relationship" data-from="6" data-to="5">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
 <div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (a:NaturalPerson)-[:MEMBER]-&gt;(u:OrganizationalUnit),
-  u&lt;-[:MEMBER]-(b:NaturalPerson)
-WHERE a.canonicalName = "Alice Miller"
-RETURN b.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (a:Human)-[:EMPLOYEE]-&gt;(d:Dept),
+  u&lt;-[:EMPLOYEE]-(b:Human)
+WHERE a.name = "Alice"
+RETURN b.name;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_companies_with_offices_in_paris">
-<h2>Companies with offices in Paris</h2>
+<section class="slide" id="_organizations_with_offices_in_paris">
+<h2>Organizations with offices in Paris</h2>
 <div class="paragraph slide"><p>Pattern</p></div>
 </section>
-<section class="slide" id="_companies_with_offices_in_paris_2">
+<section class="slide" id="_companies_with_offices_in_paris">
 <h2>Companies with offices in Paris</h2>
 <div class="paragraph"><p>Pattern</p></div>
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
     <li class="node" data-node-id="1" data-x="-926.9929027097343" data-y="-31.244897959183675">
-      <span class="caption">city:City</span>
+      <span class="caption">c:City</span>
     </li>
     <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
       <span class="caption">:Office</span>
     </li>
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
+      <span class="caption">o:Org</span>
     </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="4" data-to="3"></li>
+    <li class="relationship" data-from="3" data-to="1">
+      <span class="type">:LOCATION</span>
+    </li>
+    <li class="relationship" data-from="4" data-to="3">
+      <span class="type">:SITE</span>
+    </li>
   </ul>
 </figure>
 <div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (c:LegalPerson)--&gt;(:Office)--&gt;(city:City)
-WHERE city.name = "Paris"
-RETURN c.canonicalName;</textarea>
+<textarea class="code" mode="cypher">MATCH (o:Org)-[:SITE]-&gt;(:Office)-[:LOCATION]-&gt;(c:City)
+WHERE c.name = "Paris"
+RETURN o.name;</textarea>
 </div>
 </div>
 </section>
@@ -867,22 +877,28 @@ RETURN c.canonicalName;</textarea>
       <span class="caption">:Office</span>
     </li>
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
+      <span class="caption">o:Organization</span>
     </li>
     <li class="node" data-node-id="5" data-x="-734.977202670841" data-y="-31.244897959183675">
-      <span class="caption">country:Country</span>
+      <span class="caption">c:Country</span>
     </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="4" data-to="3"></li>
-    <li class="relationship" data-from="1" data-to="5"></li>
+    <li class="relationship" data-from="3" data-to="1">
+      <span class="type">:LOCATION</span>
+    </li>
+    <li class="relationship" data-from="4" data-to="3">
+      <span class="type">:SITE</span>
+    </li>
+    <li class="relationship" data-from="1" data-to="5">
+      <span class="type">:IS_IN</span>
+    </li>
   </ul>
 </figure>
 <div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (c:LegalPerson)--&gt;(:Office)--&gt;(:City)--&gt;(country:Country)
-WHERE c.canonicalName = "GraphIT"
-RETURN country.name;</textarea>
+<textarea class="code" mode="cypher">MATCH (o:Org)-[:SITE]-&gt;(:Office)-[:LOCATION]-&gt;(:City)-[IS_IN]-&gt;(c:Country)
+WHERE o.name = "GraphIT"
+RETURN c.name;</textarea>
 </div>
 </div>
 </section>

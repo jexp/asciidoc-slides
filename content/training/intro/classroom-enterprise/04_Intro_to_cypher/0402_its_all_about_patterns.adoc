@@ -1,8 +1,8 @@
 == Enterprise model revisited
 
-TODO ER model or tables
+image::./diagrams/simplified.png[]
 
-== Find member of the IT-Department
+== Find employees of the IT-Department
 
 [options="step"]
 with SQL:
@@ -10,12 +10,12 @@ with SQL:
 [options="step"]
 [source,plsql]
 ----
-SELECT * FROM NaturalPerson
-LEFT JOIN NaturalPerson_OrganizationalUnit 
-  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
-LEFT JOIN OrganizationalUnit
-  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
-WHERE OrganizationalUnit.name = "IT-Department"
+SELECT * FROM Human
+LEFT JOIN Human_Department 
+  ON Human.Id = Human_Department.HumanId
+LEFT JOIN Department 
+  ON Department.Id = Human_Department.DepartmentId
+WHERE Department.name = "IT-Department"
 ----
 
 
@@ -49,13 +49,13 @@ What graph pattern are we looking for?
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">p:NaturalPerson</span>
+      <span class="caption">h:Human</span>
     </li>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
-      <span class="caption">u:OrganizationalUnit</span>
+      <span class="caption">d:Dept</span>
     </li>
     <li class="relationship" data-from="1" data-to="2">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
@@ -67,7 +67,7 @@ The pattern in Cypher:
 [options="step"]
 [source,cypher]
 ----
-(p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
+(h:Human)-[:EMPLOYEE]->(d:Dept)
 ----
 
 == From SQL to Cypher
@@ -78,8 +78,8 @@ The pattern in Cypher:
 [options="step"]
 [source,cypher]
 ----
-MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
-RETURN p.canonicalName, u.name
+MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+RETURN h.name, d.name
 ----
 
 [options="step"]
@@ -88,9 +88,9 @@ RETURN p.canonicalName, u.name
 [options="step"]
 [source,cypher]
 ----
-MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
-WHERE u.name = "IT-Department"
-RETURN p.canonicalName, u.name
+MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+WHERE d.name = "IT-Department"
+RETURN h.name, d.name
 ----
 
 == SQL vs. Cypher
@@ -98,18 +98,18 @@ RETURN p.canonicalName, u.name
 [options="step"]
 [source,plsql]
 ----
-SELECT * FROM NaturalPerson
-LEFT JOIN NaturalPerson_OrganizationalUnit 
-  ON NaturalPerson.Id = NaturalPerson_OrganizationalUnit.PersonId
-LEFT JOIN OrganizationalUnit
-  ON OrganizationalUnit.Id = NaturalPerson_OrganizationalUnit.UnitId
-WHERE OrganizationalUnit.name = "IT-Department"
+SELECT * FROM Human
+LEFT JOIN Human_Department 
+  ON Human.Id = Human_Department.HumanId
+LEFT JOIN Department 
+  ON Department.Id = Human_Department.DepartmentId
+WHERE Department.name = "IT-Department
 ----
 
 [options="step"]
 [source,cypher]
 ----
-MATCH (p:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit)
-WHERE u.name = "IT-Department"
-RETURN p.canonicalName, u.name
+MATCH (h:Human)-[:EMPLOYEE]->(d:Dept)
+WHERE d.name = "IT-Department"
+RETURN h.name, d.name
 ----

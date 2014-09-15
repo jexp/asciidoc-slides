@@ -12,18 +12,22 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 
 == First Excercise
 
-- Find the names of all legal persons.
-- Works in the same teams as "Alice Miller"?
-- Which companies have offices in Paris?
+- Find the names of all organizations.
+- Who works in the same departments as Alice?
+- Which organizations have offices in Paris?
 - In which countries has "GraphIT" offices? 
 
-== Find all legal persons
+_Labels: Human, Org, Dept, Person, Office_
+
+_Relationship Types: EMPLOYEE, SITE, LOCATION, IS_IN_
+
+== Find all organizations
 
 [options="step"]
 Pattern
 
 
-== Find all legal persons
+== Find all organizations
 
 Pattern
 
@@ -31,7 +35,7 @@ Pattern
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.6">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">c:LegalPerson</span>
+      <span class="caption">o:Org</span>
     </li>
   </ul>
 </figure>
@@ -42,16 +46,16 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (c:LegalPerson)
-RETURN c.canonicalName;
+MATCH (o:Org)
+RETURN o.name;
 ----
 
-== Colleagues of Alice Miller
+== Colleagues of Alice
 
 [options="step"]
 Pattern
 
-== Colleagues of Alice Miller
+== Colleagues of Alice
 
 Pattern
 
@@ -59,19 +63,19 @@ Pattern
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="4.26" data-external-scale="0.6">
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">a:NaturalPerson</span>
+      <span class="caption">a:Human</span>
     </li>
     <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
-      <span class="caption">u:OrganizationalUnit</span>
+      <span class="caption">d:Dept</span>
     </li>
     <li class="node" data-node-id="6" data-x="-1297.1275555499185" data-y="-31.244897959183675">
-      <span class="caption">b:NaturalPerson</span>
+      <span class="caption">b:Human</span>
     </li>
     <li class="relationship" data-from="4" data-to="5">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
     <li class="relationship" data-from="6" data-to="5">
-      <span class="type">:MEMBER</span>
+      <span class="type">:EMPLOYEE</span>
     </li>
   </ul>
 </figure>
@@ -82,13 +86,13 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (a:NaturalPerson)-[:MEMBER]->(u:OrganizationalUnit),
-  u<-[:MEMBER]-(b:NaturalPerson)
-WHERE a.canonicalName = "Alice Miller"
-RETURN b.canonicalName;
+MATCH (a:Human)-[:EMPLOYEE]->(d:Dept),
+  u<-[:EMPLOYEE]-(b:Human)
+WHERE a.name = "Alice"
+RETURN b.name;
 ----
 
-== Companies with offices in Paris
+== Organizations with offices in Paris
 
 [options="step"]
 Pattern
@@ -101,16 +105,20 @@ Pattern
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.54" data-external-scale="0.6">
     <li class="node" data-node-id="1" data-x="-926.9929027097343" data-y="-31.244897959183675">
-      <span class="caption">city:City</span>
+      <span class="caption">c:City</span>
     </li>
     <li class="node" data-node-id="3" data-x="-1271.278139283057" data-y="-31.244897959183675">
       <span class="caption">:Office</span>
     </li>
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
+      <span class="caption">o:Org</span>
     </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="4" data-to="3"></li>
+    <li class="relationship" data-from="3" data-to="1">
+      <span class="type">:LOCATION</span>
+    </li>
+    <li class="relationship" data-from="4" data-to="3">
+      <span class="type">:SITE</span>
+    </li>
   </ul>
 </figure>
 ++++
@@ -120,9 +128,9 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (c:LegalPerson)-->(:Office)-->(city:City)
-WHERE city.name = "Paris"
-RETURN c.canonicalName;
+MATCH (o:Org)-[:SITE]->(:Office)-[:LOCATION]->(c:City)
+WHERE c.name = "Paris"
+RETURN o.name;
 ----
 
 == Countries with "GraphIT" offices
@@ -144,14 +152,20 @@ Pattern
       <span class="caption">:Office</span>
     </li>
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">c:LegalPerson</span>
+      <span class="caption">o:Organization</span>
     </li>
     <li class="node" data-node-id="5" data-x="-734.977202670841" data-y="-31.244897959183675">
-      <span class="caption">country:Country</span>
+      <span class="caption">c:Country</span>
     </li>
-    <li class="relationship" data-from="3" data-to="1"></li>
-    <li class="relationship" data-from="4" data-to="3"></li>
-    <li class="relationship" data-from="1" data-to="5"></li>
+    <li class="relationship" data-from="3" data-to="1">
+      <span class="type">:LOCATION</span>
+    </li>
+    <li class="relationship" data-from="4" data-to="3">
+      <span class="type">:SITE</span>
+    </li>
+    <li class="relationship" data-from="1" data-to="5">
+      <span class="type">:IS_IN</span>
+    </li>
   </ul>
 </figure>
 ++++
@@ -161,7 +175,7 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (c:LegalPerson)-->(:Office)-->(:City)-->(country:Country)
-WHERE c.canonicalName = "GraphIT"
-RETURN country.name;
+MATCH (o:Org)-[:SITE]->(:Office)-[:LOCATION]->(:City)-[IS_IN]->(c:Country)
+WHERE o.name = "GraphIT"
+RETURN c.name;
 ----
