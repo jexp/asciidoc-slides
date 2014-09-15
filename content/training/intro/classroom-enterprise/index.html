@@ -109,9 +109,7 @@ Grab a coffee and get ready to begin!
 <li class="slide">How do I model data?</li>
 <li class="slide">How do I enter data?</li>
 <li class="slide">How do I query data?</li>
-<li class="slide">and&#8230;&#8203;</li>
-<li class="slide">provide confidence start building</li>
-<li class="slide">a graph enabled application</li>
+<li class="slide">and provide confidence start building a graph enabled application</li>
 </ul>
 </div>
 </section>
@@ -131,85 +129,21 @@ Grab a coffee and get ready to begin!
 </div>
 </div>
 </section>
-<section class="slide" id="__introduction_to_graphs">
-<h2>(Introduction to Graphs)</h2>
-
-</section>
-<section class="slide" id="_but_first_an_important_message">
-<h2>But first an important message &#8230;&#8203;</h2>
-
-</section>
-<section class="slide" id="_these_are_charts">
-<h2>These are Charts &#8230;&#8203;</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="charts" src="../../img/charts.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_not_graphs">
-<h2>Not Graphs</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="charts not graphs" src="../../img/charts_not_graphs.png">
-</div>
-</div>
-</section>
-<section class="slide" id="_leonhard_euler_1707_1783">
-<h2>Leonhard Euler 1707-1783</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="euler" src="../../img/euler.png">
-</div>
-</div>
-<div class="paragraph"><p>Swiss Mathematician</p></div>
-</section>
-<section class="slide" id="_7_bridges_of_königsberg">
-<h2>7 Bridges of Königsberg</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="konigsberg" src="../../img/konigsberg.png">
-</div>
-</div>
-<div class="paragraph"><p>Königsberg (Prussia) - 1736</p></div>
-<div class="paragraph"><p>7 Bridges, one route?</p></div>
-</section>
-<section class="slide" id="_7_bridges_of_königsberg_approach">
-<h2>7 Bridges of Königsberg - Approach</h2>
-<div class="imageblock" style="text-align: right">
-<div class="content">
-<img alt="konigsberg1" src="../../img/konigsberg1.png">
-</div>
-</div>
-<div class="paragraph"><p>Identify parts &#8594; Landmasses &amp; Bridges</p></div>
-</section>
-<section class="slide" id="_7_bridges_of_königsberg_model">
-<h2>7 Bridges of Königsberg - Model</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="konigsberg3" src="../../img/konigsberg3.png">
-</div>
-</div>
-<div class="paragraph"><p>It&#8217;s a graph &#8594; Nodes &amp; Relationships</p></div>
-</section>
-<section class="slide" id="_7_bridges_of_königsberg_solution">
-<h2>7 Bridges of Königsberg - Solution</h2>
-<div class="imageblock">
-<div class="content">
-<img alt="konigsberg4" src="../../img/konigsberg4.png">
-</div>
-</div>
-<div class="paragraph"><p>Path finding &#8594; There was no route</p></div>
-</section>
-<section class="slide" id="_todo_other_graph_examples">
-<h2>TODO: Other graph examples</h2>
+<section class="slide" id="_graphs_are_everywhere">
+<h2>Graphs are everywhere</h2>
 <div class="ulist">
 <ul>
+<li>TODO</li>
 <li>Facebook / Twitter / Social Network</li>
 <li>Navgiation / Routing / Logistics</li>
 <li>git</li>
 <li>recommendations</li>
 </ul>
+</div>
+<div class="imageblock" style="text-align: right">
+<div class="content">
+<img alt="Facebook" src="../../img/Facebook.png">
+</div>
 </div>
 <div class="imageblock" style="text-align: right">
 <div class="content">
@@ -226,8 +160,8 @@ Grab a coffee and get ready to begin!
 <div class="paragraph"><p>Today we will deal with entities present in typical enterprise scenarios:</p></div>
 <div class="ulist">
 <ul>
-<li>People and Companies</li>
-<li>Orginizational structures, projects and teams</li>
+<li>People and Organizations</li>
+<li>Organizational structures, projects and teams</li>
 </ul>
 </div>
 </section>
@@ -235,11 +169,14 @@ Grab a coffee and get ready to begin!
 <h2>Description of sample domain</h2>
 <div class="ulist">
 <ul>
-<li>'Persons' can be natural persons (humans) or legal entities (companies)</li>
-<li>Legal entities are structured in hierarchical organizational units</li>
-<li>Projects belong organizational units and have teams with poeple</li>
-<li>People have addresses, working places, birthplaces, Organizations and teams have places of business</li>
-<li>Addresses belont to cities, cities to countries and countries to continents</li>
+<li>'Persons' can be natural persons (humans) or legal entities (organizations)</li>
+<li>Legal entities are structured in hierarchical departments</li>
+<li>People are employees of a department and every deparment has a lead</li>
+<li>Projects belong to departments and have team member</li>
+<li>Persons have addresses and locations</li>
+<li>Humans have a day of birth and birthplaces, organizations have a tax ID</li>
+<li>Addresses belong to cities, cities to countries and countries to continents</li>
+<li>Organizations have offices in different cities where projects take place</li>
 </ul>
 </div>
 </section>
@@ -271,6 +208,7 @@ Grab a coffee and get ready to begin!
 <div class="ulist">
 <ul>
 <li>TODO: show simplified version</li>
+<li>Perhaps latern when we start with cypher</li>
 </ul>
 </div>
 </section>

@@ -1,3 +1,14 @@
+== Graphs are everywhere
+ 
+- TODO
+- Facebook / Twitter / Social Network
+- Navgiation / Routing / Logistics
+- git
+- recommendations
+
+image::{img}/Facebook.png[align="right"]
+image::{img}/Octocat.png[align="right"]
+
 == And in my domain?
 
 (Motivation for typical enterprise domains)
@@ -6,16 +17,19 @@
 
 Today we will deal with entities present in typical enterprise scenarios:
 
-* People and Companies
-* Orginizational structures, projects and teams
+* People and Organizations
+* Organizational structures, projects and teams
 
 == Description of sample domain
 
-* 'Persons' can be natural persons (humans) or legal entities (companies)
-* Legal entities are structured in hierarchical organizational units
-* Projects belong organizational units and have teams with poeple
-* People have addresses, working places, birthplaces, Organizations and teams have places of business
-* Addresses belont to cities, cities to countries and countries to continents
+* 'Persons' can be natural persons (humans) or legal entities (organizations)
+* Legal entities are structured in hierarchical departments
+* People are employees of a department and every deparment has a lead
+* Projects belong to departments and have team member
+* Persons have addresses and locations
+* Humans have a day of birth and birthplaces, organizations have a tax ID 
+* Addresses belong to cities, cities to countries and countries to continents
+* Organizations have offices in different cities where projects take place
 
 == Excercise 1: Draw domain model
 
@@ -32,6 +46,7 @@ image::{img}/persons-and-units.png[]
 == Relevant extract for next steps
 
 * TODO: show simplified version
+* Perhaps latern when we start with cypher
 
 == Excercise 2: Transfer to Relational Data Model
 
