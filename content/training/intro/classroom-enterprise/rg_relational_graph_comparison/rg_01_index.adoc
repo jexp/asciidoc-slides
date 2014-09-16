@@ -1,0 +1,9 @@
+== Comparison RDB vs. GraphDB
+
+What about
+
+* Integrity, consistency and constraints
+* Hierarchies and Trees
+* Bi-directional relations
+* Many-to-many relations
+* Schema and/or data migrations

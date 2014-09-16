@@ -171,14 +171,14 @@ Grab a coffee and get ready to begin!
 <h2>Description of sample domain</h2>
 <div class="ulist condensed-75">
 <ul class="condensed-75">
-<li>'Persons' can be natural persons (humans) or legal entities (organizations)</li>
-<li>Legal entities are structured in hierarchical departments</li>
-<li>People are employees of a department and every department has a lead</li>
-<li>Projects belong to departments and have team member</li>
-<li>Persons have addresses and locations</li>
-<li>Humans have a day of birth and birthplaces, organizations have a tax ID</li>
-<li>Addresses belong to cities, cities to countries and countries to continents</li>
-<li>Organizations have offices in different cities where projects take place</li>
+<li class="slide">'Persons' can be natural persons (humans) or legal entities (organizations)</li>
+<li class="slide">Legal entities are structured in hierarchical departments</li>
+<li class="slide">People are employees of a department and every department has a lead</li>
+<li class="slide">Projects belong to departments and have team member</li>
+<li class="slide">Persons have addresses and locations</li>
+<li class="slide">Humans have a day of birth and birthplaces, organizations have a tax ID</li>
+<li class="slide">Addresses belong to cities, cities to countries and countries to continents</li>
+<li class="slide">Organizations have offices in different cities where projects take place</li>
 </ul>
 </div>
 </section>
@@ -191,6 +191,12 @@ Grab a coffee and get ready to begin!
 <li>Define the relations between them</li>
 </ul>
 </div>
+</section>
+<section class="slide canvas-image" id="_flip_chart_excercise" style="background-image: url(./img/flipchart.jpg)">
+<div class="paragraph canvas-caption"><p class="center">Draw domain model</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332">"Flip Chart</a> by <a href="hhttps://www.flickr.com/photos/adrianhoward/">Adrian Howard</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
 </section>
 <section class="slide" id="_possible_solution">
 <h2>Possible solution</h2>
@@ -210,13 +216,15 @@ Grab a coffee and get ready to begin!
 <div class="ulist">
 <ul>
 <li>TODO: show simplified version</li>
-<li>Perhaps latern when we start with cypher</li>
+<li>Perhaps later when we start with cypher</li>
 </ul>
 </div>
 </section>
-<section class="slide" id="_excercise_2_transfer_to_relational_data_model">
-<h2>Excercise 2: Transfer to Relational Data Model</h2>
-
+<section class="slide canvas-image" id="_flip_chart_excercise_2" style="background-image: url(./img/flipchart.jpg)">
+<div class="paragraph canvas-caption"><p class="center">Excercise 2: Transfer to Relational Data Model</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332">"Flip Chart</a> by <a href="hhttps://www.flickr.com/photos/adrianhoward/">Adrian Howard</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
 </section>
 <section class="slide" id="_relational_world">
 <h2>Relational world</h2>
@@ -224,16 +232,18 @@ Grab a coffee and get ready to begin!
 <div class="ulist">
 <ul>
 <li>Tables, rows and columns</li>
-<li>Relations vie Foreign keys</li>
+<li>Relations via Foreign keys</li>
 <li>Technical n:m tables for many-to-many relatations</li>
 <li>Technical tables to add meta info to relations</li>
 <li>Flexibility in joining together tables (syntactically)</li>
 </ul>
 </div>
 </section>
-<section class="slide" id="_excercise_3_transfer_to_graph_model">
-<h2>Excercise 3: Transfer to Graph Model</h2>
-
+<section class="slide canvas-image" id="_flip_chart_excercise_3" style="background-image: url(./img/flipchart.jpg)">
+<div class="paragraph canvas-caption"><p class="center">Excercise 3: Transfer to Graph Model</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332">"Flip Chart</a> by <a href="hhttps://www.flickr.com/photos/adrianhoward/">Adrian Howard</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
 </section>
 <section class="slide" id="_discussion_compare_relational_and_graph_model">
 <h2>Discussion: Compare relational and graph model</h2>
@@ -250,6 +260,7 @@ Grab a coffee and get ready to begin!
 <section class="slide" id="_now_add_some_sample_data">
 <h2>Now add some sample data</h2>
 <div class="paragraph"><p>First remember: how is data organized in tables?</p></div>
+<img src="../../img/RDB_Relation_Sample.png"/>
 </section>
 <section class="slide" id="_and_as_a_graph">
 <h2>and as a graph?</h2>
@@ -1643,6 +1654,19 @@ CREATE (h:Human {name: line[0], email: line[1]});</textarea>
 <div class="img-ref">
 derivative of <a href="https://www.flickr.com/photos/bortescristian/8442828274">"Coffee cupping at Olivo Caffe with barista Marius Nica"</a> by <a href="https://www.flickr.com/photos/bortescristian/">Cristian Bortes</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
 <div>
+</section>
+<section class="slide" id="_comparison_rdb_vs_graphdb">
+<h2>Comparison RDB vs. GraphDB</h2>
+<div class="paragraph"><p>What about</p></div>
+<div class="ulist">
+<ul>
+<li>Integrity, consistency and constraints</li>
+<li>Hierarchies and Trees</li>
+<li>Bi-directional relations</li>
+<li>Many-to-many relations</li>
+<li>Schema and/or data migrations</li>
+</ul>
+</div>
 </section>
 <section class="slide" id="_next_steps">
 <h2>Next steps</h2>
