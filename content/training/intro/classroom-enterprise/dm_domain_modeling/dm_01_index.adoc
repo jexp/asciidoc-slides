@@ -1,17 +1,26 @@
 == Graphs are everywhere
- 
-- TODO
-- Facebook / Twitter / Social Network
-- Navgiation / Routing / Logistics
-- git
-- recommendations
 
-image::{img}/Facebook.png[align="right"]
-image::{img}/Octocat.png[align="right"]
+[condensed-75]
+- Social Network
+- Navgiation / Routing / Logistics
+- Access Control
+- Recommendations
+- Fraud Analysis, Impact Analysis
+- SCM, Git, (Revision Graphs & Object Store)
+
+++++
+<div style="width:80%; padding-left:100px">
+  <img src="../../img/Facebook.png" height="60" style="float:left;padding-right:50px"/>
+  <img src="../../img/Octocat.png" height="60" style="float:left;padding-right:50px"/>
+</div>
+++++
 
 == And in my domain?
 
-(Motivation for typical enterprise domains)
+* Nearly any information can be represented as graph
+* What about information systems in your company?
+* Which domains make perfectly sense to represent as graph?
+* And which do not?
 
 == Our sample domain for today
 
@@ -22,6 +31,7 @@ Today we will deal with entities present in typical enterprise scenarios:
 
 == Description of sample domain
 
+[condensed-75]
 * 'Persons' can be natural persons (humans) or legal entities (organizations)
 * Legal entities are structured in hierarchical departments
 * People are employees of a department and every department has a lead
@@ -52,9 +62,13 @@ image::{img}/persons-and-units.png[]
 
 == Relational world
 
-* Define tables / typical cases n:m, hierarchy, 1:n
-* Tables with data in rows
-* Joins
+That is what we have in a relation world:
+
+* Tables, rows and columns
+* Relations vie Foreign keys
+* Technical n:m tables for many-to-many relatations 
+* Technical tables to add meta info to relations
+* Flexibility in joining together tables (syntactically)
 
 == Excercise 3: Transfer to Graph Model
 
@@ -64,6 +78,7 @@ image::{img}/persons-and-units.png[]
 * What Are differences?
 * Is any of them easier to create?
 * Which one feels more natural to you?
+* What do you think about "schema free"?
 
 == Now add some sample data
 

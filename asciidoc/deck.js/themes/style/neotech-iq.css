@@ -663,4 +663,13 @@ figure,table {
     text-decoration: none;
 }
 
+ul.condensed-75 {
+  font-size: 0.75em;
+}
+
+ul.condensed-50 {
+  font-size: 0.5em;
+}
+
+
 
