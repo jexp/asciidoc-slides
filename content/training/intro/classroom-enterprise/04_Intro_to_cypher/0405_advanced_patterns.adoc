@@ -77,7 +77,7 @@ RETURN m.role;
 [source,cypher,options="step"]
 ----
 MATCH p=(a:Human)<-[:EMPLOYEE]-(d)-[:EMPLOYEE]->(b:Human)
-WHERE a.name = "Alice"
+WHERE a.name = "Daniel"
 RETURN p;
 ----
 

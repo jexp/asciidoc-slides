@@ -91,6 +91,14 @@ Functions
 [source,cypher,options="step"]
 ----
 MATCH (d:Dept), (h:Human)
-WHERE h.name =~ "A.*" AND h-[:LEAD]->d
+WHERE h.name =~ "A.*" AND h<-[:LEAD]-d
 RETURN h.name, d.name;
+----
+
+== Matching multiple relationships
+
+[source,cypher,options="step"]
+----
+MATCH (h:Human)<-[:EMPLOYEE|:LEAD]-(d:Dept)
+return h, d;
 ----

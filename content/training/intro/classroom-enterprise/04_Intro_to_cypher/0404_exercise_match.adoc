@@ -13,7 +13,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 == First Excercise
 
 - Find the names of all organizations.
-- Who works in the same departments as Alice?
+- Who works in the same departments as Daniel?
 - Which organizations have offices in Paris?
 - In which countries has "GraphIT" offices? 
 
@@ -50,12 +50,12 @@ MATCH (o:Org)
 RETURN o.name;
 ----
 
-== Colleagues of Alice
+== Colleagues of Daniel
 
 [options="step"]
 Pattern
 
-== Colleagues of Alice
+== Colleagues of Daniel
 
 Pattern
 
@@ -63,7 +63,7 @@ Pattern
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="4.26" data-external-scale="0.6">
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">a:Human</span>
+      <span class="caption">h:Human</span>
     </li>
     <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
       <span class="caption">d:Dept</span>
@@ -86,9 +86,9 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (a:Human)<-[:EMPLOYEE]-(d:Dept),
-  u-[:EMPLOYEE]->(b:Human)
-WHERE a.name = "Alice"
+MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept),
+  d-[:EMPLOYEE]->(b:Human)
+WHERE h.name = "Daniel"
 RETURN b.name;
 ----
 

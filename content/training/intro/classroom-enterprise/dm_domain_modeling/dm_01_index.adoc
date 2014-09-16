@@ -75,7 +75,7 @@ That is what we have in a relation world:
 == Discussion: Compare relational and graph model
 
 * What do thex have in common?
-* What Are differences?
+* What are differences?
 * Is any of them easier to create?
 * Which one feels more natural to you?
 * What do you think about "schema free"?

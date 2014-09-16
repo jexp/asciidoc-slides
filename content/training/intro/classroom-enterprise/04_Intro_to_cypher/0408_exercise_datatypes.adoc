@@ -51,7 +51,7 @@ RETURN h.name;
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+MATCH path=(a:Human)-[:EMPLOYEE|LEAD*0..]-(c:Human)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 RETURN 
@@ -63,7 +63,7 @@ RETURN
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+MATCH path=(a:Human)-[:EMPLOYEE|LEAD*0..]-(c:Human)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 RETURN extract(n IN nodes(path) | n.name);
@@ -73,7 +73,7 @@ RETURN extract(n IN nodes(path) | n.name);
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE*0..]-(c:Human)
+MATCH path=(a:Human)-[:EMPLOYEE|LEAD*0..]-(c:Human)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 WITH 
@@ -82,6 +82,7 @@ WITH
 RETURN extract(n IN persons | n.name);
 ----
 
+[options="step"]
 `WITH` allows you to modify/filter result sets
 
 

@@ -28,8 +28,8 @@ MERGE (n:Country {name: "Netherlands"})
 MERGE (s:Country {name: "Spain"})
 MERGE (a:City {name: "Amsterdam"})-[:IS_IN]->n
 MERGE (m:City {name: "Madrid"})-[:IS_IN]->s
-CREATE o-[:SITE]->(:Office)-[:LOCATIOn]->a
-CREATE o-[:SITE]->(:Office)-[:LOCATIOn]->m
+CREATE o-[:SITE]->(:Office)-[:LOCATION]->a
+CREATE o-[:SITE]->(:Office)-[:LOCATION]->m
 RETURN o;
 ----
 
