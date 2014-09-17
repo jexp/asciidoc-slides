@@ -7,3 +7,10 @@ What about
 * Bi-directional relations
 * Many-to-many relations
 * Schema and/or data migrations
+
+== Technical aspects
+
+* Index-free adjencency
+* (De-)normilization
+* Null values and Not-Null-Constraints
+
