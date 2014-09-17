@@ -1,6 +1,6 @@
 == Welcome 
 
-
+////
 . Find a seat. Say hi!
 . Grab a USB key, and plug it in.
 
@@ -13,7 +13,7 @@
 |===
 
 . Grab a coffee and get ready to begin!
-
+////
 
 ////
 Make sure to check everyone has Neo4j installed by 9am if possible. 

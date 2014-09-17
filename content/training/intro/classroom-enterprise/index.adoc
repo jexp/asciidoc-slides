@@ -17,7 +17,9 @@
 :gist-source: https://raw.github.com/neo4j-contrib/gists/master/
 :footer: Copyright (c) 2014, Neo Technology, Inc. All rights reserved. The reproduction or distribution of this copyrighted work is strictly prohibited.
 :img: ../../img
+////
 :logo: {img}/Neo_Technology.jpg
+////
 :blank:
 :goto:
 :menu:
@@ -26,7 +28,9 @@
 
 include::01_welcome.adoc[]
 
+////
 include::02_title.adoc[]
+////
 
 include::01_why/0101_index.adoc[]
 
