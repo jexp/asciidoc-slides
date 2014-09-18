@@ -1,0 +1,185 @@
+[canvas-image="./img/coding-sw.jpg"]
+== It's your turn!
+
+[role="canvas-caption", position="center"]
+Develop with Neo4j & Cypher
+
+++++
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+++++
+
+== 4 available APIs
+
+[options=step]
+* Remote
+** Cypher HTTP Endpoint (with drivers)
+* Embedded / Server-Extension
+** Cypher
+** Java API
+** Batch-Inserter API
+
+
+== Cypher HTTP Endpoint
+
+* POST multiple statements with parameters
+* to `/db/data/transaction/[:id]/[commit]`
+* Transaction support across requests
+* Multiple result formats
+
+[source,json]
+----
+curl -i -H accept:application/json -H content-type:application/json \
+-XPOST http://localhost:7474/db/data/transaction/commit \
+  -d '{"statements":[{"statement":"CREATE (p:Person {name:{name}}) RETURN p",
+       "parameters":{"name":"Daniel"}}]}'
+
+{"results":[{"columns":["p"],"data":[{"row":[{"name":"Daniel"}]}]}],"errors":[]}
+----
+
+== Drivers
+
+[options=step]
+* Java: Neo4j-JDBC, Spring Data Neo4j, XO
+* Python: Py2Neo, neo4j-rest-client
+* Ruby: neo4j.rb, Neography
+* .Net: neo4jclient, ...
+* JavaScript: node-neo4j, ...
+
+== Drivers (cont.)
+
+[options=step]
+* Scala: AnormCypher
+* Clojure: neocons
+* Go: cq, neoism
+* Haskell: 
+
+== Drivers: Neo4j-JDBC
+
+* prepared statement and parameter support
+* remote transactions
+
+[source,java]
+----
+// Connect
+Connection con = DriverManager.getConnection("jdbc:neo4j://localhost:7474/");
+
+String query = 
+    "MATCH (:Person {name:{1}})-[:EMPLOYEE]-(d:Dept) RETURN d.name as dept";
+try (PreparedStatement stmt = con.prepareStatement(QUERY)) {
+    stmt.setString(1,"John");
+    ResultSet rs = stmt.executeQuery();
+    while(rs.next()) {
+        System.out.println(rs.getString("dept"));
+    }
+}
+----
+
+== Drivers: py2neo
+
+[source,python]
+----
+from py2neo import neo4j
+
+url = os.environ.get('NEO4J_URL',"http://localhost:7474/db/data")
+graph = neo4j.GraphDatabaseService(url)
+
+query = "MERGE (:Person {name:{name}})"
+neo4j.CypherQuery(graph, query).run(name="Alice")
+----
+
+// todo ipython notebook ??
+
+== Drivers: Neography
+
+// todo new tx endpoint from wiki
+
+[source,ruby]
+----
+neo = Neography::Rest.new("http://localhost:7474")
+
+query = "MERGE (:Person {name:{name}})"
+neo.execute_query(query,{:name => "Alice"})
+----
+
+== Extend Neo4j Server
+
+* 20% high performance operations
+* No network overhead
+* Use of embedded Java-APIs
+* Create custom HTTP/REST-endpoints with JAX-RS transporting your domain and protocol
+* Configure mount-point
+* Deploy package jar and dependencies in servers `plugin` directory
+
+== Java Embedded
+
+* `Node`, `Relationship`, `Path` objects
+* Object oriented API
+* Access and update properties and relationships
+* Manual transaction control
+* Transaction Event Listener
+
+== Cypher Embedded Example
+
+[source,java]
+----
+GraphDatabaseService db = new GraphDatabaseFactory().newEmbeddedDatabase(PATH);
+ExecutionEngine cypher = new ExecutionEngine(db); // store safely
+String query = 
+    "MATCH (:Person {name:{name}})-[:EMPLOYEE]-(d:Dept) RETURN d.name as dept";
+ExecutionResult result = cypher.execute(query, map("name","Fred"));
+for (Map<String,Object> row : result) {
+   String dept = (String)row.get(dept);
+   ...
+}
+----
+
+== Java Embedded Example
+
+[source,java]
+----
+GraphDatabaseService db = new GraphDatabaseFactory().newEmbeddedDatabase(PATH);
+try (Transaction tx = db.beginTx()) {
+   Node john        = db.createNode(Labels.PERSON);
+                      john.setProperty("name","John");
+   Node dept4       = single(db.findNodesByLabelAndProperty(Labels.DEPT,"name","dept4"));
+   Relationship rel = john.createRelationshipTo(dept4,RelTypes.EMPLOYEE);
+   tx.success();
+}
+----
+
+== Traversal Framework
+
+* DSL to declare graph traversals programmatically
+* custom Path- and Relationship-Expanders
+* custom Evaluators (progress and inclusion)
+* result uniqueness, breadth- vs depth-first
+
+[source,java]
+----
+TraversalDescription trav = 
+db.traversalDescription().breadthFirst()
+  .relationshipTypes(RelTypes.COUNTRY,)
+  .relationshipTypes(RelTypes.LOCATION,)
+  .evaluator(Evaluators.atDepth(2));
+
+for (Node office : trav.traverse(country)) {
+   System.out.println(office.getProperty("name"));
+}
+----
+
+== Batch Inserter
+
+* high performance, non-transactional store-level API
+* no safety net
+
+[source,java]
+----
+BatchInserter inserter = BatchInserers.inserter(path, options);
+long emma   = inserter.createNode(map("name","Emma"), Labels.Person);
+long claire = inserter.createNode(map("name","Claire"), Labels.Person);
+long knows  = inserter.createRelationship(map("since",2010), RelType.KNOWS);
+inserter.shutdown();
+----
+

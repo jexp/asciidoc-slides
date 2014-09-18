@@ -48,8 +48,8 @@
 </ul>
 </div>
 </section>
-<section class="slide" id="_this_evening_you_can_answer">
-<h2>This evening you can answer</h2>
+<section class="slide" id="_today_you_can_answer">
+<h2>Today you can answer</h2>
 <div class="ulist">
 <ul>
 <li class="slide">What is Neo4j?</li>
@@ -77,6 +77,7 @@
 </section>
 <section class="slide" id="_graphs_are_everywhere">
 <h2>Graphs are everywhere</h2>
+<<<<<<< HEAD
 <div class="ulist condensed-75">
 <ul class="condensed-75">
 <li>Social Network</li>
@@ -86,10 +87,60 @@
 <li>Fraud Analysis, Impact Analysis</li>
 <li>SCM, Git, (Revision Graphs &amp; Object Store)</li>
 </ul>
+=======
+<div class="imageblock">
+<div class="content">
+<img alt="use cases" src="img/usecases/use_cases.jpg">
 </div>
-<div style="width:80%; padding-left:100px">
-  <img src="../../img/Facebook.png" height="60" style="float:left;padding-right:50px"/>
-  <img src="../../img/Octocat.png" height="60" style="float:left;padding-right:50px"/>
+</div>
+</section>
+<section class="slide" id="_social_network">
+<h2>Social Network</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="social network" src="img/usecases/social_network.jpg">
+</div>
+</div>
+</section>
+<section class="slide" id="_routing_logistics">
+<h2>Routing &amp; Logistics</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="logistics" src="img/usecases/logistics.jpg">
+</div>
+</div>
+</section>
+<section class="slide" id="_impact_analytics">
+<h2>Impact Analytics</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="network impact analysis" src="img/usecases/network_impact_analysis.jpg">
+</div>
+</div>
+</section>
+<section class="slide" id="_recommendations">
+<h2>Recommendations</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="recommendations" src="img/usecases/recommendations.jpg">
+</div>
+</div>
+</section>
+<section class="slide" id="_access_control">
+<h2>Access Control</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="access control" src="img/usecases/access_control.jpg">
+</div>
+</div>
+</section>
+<section class="slide" id="_fraud_analysis">
+<h2>Fraud Analysis</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="fraud analysis" src="img/usecases/fraud_analysis.jpg">
+>>>>>>> Added New Sections
+</div>
 </div>
 </section>
 <section class="slide" id="_and_in_my_domain">
@@ -306,29 +357,30 @@ derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/
 </div>
 </div>
 </section>
-<section class="slide" id="_one_table">
-<h2>One table</h2>
+<section class="slide" id="_one_table_for_customers">
+<h2>One table for Customers</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="rel graph1" src="../../img/rel_graph1.jpg">
 </div>
 </div>
 </section>
-<section class="slide" id="_another_one">
-<h2>Another one</h2>
+<section class="slide" id="_another_one_for_accounts">
+<h2>Another one for Accounts</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="rel graph2" src="../../img/rel_graph2.jpg">
 </div>
 </div>
 </section>
-<section class="slide" id="_a_link_table">
-<h2>A link table</h2>
+<section class="slide" id="_a_link_table_in_between">
+<h2>A link table in between</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="rel graph3" src="../../img/rel_graph3.jpg">
 </div>
 </div>
+<div class="paragraph"><p>for many-to-many relationships</p></div>
 </section>
 <section class="slide" id="_joining_them">
 <h2>JOINing them</h2>
@@ -355,15 +407,15 @@ derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/
 </div>
 </section>
 <section class="slide" id="_nodes">
-<h2>Nodes</h2>
+<h2>Nodes, &#8230;&#8203;</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="rel graph7" src="../../img/rel_graph7.jpg">
 </div>
 </div>
 </section>
-<section class="slide" id="_relationships_and">
-<h2>Relationships and &#8230;&#8203;</h2>
+<section class="slide" id="_nodes_relationships_and">
+<h2>Nodes, Relationships and &#8230;&#8203;</h2>
 <div class="imageblock">
 <div class="content">
 <img alt="rel graph8" src="../../img/rel_graph8.jpg">
@@ -841,7 +893,7 @@ RETURN o.name;</textarea>
     <li class="node" data-node-id="1" data-x="-1035.4194005283218" data-y="-31.244897959183675">
       <span class="caption">:City</span>
     </li>
-    <li class="node" data-node-id="3" data-x="-1316.3285051769287" data-y="-31.244897959183675">
+    <li class="node" data-node-id="3" data-x="-1416.3285051769287" data-y="-31.244897959183675">
       <span class="caption">:Office</span>
     </li>
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
@@ -1569,8 +1621,8 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 </ul>
 </div>
 </section>
-<section class="slide" id="_create_an_oarganization">
-<h2>Create an oarganization</h2>
+<section class="slide" id="_create_an_organization">
+<h2>Create an organization</h2>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">CREATE (o:Org:Dept:Person {name: "MyCom"})
@@ -1586,8 +1638,8 @@ RETURN o;</textarea>
 </div>
 </div>
 </section>
-<section class="slide" id="_add_persons_to_department_3">
-<h2>Add persons to "Department 3"</h2>
+<section class="slide" id="_add_people_to_department_3">
+<h2>Add people to "Department 3"</h2>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (o:Org)-[:PARENT]-(d:Dept)
@@ -1672,6 +1724,436 @@ derivative of <a href="https://www.flickr.com/photos/bortescristian/8442828274">
 <li>(De-)normilization</li>
 <li>Null values and Not-Null-Constraints</li>
 </ul>
+</div>
+</section>
+<section class="slide canvas-image" id="_it_s_your_turn_4" style="background-image: url(./img/coding-sw.jpg)">
+<div class="paragraph canvas-caption"><p class="center">Develop with Neo4j &amp; Cypher</p></div>
+<div class="img-ref">
+derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
+<div>
+</section>
+<section class="slide" id="_4_available_apis">
+<h2>4 available APIs</h2>
+<div class="ulist">
+<ul>
+<li class="slide"><p>
+Remote<div class="ulist">
+<ul>
+<li>Cypher HTTP Endpoint (with drivers)</li>
+</ul>
+</div></p></li>
+<li class="slide"><p>
+Embedded / Server-Extension<div class="ulist">
+<ul>
+<li>Cypher</li>
+<li>Java API</li>
+<li>Batch-Inserter API</li>
+</ul>
+</div></p></li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_cypher_http_endpoint">
+<h2>Cypher HTTP Endpoint</h2>
+<div class="ulist">
+<ul>
+<li>POST multiple statements with parameters</li>
+<li>to <code>/db/data/transaction/[:id]/[commit]</code></li>
+<li>Transaction support across requests</li>
+<li>Multiple result formats</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="json">curl -i -H accept:application/json -H content-type:application/json \
+-XPOST http://localhost:7474/db/data/transaction/commit \
+  -d '{"statements":[{"statement":"CREATE (p:Person {name:{name}}) RETURN p",
+       "parameters":{"name":"Daniel"}}]}'
+
+{"results":[{"columns":["p"],"data":[{"row":[{"name":"Daniel"}]}]}],"errors":[]}</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_drivers">
+<h2>Drivers</h2>
+<div class="ulist">
+<ul>
+<li class="slide">Java: Neo4j-JDBC, Spring Data Neo4j, XO</li>
+<li class="slide">Python: Py2Neo, neo4j-rest-client</li>
+<li class="slide">Ruby: neo4j.rb, Neography</li>
+<li class="slide">.Net: neo4jclient, &#8230;&#8203;</li>
+<li class="slide">JavaScript: node-neo4j, &#8230;&#8203;</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_drivers_cont">
+<h2>Drivers (cont.)</h2>
+<div class="ulist">
+<ul>
+<li class="slide">Scala: AnormCypher</li>
+<li class="slide">Clojure: neocons</li>
+<li class="slide">Go: cq, neoism</li>
+<li class="slide">Haskell:</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_drivers_neo4j_jdbc">
+<h2>Drivers: Neo4j-JDBC</h2>
+<div class="ulist">
+<ul>
+<li>prepared statement and parameter support</li>
+<li>remote transactions</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="java">// Connect
+Connection con = DriverManager.getConnection("jdbc:neo4j://localhost:7474/");
+
+String query =
+    "MATCH (:Person {name:{1}})-[:EMPLOYEE]-(d:Dept) RETURN d.name as dept";
+try (PreparedStatement stmt = con.prepareStatement(QUERY)) {
+    stmt.setString(1,"John");
+    ResultSet rs = stmt.executeQuery();
+    while(rs.next()) {
+        System.out.println(rs.getString("dept"));
+    }
+}</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_drivers_py2neo">
+<h2>Drivers: py2neo</h2>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="python">from py2neo import neo4j
+
+url = os.environ.get('NEO4J_URL',"http://localhost:7474/db/data")
+graph = neo4j.GraphDatabaseService(url)
+
+query = "MERGE (:Person {name:{name}})"
+neo4j.CypherQuery(graph, query).run(name="Alice")</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_drivers_neography">
+<h2>Drivers: Neography</h2>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="ruby">neo = Neography::Rest.new("http://localhost:7474")
+
+query = "MERGE (:Person {name:{name}})"
+neo.execute_query(query,{:name =&gt; "Alice"})</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_extend_neo4j_server">
+<h2>Extend Neo4j Server</h2>
+<div class="ulist">
+<ul>
+<li>20% high performance operations</li>
+<li>No network overhead</li>
+<li>Use of embedded Java-APIs</li>
+<li>Create custom HTTP/REST-endpoints with JAX-RS transporting your domain and protocol</li>
+<li>Configure mount-point</li>
+<li>Deploy package jar and dependencies in servers <code>plugin</code> directory</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_java_embedded">
+<h2>Java Embedded</h2>
+<div class="ulist">
+<ul>
+<li><code>Node</code>, <code>Relationship</code>, <code>Path</code> objects</li>
+<li>Object oriented API</li>
+<li>Access and update properties and relationships</li>
+<li>Manual transaction control</li>
+<li>Transaction Event Listener</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_cypher_embedded_example">
+<h2>Cypher Embedded Example</h2>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="java">GraphDatabaseService db = new GraphDatabaseFactory().newEmbeddedDatabase(PATH);
+ExecutionEngine cypher = new ExecutionEngine(db); // store safely
+String query =
+    "MATCH (:Person {name:{name}})-[:EMPLOYEE]-(d:Dept) RETURN d.name as dept";
+ExecutionResult result = cypher.execute(query, map("name","Fred"));
+for (Map&lt;String,Object&gt; row : result) {
+   String dept = (String)row.get(dept);
+   ...
+}</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_java_embedded_example">
+<h2>Java Embedded Example</h2>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="java">GraphDatabaseService db = new GraphDatabaseFactory().newEmbeddedDatabase(PATH);
+try (Transaction tx = db.beginTx()) {
+   Node john        = db.createNode(Labels.PERSON);
+                      john.setProperty("name","John");
+   Node dept4       = single(db.findNodesByLabelAndProperty(Labels.DEPT,"name","dept4"));
+   Relationship rel = john.createRelationshipTo(dept4,RelTypes.EMPLOYEE);
+   tx.success();
+}</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_traversal_framework">
+<h2>Traversal Framework</h2>
+<div class="ulist">
+<ul>
+<li>DSL to declare graph traversals programmatically</li>
+<li>custom Path- and Relationship-Expanders</li>
+<li>custom Evaluators (progress and inclusion)</li>
+<li>result uniqueness, breadth- vs depth-first</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="java">TraversalDescription trav =
+db.traversalDescription().breadthFirst()
+  .relationshipTypes(RelTypes.COUNTRY,)
+  .relationshipTypes(RelTypes.LOCATION,)
+  .evaluator(Evaluators.atDepth(2));
+
+for (Node office : trav.traverse(country)) {
+   System.out.println(office.getProperty("name"));
+}</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_batch_inserter">
+<h2>Batch Inserter</h2>
+<div class="ulist">
+<ul>
+<li>high performance, non-transactional store-level API</li>
+<li>no safety net</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<textarea class="code" mode="java">BatchInserter inserter = BatchInserers.inserter(path, options);
+long emma   = inserter.createNode(map("name","Emma"), Labels.Person);
+long claire = inserter.createNode(map("name","Claire"), Labels.Person);
+long knows  = inserter.createRelationship(map("since",2010), RelType.KNOWS);
+inserter.shutdown();</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_what_are_we_missing">
+<h2>What are we missing ?</h2>
+<div class="paragraph"><p>A tool to:</p></div>
+<div class="ulist">
+<ul>
+<li class="slide">quickly sketch out graph models</li>
+<li class="slide">document and discuss use-cases</li>
+<li class="slide">incrementally build the graph</li>
+<li class="slide">life queries with error checking</li>
+<li class="slide">shareable and collaborative</li>
+<li class="slide">easy to write, read, manage and version</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_what_is_a_gist">
+<h2>What is a gist?</h2>
+<div class="ulist">
+<ul>
+<li class="slide">A useful snippet of information</li>
+<li class="slide">Easy to share, fork and change</li>
+<li class="slide">Nicely rendered and presented</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_what_is_a_graphgist">
+<h2>What is a GraphGist?</h2>
+<section class="slide" id="_an_asciidoc_file_with">
+<h3>an AsciiDoc file with:</h3>
+<div class="ulist">
+<ul>
+<li class="slide">a graph domain model (cypher)</li>
+<li class="slide">describing text and pictures</li>
+<li class="slide">some example queries checked against the model</li>
+<li class="slide">interactively executable (Cypher)</li>
+<li class="slide">a Neo4j Console for further exploration</li>
+</ul>
+</div>
+</section>
+</section>
+<section class="slide canvas-image" id="_really_the_graphgist_idea" style="background-image: url(../../img/graphgist/got_gist.jpg)">
+<div class="paragraph canvas-caption"><p class="bottom-right"><a class="bare" href="http://gist.neo4j.org/?6029850">http://gist.neo4j.org/?6029850</a></p></div>
+</section>
+<section class="slide" id="_what_does_it_look_like">
+<h2>What does it look like?</h2>
+<div class="listingblock small">
+<div class="content">
+<textarea class="code">= The Game of Thrones in Neo4j
+
+ image::http://maxdemarzidotcom.files.wordpress.com/2013/06/neoiscoming.jpg?w=580[]
+
+ == The setup
+
+ //hide
+ [source,cypher]
+ ----
+ CREATE
+ (_0 { name:"Westeros" }),
+ (_1 { house:"Tully" }),
+ ...
+ (_13 { name:"Danaerys" }),
+ ...
+ (_28 { name:"Tyrion" }),
+ _1-[:HOUSE]-&gt;_0,
+ _13-[:MARRIED_TO]-&gt;_12,
+ _14-[:CHILD_OF]-&gt;_8,
+ ...
+ _27-[:CHILD_OF]-&gt;_19, _28-[:CHILD_OF]-&gt;_10
+ ----
+
+ //graph
+
+ == Find all children of all houses
+
+ [source, cypher]
+ ----
+ MATCH (westeros)&lt;-[:HOUSE]-(house)&lt;-[:OF_HOUSE]-(ancestor), family=(ancestor)&lt;-[:CHILD_OF*0..]-(last)
+ WHERE westeros.name='Westeros'
+ RETURN house.house, collect(DISTINCT last.name)
+ ----
+
+ //table
+
+ == Find all the children of parents that are siblings
+
+ [source,cypher]
+ ----
+ MATCH (kid)-[:CHILD_OF]-&gt;(parent1)-[:CHILD_OF]-&gt;(ancestor)&lt;-[:CHILD_OF]-(parent2)&lt;-[:CHILD_OF]-(kid)
+ RETURN DISTINCT kid.name as name
+ ----
+
+ //table</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_what_does_it_look_like_setup">
+<h2>What does it look like? (setup)</h2>
+<div class="listingblock">
+<div class="content">
+<textarea class="code">= The Game of Thrones in Neo4j
+
+ image::http://maxdemarzidotcom.files.wordpress.com/2013/06/neoiscoming.jpg?w=580[]
+
+ == The setup
+
+ //hide
+ [source,cypher]
+ ----
+ CREATE
+ (_0 { name:"Westeros" }),
+ (_1 { house:"Tully" }),
+ ...
+ (_13 { name:"Danaerys" }),
+ ...
+ (_28 { name:"Tyrion" }),
+ _1-[:HOUSE]-&gt;_0,
+ _13-[:MARRIED_TO]-&gt;_12,
+ _14-[:CHILD_OF]-&gt;_8,
+ ...
+ _27-[:CHILD_OF]-&gt;_19, _28-[:CHILD_OF]-&gt;_10
+ ----
+
+ //graph</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_what_does_it_look_like_use_case">
+<h2>What does it look like? (use-case)</h2>
+<div class="listingblock">
+<div class="content">
+<textarea class="code">== Find all children of all houses
+
+  [source, cypher]
+  ----
+  MATCH (westeros)&lt;-[:HOUSE]-(house)&lt;-[:OF_HOUSE]-(ancestor), family=(ancestor)&lt;-[:CHILD_OF*0..]-(last)
+  WHERE westeros.name='Westeros'
+  RETURN house.house, collect(DISTINCT last.name)
+  ----
+
+  //table
+
+  //graph</textarea>
+</div>
+</div>
+</section>
+<section class="slide canvas-image" id="_graph_gist_graph" style="background-image: url(../../img/graphgist/graphgist.jpg)">
+
+</section>
+<section class="slide canvas-image" id="_power_tool_combo" style="background-image: url(../../img/graphgist/blank.png)">
+<h1>Power Tool Combo</h1>
+</section>
+<section class="slide" id="_power_combination_of_cool_tools">
+<h2>Power Combination of Cool Tools</h2>
+<div class="ulist">
+<ul>
+<li class="slide">AsciiDoc(tor) running in Browser with Opal.js</li>
+<li class="slide">Cypher</li>
+<li class="slide">Neo4j Console</li>
+<li class="slide">JavaScript (D3.js, jQuery)</li>
+<li class="slide">HTML5 (postMessage)</li>
+<li class="slide">GitHub Gists</li>
+</ul>
+</div>
+<section class="slide" id="_the_glue_javascript">
+<h3>The Glue? Javascript</h3>
+
+</section>
+</section>
+<section class="slide canvas-image" id="_swiss_army_knife" style="background-image: url(../../img/graphgist/swiss-army-knife.jpg)">
+
+</section>
+<section class="slide" id="_how_does_it_work_rendering">
+<h2>How does it work (Rendering)?</h2>
+<div class="olist arabic">
+<ol class="arabic">
+<li class="slide">
+Load Gist file from GitHub Gist / Url
+</li>
+<li class="slide">
+Render AsciiDoc to HTML5 on the fly
+</li>
+<li class="slide">
+Write to page / CSS
+</li>
+<li class="slide">
+Placeholder replacement
+</li>
+</ol>
+</div>
+</section>
+<section class="slide" id="_how_does_it_work_queries">
+<h2>How does it work (Queries) ?</h2>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li class="slide">
+Instantiate Console IFrame
+</li>
+<li class="slide">
+Find all setup- and use-case queries
+</li>
+<li class="slide">
+Send to Console, Check Results
+</li>
+<li class="slide">
+Render Results as Table or Graph
+</li>
+<li class="slide">
+Reset and Show Console
+</li>
+</ol>
 </div>
 </section>
 <section class="slide" id="_next_steps">

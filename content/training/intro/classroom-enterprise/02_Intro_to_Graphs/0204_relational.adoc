@@ -4,17 +4,19 @@
 
 image::{img}/rel_graph0.jpg[]
 
-== One table 
+== One table for Customers
 
 image::{img}/rel_graph1.jpg[]
 
-== Another one
+== Another one for Accounts
 
 image::{img}/rel_graph2.jpg[]
 
-== A link table
+== A link table in between
 
 image::{img}/rel_graph3.jpg[]
+
+for many-to-many relationships
 
 == JOINing them
 
@@ -28,11 +30,11 @@ image::{img}/rel_graph5.jpg[]
 
 image::{img}/rel_graph6.jpg[]
 
-== Nodes
+== Nodes, ... 
 
 image::{img}/rel_graph7.jpg[]
 
-== Relationships and ...
+== Nodes, Relationships and ...
 
 image::{img}/rel_graph8.jpg[]
 

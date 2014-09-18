@@ -1,4 +1,4 @@
-== This evening you can answer
+== Today you can answer
 
 [options="step"]
 * What is Neo4j?

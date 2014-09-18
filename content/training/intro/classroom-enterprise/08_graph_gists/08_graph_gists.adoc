@@ -1,0 +1,178 @@
+== What are we missing ?
+
+A tool to:
+[options=step]
+* quickly sketch out graph models
+* document and discuss use-cases
+* incrementally build the graph
+* life queries with error checking
+* shareable and collaborative
+* easy to write, read, manage and version
+
+== What is a gist?
+
+[options=step]
+* A useful snippet of information
+* Easy to share, fork and change
+* Nicely rendered and presented
+
+== What is a GraphGist?
+
+=== an AsciiDoc file with:
+
+[options="step"]
+* a graph domain model (cypher)
+* describing text and pictures
+* some example queries checked against the model
+* interactively executable (Cypher)
+* a Neo4j Console for further exploration
+
+
+[canvas-image="{img}/graphgist/got_gist.jpg"]
+== Really? The GraphGist idea
+[role="canvas-caption", position="bottom-right"] 
+http://gist.neo4j.org/?6029850[]
+
+== What does it look like?
+
+[source,role=small]
+----
+ = The Game of Thrones in Neo4j
+ 
+ image::http://maxdemarzidotcom.files.wordpress.com/2013/06/neoiscoming.jpg?w=580[]
+ 
+ == The setup
+ 
+ //hide
+ [source,cypher]
+ ----
+ CREATE 
+ (_0 { name:"Westeros" }),
+ (_1 { house:"Tully" }),
+ ...
+ (_13 { name:"Danaerys" }),
+ ...
+ (_28 { name:"Tyrion" }), 
+ _1-[:HOUSE]->_0, 
+ _13-[:MARRIED_TO]->_12, 
+ _14-[:CHILD_OF]->_8, 
+ ...
+ _27-[:CHILD_OF]->_19, _28-[:CHILD_OF]->_10
+ ----
+ 
+ //graph
+
+ == Find all children of all houses
+
+ [source, cypher]
+ ----
+ MATCH (westeros)<-[:HOUSE]-(house)<-[:OF_HOUSE]-(ancestor), family=(ancestor)<-[:CHILD_OF*0..]-(last)
+ WHERE westeros.name='Westeros'
+ RETURN house.house, collect(DISTINCT last.name)
+ ----
+
+ //table
+
+ == Find all the children of parents that are siblings 
+
+ [source,cypher]
+ ----
+ MATCH (kid)-[:CHILD_OF]->(parent1)-[:CHILD_OF]->(ancestor)<-[:CHILD_OF]-(parent2)<-[:CHILD_OF]-(kid) 
+ RETURN DISTINCT kid.name as name
+ ----
+ 
+ //table
+----
+
+
+== What does it look like? (setup)
+
+[source]
+----
+ = The Game of Thrones in Neo4j
+ 
+ image::http://maxdemarzidotcom.files.wordpress.com/2013/06/neoiscoming.jpg?w=580[]
+ 
+ == The setup
+ 
+ //hide
+ [source,cypher]
+ ----
+ CREATE 
+ (_0 { name:"Westeros" }),
+ (_1 { house:"Tully" }),
+ ...
+ (_13 { name:"Danaerys" }),
+ ...
+ (_28 { name:"Tyrion" }), 
+ _1-[:HOUSE]->_0, 
+ _13-[:MARRIED_TO]->_12, 
+ _14-[:CHILD_OF]->_8, 
+ ...
+ _27-[:CHILD_OF]->_19, _28-[:CHILD_OF]->_10
+ ----
+ 
+ //graph
+
+----
+
+== What does it look like? (use-case)
+
+[source]
+----
+  == Find all children of all houses
+  
+  [source, cypher]
+  ----
+  MATCH (westeros)<-[:HOUSE]-(house)<-[:OF_HOUSE]-(ancestor), family=(ancestor)<-[:CHILD_OF*0..]-(last)
+  WHERE westeros.name='Westeros'
+  RETURN house.house, collect(DISTINCT last.name)
+  ----
+  
+  //table
+  
+  //graph
+
+----
+
+[canvas-image="{img}/graphgist/graphgist.jpg"]
+== Graph Gist Graph
+
+[canvas-image="{img}/graphgist/blank.png"]
+== Power Tool Combo
+
+++++
+<h1>Power Tool Combo</h1>
+++++
+
+== Power Combination of Cool Tools
+
+[options="step"]
+* AsciiDoc(tor) running in Browser with Opal.js
+* Cypher
+* Neo4j Console
+* JavaScript (D3.js, jQuery)
+* HTML5 (postMessage)
+* GitHub Gists
+
+=== The Glue? Javascript
+
+[canvas-image="{img}/graphgist/swiss-army-knife.jpg"]
+== Swiss Army Knife
+
+== How does it work (Rendering)?
+
+[options="step"]
+. Load Gist file from GitHub Gist / Url
+. Render AsciiDoc to HTML5 on the fly
+. Write to page / CSS
+. Placeholder replacement
+
+== How does it work (Queries) ?
+
+[options="step",start=5]
+. Instantiate Console IFrame
+. Find all setup- and use-case queries
+. Send to Console, Check Results
+. Render Results as Table or Graph
+. Reset and Show Console

@@ -1,19 +1,30 @@
 == Graphs are everywhere
 
-[condensed-75]
-- Social Network
-- Navgigation / Routing / Logistics
-- Access Control
-- Recommendations
-- Fraud Analysis, Impact Analysis
-- SCM, Git, (Revision Graphs & Object Store)
+image::img/usecases/use_cases.jpg[]
 
-++++
-<div style="width:80%; padding-left:100px">
-  <img src="../../img/Facebook.png" height="60" style="float:left;padding-right:50px"/>
-  <img src="../../img/Octocat.png" height="60" style="float:left;padding-right:50px"/>
-</div>
-++++
+== Social Network
+
+image::img/usecases/social_network.jpg[]
+
+== Routing & Logistics
+
+image::img/usecases/logistics.jpg[]
+
+== Impact Analytics
+
+image::img/usecases/network_impact_analysis.jpg[]
+
+== Recommendations
+
+image::img/usecases/recommendations.jpg[]
+
+== Access Control
+
+image::img/usecases/access_control.jpg[]
+
+== Fraud Analysis
+
+image::img/usecases/fraud_analysis.jpg[]
 
 == And in my domain?
 

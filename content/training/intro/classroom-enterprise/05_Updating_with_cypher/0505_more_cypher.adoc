@@ -12,6 +12,7 @@ CREATE INDEX ON :Human(name);
 CREATE CONSTRAINT ON (h:Human) ASSERT h.name IS UNIQUE;
 ----
 
+
 == Shortest path
 
 [source,cypher,options="step"]

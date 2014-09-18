@@ -58,6 +58,10 @@ include::05_Updating_with_cypher/0501_index.adoc[]
 
 include::rg_relational_graph_comparison/rg_01_index.adoc[]
 
-include::07_next_steps.adoc[]
+include::07_develop/07_develop.adoc[]
+
+include::08_graph_gists/08_graph_gists.adoc[]
+
+include::10_next_steps.adoc[]
 
 == (Graphs are everywhere)
