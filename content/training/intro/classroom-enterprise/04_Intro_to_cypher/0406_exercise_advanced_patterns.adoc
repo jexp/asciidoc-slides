@@ -4,11 +4,10 @@
 [role="canvas-caption", position="center"]
 It's your turn!
 
-++++
-<div class="img-ref">
-derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+derivative of https://www.flickr.com/photos/adikos/4440682278["Female Typing"]
+ by https://www.flickr.com/photos/adikos/[Adikos] / 
+http://creativecommons.org/licenses/by/2.0/[CC BY]
 
 == Advanced queries 
 
@@ -19,8 +18,9 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 - Who is having the same role in projects? 
 - Is Alice a superior of Daniel? 
 
-== Members of "Project X"
+== Project Members
 
+.Who is working in "Project X" at "GraphIT"?
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[:MEMBER]-(p:Project),
@@ -29,8 +29,9 @@ WHERE p.name = "Project X" AND o.name = "GraphIT"
 RETURN h.name;
 ----
 
-== Lead of "QA" at "GraphIT"
+== Department Lead 
 
+.Who is the lead of the "QA" department at "GraphIT"?
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[:LEAD]-(d:Dept),
@@ -39,8 +40,9 @@ WHERE d.name = "QA" AND o.name = "GraphIT"
 RETURN h.name;
 ----
 
-== Hours per week of Daniel
+== Weekly Worktime
 
+.How many hours per week is Daniel working?
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[e:EMPLOYEE]-(d:Dept)
@@ -48,8 +50,9 @@ WHERE h.name = "Daniel"
 RETURN sum(e.hoursPerWeek) as `hours per week`;
 ----
 
-== People with lowest hours per week
+== Least working people
 
+.Find the three persons with the lowest hours per week.
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[e:EMPLOYEE]-(d:Dept)
@@ -58,8 +61,9 @@ ORDER BY `hours per week`
 LIMIT 3;
 ----
 
-== People with same role in different projects
+== Same Project Roles
 
+.Who is having the same role in projects? 
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[m1:MEMBER]-(p1:Project),
@@ -68,8 +72,9 @@ WHERE m1.role = m2.role
 RETURN h.name AS name, p1.name, p2.name, m1.role as role;
 ----
 
-== Is Alice a superior of Daniel?
+== Superiors
 
+.Is Alice a superior of Daniel?
 [source,cypher,options="step"]
 ----
 MATCH (a:Human)<-[:LEAD]-(d1:Dept),

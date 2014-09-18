@@ -17,7 +17,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 - Which organizations have offices in Paris?
 - In which countries has "GraphIT" offices? 
 
-_Labels: Human, Org, Dept, Person, Office_
+_Labels: Human, Org, Dept, Person, Office, City_
 
 _Relationship Types: EMPLOYEE, SITE, LOCATION, IS_IN_
 

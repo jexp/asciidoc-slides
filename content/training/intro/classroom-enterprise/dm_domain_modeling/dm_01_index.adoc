@@ -40,6 +40,27 @@ Today we will deal with entities present in typical enterprise scenarios:
 * People and Organizations
 * Organizational structures, projects and teams
 
+== Our Approach
+
+* Entities and Use-Cases
+* Identify some interesting aspects of the domain model
+* Show and quickly discuss domain model choices
+
+=== Relational
+
+* Ask: Aspects of relational physical model
+// JOIN-tables, schema, pk <- fk, nullable columns, fk-constraints, 
+* Show & explain relational model
+* Discuss what works well in a relational model, and what not so much
+
+=== Graph
+
+* Ask: Aspects of graph model
+* Introduce Property Graph Model
+// nodes & relationships with properties, nodes with labels, rels with name and direction
+* Show & explain graph model
+* Discuss what works well in a graph model, and what not so much
+
 == Description of sample domain
 
 [options="step"]
@@ -53,12 +74,20 @@ Today we will deal with entities present in typical enterprise scenarios:
 * Addresses belong to cities, cities to countries and countries to continents
 * Organizations have offices in different cities where projects take place
 
-== Excercise 1: Draw domain model
+== Use-Cases
+
+* Navigate organisational hierarchy
+* Find offices of a company in certain locations
+* Compute worktime of employees in department for all their projects
+* Co-Workers, project members, department leads, superiors
+* Weekly worktime across projects
+* Similar project roles
+
+== Steps: Develop domain model
 
 * Identify entity types (maybe abstract and concrete ones)
 * Define some important attributes
 * Define the relations between them
-
 
 [canvas-image="./img/flipchart.jpg"]
 == Flip Chart Excercise
@@ -66,12 +95,8 @@ Today we will deal with entities present in typical enterprise scenarios:
 [role="canvas-caption", position="center"]
 Draw domain model
 
-++++
-<div class="img-ref">
-derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332">"Flip Chart</a> by <a href="hhttps://www.flickr.com/photos/adrianhoward/">Adrian Howard</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
-
+[role=img-ref]
+derivative of https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332[Flip Chart] by https://www.flickr.com/photos/adrianhoward/[Adrian Howard] / http://creativecommons.org/licenses/by/2.0/[CC BY]
 
 == Possible solution
 
@@ -89,71 +114,103 @@ image::./diagrams/simplified.png[]
 == Flip Chart Excercise
 
 [role="canvas-caption", position="center"]
-Excercise 2: Transfer to Relational Data Model
+Transfer to Relational Logical Model
 
-++++
-<div class="img-ref">
-derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332">"Flip Chart</a> by <a href="hhttps://www.flickr.com/photos/adrianhoward/">Adrian Howard</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+derivative of 
+https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332[Flip Chart] by https://www.flickr.com/photos/adrianhoward/[Adrian Howard] /
+href="http://creativecommons.org/licenses/by/2.0/[CC BY]
 
-== Relational world
 
-That is what we have in a relation world:
+== Aspects of the Relational Model
 
 * Tables, rows and columns
+* Primary Keys
 * Relations via Foreign keys
-* Technical n:m tables for many-to-many relatations 
-* Technical tables to add meta info to relations
-* Flexibility in joining together tables (syntactically)
+* JOIN n:m tables for many-to-many relatations 
+* Artificial tables to add meta info to relations
+
+== Show Relational Model
+
+// todo relationsal model picture (e.g. example with pk,fk, data / inheritance, ...)
+
+image::{img}img/RDB_Relation_Sample.png[]
+
 
 [canvas-image="./img/flipchart.jpg"]
-== Flip Chart Excercise
+== Discuss: What works, what less so?
+
+=== Works Well
+* aggregate normalized data
+
+== What less so?
+
+* Manys-Join queries
+* many-to-many relationships
+* inheritance
+* sparse table
+* optional relationships
+* hierarchies
 
 [role="canvas-caption", position="center"]
-Excercise 3: Transfer to Graph Model
+Excercise 3: Aspects of Graph Model
 
-++++
-<div class="img-ref">
-derivative of <a href="https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332">"Flip Chart</a> by <a href="hhttps://www.flickr.com/photos/adrianhoward/">Adrian Howard</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+derivative of https://www.flickr.com/photos/adrianhoward/4837810685/in/set-72157624602972332["Flip Chart"] 
+by https://www.flickr.com/photos/adrianhoward/[Adrian Howard] / http://creativecommons.org/licenses/by/2.0/[CC BY]
 
+== Aspects of Graph Model
+
+* Nodes and Connections
+* No Schema
+
+== Introduction: Property Graph Model
+
+* Nodes for entities and attributes to match over
+* Labels assign roles to nodes
+* Nodes have arbitrary properties
+
+* Relationships connect nodes
+* Relationships are named and directed
+* Relationships also contain (mostly) qualifying properties
+
+== Show Property Graph Model
+
+// Example with Arrows
+
+== (TODO) and as a graph?
+
+- same data as graph
+- object model
+- two persons
+- their attributes
+- relationship person to organizational units
+- properties of relationship
+- nodes of different types -> label
+
+[canvas-image="./img/flipchart.jpg"]
+== Discuss: What works, what less so?
+
+=== Works Well
+
+* schema free
+* inheritance with labels
+* hierarchies
+* optional attributes and relationships
+
+== What less so?
+
+* global queries
+* binary data
+* wide and deep traversals
 
 == Discussion: Compare relational and graph model
 
-* What do thex have in common?
+* What do they have in common?
 * What are differences?
 * Is any of them easier to create?
 * Which one feels more natural to you?
 * What do you think about "schema free"?
 
-== Now add some sample data
-
-First remember: how is data organized in tables?
-
-++++
-<img src="../../img/RDB_Relation_Sample.png"/>
-++++
-
-== and as a graph?
-
-- same data as graph
-- object model
-- two persons
-- their attriubtes
-- relationship person to organizational units
-- properties of relationship
-- nodes of different types -> label
-
-== Property graphs
-
-- nodes have labels and properties
-- relationships have types/labels and properties
-- picture with highlighting of different elements
-
-== Relational database vs. graph database
-
-pictures
 
 

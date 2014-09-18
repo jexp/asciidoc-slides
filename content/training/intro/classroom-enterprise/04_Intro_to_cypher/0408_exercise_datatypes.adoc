@@ -12,14 +12,14 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 
 == More queries
 
-- List all departments of "GraphIT" and their employees.
-- Who is working for at least two departments?
-- Find all persons with a name starting with an E.
-- Through whom/how many persons do Alice and Charlene know each other?
-- Explore the database. What labels do exist? How many nodes/relationships are stored?
+. List all departments of "GraphIT" and their employees.
+. Who is working for at least two departments?
+. Find all persons with a name starting with an E.
+. Through whom/how many persons do Alice and Charlene know each other?
+. Explore the database. What labels do exist? How many nodes/relationships are stored?
 
 
-== Departments of "GraphIT"
+== 1. Departments of "GraphIT"
 
 [source,cypher,options="step"]
 ----
@@ -28,7 +28,7 @@ OPTIONAL MATCH (h:Human)<-[:EMPLOYEE]->(d)
 RETURN d.name, collect(h.name) as employees;
 ----
 
-== Who is working for at least two departments?
+== 2. Who is working for at least two departments?
 
 [source,cypher,options="step"]
 ----
@@ -37,7 +37,14 @@ MATCH (h:Human)<-[:EMPLOYEE]->(d1:Dept),
 RETURN DISTINCT h.name;
 ----
 
-== Persons with name starting with an E
+////
+MATCH (h:Human)<-[:EMPLOYEE]->(d:Dept)
+WITH h, count(distinct d) as cnt
+WHERE cnt > 1
+RETURN h
+////
+
+== 3. Persons with name starting with an E
 
 [source,cypher,options="step"]
 ----
@@ -46,7 +53,7 @@ WHERE h.name =~ "E.*"
 RETURN h.name;
 ----
 
-== Connection from Alice to Charlene
+== 4. Connection from Alice to Charlene
 
 [source,cypher,options="step"]
 ----
@@ -58,21 +65,21 @@ RETURN
 ----
 
 
-== Connection from Alice to Charlene
+== 5.1 Connection from Alice to Charlene
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE|LEAD*0..]-(c:Human)
+MATCH path=(a:Human)-[:EMPLOYEE|:LEAD*]-(c:Human)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 RETURN extract(n IN nodes(path) | n.name);
 ----
 
-== Connection from Alice to Charlene
+== 5.2 Connection from Alice to Charlene
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE|LEAD*0..]-(c:Human)
+MATCH path=(a:Human)-[:EMPLOYEE|:LEAD*]-(c:Human)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 WITH 

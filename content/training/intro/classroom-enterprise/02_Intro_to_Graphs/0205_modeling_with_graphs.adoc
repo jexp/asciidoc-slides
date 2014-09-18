@@ -1,5 +1,7 @@
 == Modeling with graphs
 
+// TODO replace whiteboard and pretty pictures with our model
+
 == Start with a whiteboard
 
 == 1 
