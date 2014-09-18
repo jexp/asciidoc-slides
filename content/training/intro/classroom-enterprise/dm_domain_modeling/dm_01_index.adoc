@@ -2,7 +2,7 @@
 
 [condensed-75]
 - Social Network
-- Navgiation / Routing / Logistics
+- Navgigation / Routing / Logistics
 - Access Control
 - Recommendations
 - Fraud Analysis, Impact Analysis
@@ -70,8 +70,9 @@ image::{img}/persons-and-units.png[]
 
 == Relevant extract for next steps
 
-* TODO: show simplified version
-* Perhaps later when we start with cypher
+image::./diagrams/simplified.png[]
+
+* (We may need this later when we start with cypher)
 
 [canvas-image="./img/flipchart.jpg"]
 == Flip Chart Excercise
