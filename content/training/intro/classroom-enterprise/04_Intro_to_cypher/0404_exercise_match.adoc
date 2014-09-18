@@ -21,6 +21,8 @@ _Labels: Human, Org, Dept, Person, Office_
 
 _Relationship Types: EMPLOYEE, SITE, LOCATION, IS_IN_
 
+_All nodes have a `name` property_
+
 == Find all organizations
 
 [options="step"]
@@ -175,7 +177,7 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (o:Org)-[:SITE]->(:Office)-[:LOCATION]->(:City)-[IS_IN]->(c:Country)
-WHERE o.name = "GraphIT"
+MATCH (o:Org {name:"GraphIT"})-[:SITE]->(office:Office),
+      (office)-[:LOCATION]->(:City)-[:IS_IN]->(c:Country)
 RETURN c.name;
 ----

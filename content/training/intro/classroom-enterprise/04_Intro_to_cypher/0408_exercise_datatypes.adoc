@@ -23,9 +23,8 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 
 [source,cypher,options="step"]
 ----
-MATCH (d:Dept)-[:PARENT*0..]->(o:Org)
-OPTIONAL MATCH (h:Human)<-[:EMPLOYEE]->d
-WHERE o.name = "GraphIT"
+MATCH (d:Dept)-[:PARENT*0..]->(o:Org {name:"GraphIT"})
+OPTIONAL MATCH (h:Human)<-[:EMPLOYEE]->(d)
 RETURN d.name, collect(h.name) as employees;
 ----
 
@@ -34,7 +33,7 @@ RETURN d.name, collect(h.name) as employees;
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[:EMPLOYEE]->(d1:Dept),
-h<-[:EMPLOYEE]->(d2:Dept)
+      (h)<-[:EMPLOYEE]->(d2:Dept)
 RETURN DISTINCT h.name;
 ----
 
@@ -83,7 +82,7 @@ RETURN extract(n IN persons | n.name);
 ----
 
 [options="step"]
-`WITH` allows you to modify/filter result sets
+`WITH` allows you to transfer, project, limit and sort results between query parts
 
 
 

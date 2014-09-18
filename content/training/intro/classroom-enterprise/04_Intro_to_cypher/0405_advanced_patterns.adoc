@@ -189,7 +189,7 @@ RETURN o.name AS organization,
 == Sorting
 
 [options="step"]
-`ORDER BY` sorts the results (by multiple properties)
+`ORDER BY [ASC|DESC]` sorts the results (by multiple properties)
 
 [source,cypher,options="step"]
 ----

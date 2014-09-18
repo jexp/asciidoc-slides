@@ -13,7 +13,9 @@ derivative of <a href="https://www.flickr.com/photos/somegeekintn/3458948437">"M
 == Transactions
 
 [options="step"]
-Every modifying cypher statement runs in a transaction.
+* Every modifying cypher statement runs in a transaction.
+* In the Neo4j-Shell you can use `begin`, `commit` and `rollback` to control transactional scope.
+* The Cypher-HTTP endpoint also allows transaction control.
 
 == Creating nodes
 
@@ -39,6 +41,8 @@ SET h.emal = "gina@smith.com"
 RETURN h;
 ----
 
+=== Ups, misspelt `email`
+
 == Removing properties
 [source,cypher,options="step"]
 ----
@@ -54,8 +58,8 @@ RETURN h;
 ----
 MATCH (h:Human), (p:Project)-[:BELONGS_TO]->(d:Dept)
 WHERE h.name="Gina" AND p.name = "Project X"
-CREATE UNIQUE p-[m:MEMBER {role: "developer"}]->h
-CREATE UNIQUE d-[e:EMPLOYEE {hoursPerWeek: 40}]->h
-RETURN h, m, p, d;
+MERGE (p)-[m:MEMBER {role: "developer"}]->(h)
+MERGE (d)-[e:EMPLOYEE {hoursPerWeek: 40}]->(h)
+RETURN h, m, p, d, e;
 ----
 
