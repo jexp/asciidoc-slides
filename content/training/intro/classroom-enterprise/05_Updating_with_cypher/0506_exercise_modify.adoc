@@ -13,36 +13,36 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 == Modify the database
 
 - Create a new organization "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and Madrid.
-- Let John work for "Department 3" with 30 hours per week and let Karen the lead of this department.
+- Let John work for "Department 3" with 30 hours per week and let Karen be the lead of this department.
 - Remove all humans that are not employee or lead of any department.
-- Create a CSV file with some names and e-mail addresses and import these persons with `LOAD CSV` into your database and let they become employees of "Department 4".
+- Create a CSV file with some names and e-mail addresses and import these people with `LOAD CSV` into your database and let them become employees of "Department 4".
 
-== Create an oarganization
+== Create an organization
 
 [source,cypher,options="step"]
 ----
 CREATE (o:Org:Dept:Person {name: "MyCom"})
 FOREACH (num IN range(1,4) | 
-  CREATE o<-[:PARENT]-(d:Dept {name: "Department " + num}))
+  CREATE (o)<-[:PARENT]-(d:Dept {name: "Department " + num}))
 MERGE (n:Country {name: "Netherlands"})
 MERGE (s:Country {name: "Spain"})
-MERGE (a:City {name: "Amsterdam"})-[:IS_IN]->n
-MERGE (m:City {name: "Madrid"})-[:IS_IN]->s
-CREATE o-[:SITE]->(:Office)-[:LOCATION]->a
-CREATE o-[:SITE]->(:Office)-[:LOCATION]->m
+MERGE (a:City {name: "Amsterdam"})-[:IS_IN]->(n)
+MERGE (m:City {name: "Madrid"})-[:IS_IN]->(s)
+CREATE (o)-[:SITE]->(:Office)-[:LOCATION]->(a)
+CREATE (o)-[:SITE]->(:Office)-[:LOCATION]->(m)
 RETURN o;
 ----
 
-== Add persons to "Department 3"
+== Add people to "Department 3"
 [source,cypher,options="step"]
 ----
 MATCH (o:Org)-[:PARENT]-(d:Dept)
 WHERE o.name = "MyCom" 
   AND d.name = "Department 3"
 CREATE (j:Human {name: "John"}),
-  j<-[:EMPLOYEE {hoursPerWeek: 30}]-d
+  (j)<-[:EMPLOYEE {hoursPerWeek: 30}]-(d)
 CREATE (k:Human {name: "Karen"}),
-  k<-[:LEAD]-d
+  (k)<-[:LEAD]-(d)
 RETURN j, k;
 ----
 
@@ -50,7 +50,7 @@ RETURN j, k;
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)
-WHERE NOT h<-[:EMPLOYEE]-() AND NOT h<-[:LEAD]-()
+WHERE NOT (h)<-[:EMPLOYEE|:LEAD]-()
 DELETE h;
 ----
 
@@ -59,7 +59,7 @@ DELETE h;
 [options="step"]
 persons.csv 
 
-[source,options="step"]
+[source,csv,options="step"]
 ----
 "Lars Higgs","lars@higgs.com"
 "Maura Wilson","maura@wilson.com"
@@ -70,4 +70,24 @@ persons.csv
 LOAD CSV FROM 'file:///tmp/persons.csv' AS line
 CREATE (h:Human {name: line[0], email: line[1]});
 ----
+
+== Import CSV (2)
+
+[options="step"]
+persons.csv 
+
+[source,csv,options="step"]
+----
+name,email
+"Lars Higgs";"lars@higgs.com"
+"Maura Wilson";"maura@wilson.com"
+----
+
+[source,cypher,options="step"]
+----
+LOAD CSV FROM 'file:///tmp/persons.csv' WITH HEADERS AS line
+FIELDTERMINATOR ";"
+MERGE (h:Human {email: line.email}) ON CREATE SET h.name = line.name;
+----
+
 

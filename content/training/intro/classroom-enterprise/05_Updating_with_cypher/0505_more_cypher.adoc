@@ -5,13 +5,20 @@
 CREATE INDEX ON :Human(name);
 ----
 
+=== And constraints
+
+[source,cypher,options="step"]
+----
+CREATE CONSTRAINT ON (h:Human) ASSERT h.name IS UNIQUE;
+----
+
 == Shortest path
 
 [source,cypher,options="step"]
 ----
 MATCH (h1:Human {name: "Alice"}), 
   (h2:Human {name: "Charlene"}),  
-  p=shortestPath(h1-[:EMPLOYEE|LEAD*]-h2)
+  p=shortestPath((h1)-[:EMPLOYEE|LEAD*..20]-(h2))
 RETURN length(nodes(p));
 ----
 
@@ -22,5 +29,9 @@ RETURN length(nodes(p));
 - `UNION`
 - `UNWIND`
 - `FOREACH`
+- `LOAD CSV`
 - `START`
-- CSV import
+
+=== Check out the Cypher Refcard
+
+http://docs.neo4j.org/refcard/2.1.4/

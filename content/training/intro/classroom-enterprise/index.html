@@ -730,6 +730,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 </div>
 <div class="paragraph"><p><em>Labels: Human, Org, Dept, Person, Office</em></p></div>
 <div class="paragraph"><p><em>Relationship Types: EMPLOYEE, SITE, LOCATION, IS_IN</em></p></div>
+<div class="paragraph"><p><em>All nodes have a <code>name</code> property</em></p></div>
 </section>
 <section class="slide" id="_find_all_organizations">
 <h2>Find all organizations</h2>
@@ -859,8 +860,8 @@ RETURN o.name;</textarea>
 <div class="paragraph slide"><p>Cypher</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (o:Org)-[:SITE]-&gt;(:Office)-[:LOCATION]-&gt;(:City)-[IS_IN]-&gt;(c:Country)
-WHERE o.name = "GraphIT"
+<textarea class="code" mode="cypher">MATCH (o:Org {name:"GraphIT"})-[:SITE]-&gt;(office:Office),
+      (office)-[:LOCATION]-&gt;(:City)-[:IS_IN]-&gt;(c:Country)
 RETURN c.name;</textarea>
 </div>
 </div>
@@ -1038,7 +1039,7 @@ RETURN o.name AS organization,
 </section>
 <section class="slide" id="_sorting">
 <h2>Sorting</h2>
-<div class="paragraph slide"><p><code>ORDER BY</code> sorts the results (by multiple properties)</p></div>
+<div class="paragraph slide"><p><code>ORDER BY [ASC|DESC]</code> sorts the results (by multiple properties)</p></div>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (city:City)--(country:Country)
@@ -1132,7 +1133,7 @@ LIMIT 3;</textarea>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[m1:MEMBER]-(p1:Project),
-h&lt;-[m2:MEMBER]-(p2:Project)
+      (h)&lt;-[m2:MEMBER]-(p2:Project)
 WHERE m1.role = m2.role
 RETURN h.name AS name, p1.name, p2.name, m1.role as role;</textarea>
 </div>
@@ -1160,7 +1161,7 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 <h2>Datatypes</h2>
 <div class="ulist">
 <ul>
-<li class="slide">decimal: double or integer (hexadecimal and octal as well)</li>
+<li class="slide">decimal: floating point or integer (hexadecimal and octal as well)</li>
 <li class="slide">string</li>
 <li class="slide">boolean</li>
 <li class="slide">lists: [3, 4, 5]</li>
@@ -1182,9 +1183,7 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 </section>
 <section class="slide canvas-image" id="_functions" style="background-image: url(./img/functions.jpg)">
 <div class="paragraph canvas-caption"><p class="center">Functions</p></div>
-<div class="img-ref">
-<a href="https://www.flickr.com/photos/vestman/4908148942">"Function"</a> by <a href="https://www.flickr.com/photos/vestman/">Vestman</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
+<div class="paragraph img-ref"><p><a href="https://www.flickr.com/photos/vestman/4908148942">Function</a> by <a href="https://www.flickr.com/photos/vestman/">Vestman</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a></p></div>
 </section>
 <section class="slide" id="_scalar_functions">
 <h2>Scalar functions</h2>
@@ -1205,8 +1204,8 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 <div class="ulist">
 <ul>
 <li class="slide">mathematical functions like <code>abs</code>, <code>sin</code>, <code>floor</code>, <code>sqrt</code>, &#8230;&#8203;</li>
-<li class="slide">string functions like <code>trim</code>, substring, <code>replace</code>, &#8230;&#8203;</li>
-<li class="slide"><code>toint</code> / <code>tofloat</code> / <code>tostring</code>: converting to int / float / string</li>
+<li class="slide">string functions like <code>trim</code>, substring, <code>replace</code>, <code>split</code>, <code>length</code> &#8230;&#8203;</li>
+<li class="slide"><code>toInt</code> / <code>toFloat</code> / <code>toString</code>: converting to int / float / string</li>
 </ul>
 </div>
 </section>
@@ -1218,6 +1217,13 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 <li class="slide"><code>ANY(x IN coll WHERE pred)</code>: tests if pred is true for at least one value in coll</li>
 <li class="slide"><code>NONE(x IN coll WHERE pred)</code>: tests if pred is true for no value in coll</li>
 <li class="slide"><code>SINGLE(x IN coll WHERE pred)</code>: tests if pred is true for exactly one value in coll</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_predicates_cont">
+<h2>Predicates (cont.)</h2>
+<div class="ulist">
+<ul>
 <li class="slide"><code>EXISTS(x.prop)</code>: tests if x has the property prop</li>
 <li class="slide"><code>EXISTS(pattern)</code>: tests if the given pattern exists</li>
 </ul>
@@ -1239,7 +1245,8 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 <ul>
 <li class="slide"><code>tail(c)</code>: all but the first element of a collection</li>
 <li class="slide"><code>extract(x IN coll | expr)</code>: maps all values in coll using expr</li>
-<li class="slide"><code>filter(x IN COLL | pred)</code>: returns a collection with all elements for that pred is true</li>
+<li class="slide"><code>filter(x IN coll WHERE pred)</code>: returns a collection with all elements for that pred is true</li>
+<li class="slide"><code>[x in coll WHERE pred | expr]</code> combines filter and extract in one construct</li>
 <li class="slide"><code>reduce(acc = inital, x IN coll | expr)</code>: reduces values in coll using acc and expr</li>
 </ul>
 </div>
@@ -1248,14 +1255,14 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 <h2>Advanced filtering</h2>
 <div class="ulist">
 <ul>
-<li class="slide"><code>=~ "regexp"</code> allows to filter using regular expressions</li>
-<li class="slide">patterns can be used as well</li>
+<li class="slide"><code>=~ "regexp"</code> allows to filter using regular expressions, use flags for lowercase <code>?i</code></li>
+<li class="slide">graph-patterns can be used as well</li>
 </ul>
 </div>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (d:Dept), (h:Human)
-WHERE h.name =~ "A.*" AND h&lt;-[:LEAD]-d
+WHERE h.name =~ "A.*" AND (h)&lt;-[:LEAD]-(d)
 RETURN h.name, d.name;</textarea>
 </div>
 </div>
@@ -1291,9 +1298,8 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <h2>Departments of "GraphIT"</h2>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code" mode="cypher">MATCH (d:Dept)-[:PARENT*0..]-&gt;(o:Org)
-OPTIONAL MATCH (h:Human)&lt;-[:EMPLOYEE]-&gt;d
-WHERE o.name = "GraphIT"
+<textarea class="code" mode="cypher">MATCH (d:Dept)-[:PARENT*0..]-&gt;(o:Org {name:"GraphIT"})
+OPTIONAL MATCH (h:Human)&lt;-[:EMPLOYEE]-&gt;(d)
 RETURN d.name, collect(h.name) as employees;</textarea>
 </div>
 </div>
@@ -1303,7 +1309,7 @@ RETURN d.name, collect(h.name) as employees;</textarea>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (h:Human)&lt;-[:EMPLOYEE]-&gt;(d1:Dept),
-h&lt;-[:EMPLOYEE]-&gt;(d2:Dept)
+      (h)&lt;-[:EMPLOYEE]-&gt;(d2:Dept)
 RETURN DISTINCT h.name;</textarea>
 </div>
 </div>
@@ -1354,7 +1360,7 @@ WITH
 RETURN extract(n IN persons | n.name);</textarea>
 </div>
 </div>
-<div class="paragraph slide"><p><code>WITH</code> allows you to modify/filter result sets</p></div>
+<div class="paragraph slide"><p><code>WITH</code> allows you to transfer, project, limit and sort results between query parts</p></div>
 </section>
 <section class="slide" id="_explore_the_database">
 <h2>Explore the database</h2>
@@ -1383,7 +1389,13 @@ derivative of <a href="https://www.flickr.com/photos/somegeekintn/3458948437">"M
 </section>
 <section class="slide" id="_transactions">
 <h2>Transactions</h2>
-<div class="paragraph slide"><p>Every modifying cypher statement runs in a transaction.</p></div>
+<div class="ulist">
+<ul>
+<li class="slide">Every modifying cypher statement runs in a transaction.</li>
+<li class="slide">In the Neo4j-Shell you can use <code>begin</code>, <code>commit</code> and <code>rollback</code> to control transactional scope.</li>
+<li class="slide">The Cypher-HTTP endpoint also allows transaction control.</li>
+</ul>
+</div>
 </section>
 <section class="slide" id="_creating_nodes">
 <h2>Creating nodes</h2>
@@ -1410,6 +1422,10 @@ SET h.emal = "gina@smith.com"
 RETURN h;</textarea>
 </div>
 </div>
+<section class="slide" id="_ups_misspelt_code_email_code">
+<h3>Ups, misspelt <code>email</code></h3>
+
+</section>
 </section>
 <section class="slide" id="_removing_properties">
 <h2>Removing properties</h2>
@@ -1429,9 +1445,9 @@ RETURN h;</textarea>
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (h:Human), (p:Project)-[:BELONGS_TO]-&gt;(d:Dept)
 WHERE h.name="Gina" AND p.name = "Project X"
-CREATE UNIQUE p-[m:MEMBER {role: "developer"}]-&gt;h
-CREATE UNIQUE d-[e:EMPLOYEE {hoursPerWeek: 40}]-&gt;h
-RETURN h, m, p, d;</textarea>
+MERGE (p)-[m:MEMBER {role: "developer"}]-&gt;(h)
+MERGE (d)-[e:EMPLOYEE {hoursPerWeek: 40}]-&gt;(h)
+RETURN h, m, p, d, e;</textarea>
 </div>
 </div>
 </section>
@@ -1495,6 +1511,14 @@ RETURN h;</textarea>
 <textarea class="code" mode="cypher">CREATE INDEX ON :Human(name);</textarea>
 </div>
 </div>
+<section class="slide" id="_and_constraints">
+<h3>And constraints</h3>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">CREATE CONSTRAINT ON (h:Human) ASSERT h.name IS UNIQUE;</textarea>
+</div>
+</div>
+</section>
 </section>
 <section class="slide" id="_shortest_path">
 <h2>Shortest path</h2>
@@ -1502,7 +1526,7 @@ RETURN h;</textarea>
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (h1:Human {name: "Alice"}),
   (h2:Human {name: "Charlene"}),
-  p=shortestPath(h1-[:EMPLOYEE|LEAD*]-h2)
+  p=shortestPath((h1)-[:EMPLOYEE|LEAD*..20]-(h2))
 RETURN length(nodes(p));</textarea>
 </div>
 </div>
@@ -1515,10 +1539,14 @@ RETURN length(nodes(p));</textarea>
 <li class="slide"><code>UNION</code></li>
 <li class="slide"><code>UNWIND</code></li>
 <li class="slide"><code>FOREACH</code></li>
+<li class="slide"><code>LOAD CSV</code></li>
 <li class="slide"><code>START</code></li>
-<li class="slide">CSV import</li>
 </ul>
 </div>
+<section class="slide" id="_check_out_the_cypher_refcard">
+<h3>Check out the Cypher Refcard</h3>
+<div class="paragraph"><p><a class="bare" href="http://docs.neo4j.org/refcard/2.1.4/">http://docs.neo4j.org/refcard/2.1.4/</a></p></div>
+</section>
 </section>
 <section class="slide canvas-image" id="_it_s_your_turn_3" style="background-image: url(./img/coding-sw.jpg)">
 <div class="paragraph canvas-caption"><p class="center">It&#8217;s your turn!</p></div>
@@ -1531,9 +1559,9 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <div class="ulist">
 <ul>
 <li>Create a new organization "MyCom" with "Department 1" to "Department 4" and offices in Amsterdam and Madrid.</li>
-<li>Let John work for "Department 3" with 30 hours per week and let Karen the lead of this department.</li>
+<li>Let John work for "Department 3" with 30 hours per week and let Karen be the lead of this department.</li>
 <li>Remove all humans that are not employee or lead of any department.</li>
-<li>Create a CSV file with some names and e-mail addresses and import these persons with <code>LOAD CSV</code> into your database and let they become employees of "Department 4".</li>
+<li>Create a CSV file with some names and e-mail addresses and import these people with <code>LOAD CSV</code> into your database and let them become employees of "Department 4".</li>
 </ul>
 </div>
 </section>
@@ -1543,13 +1571,13 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 <div class="content">
 <textarea class="code" mode="cypher">CREATE (o:Org:Dept:Person {name: "MyCom"})
 FOREACH (num IN range(1,4) |
-  CREATE o&lt;-[:PARENT]-(d:Dept {name: "Department " + num}))
+  CREATE (o)&lt;-[:PARENT]-(d:Dept {name: "Department " + num}))
 MERGE (n:Country {name: "Netherlands"})
 MERGE (s:Country {name: "Spain"})
-MERGE (a:City {name: "Amsterdam"})-[:IS_IN]-&gt;n
-MERGE (m:City {name: "Madrid"})-[:IS_IN]-&gt;s
-CREATE o-[:SITE]-&gt;(:Office)-[:LOCATION]-&gt;a
-CREATE o-[:SITE]-&gt;(:Office)-[:LOCATION]-&gt;m
+MERGE (a:City {name: "Amsterdam"})-[:IS_IN]-&gt;(n)
+MERGE (m:City {name: "Madrid"})-[:IS_IN]-&gt;(s)
+CREATE (o)-[:SITE]-&gt;(:Office)-[:LOCATION]-&gt;(a)
+CREATE (o)-[:SITE]-&gt;(:Office)-[:LOCATION]-&gt;(m)
 RETURN o;</textarea>
 </div>
 </div>
@@ -1562,9 +1590,9 @@ RETURN o;</textarea>
 WHERE o.name = "MyCom"
   AND d.name = "Department 3"
 CREATE (j:Human {name: "John"}),
-  j&lt;-[:EMPLOYEE {hoursPerWeek: 30}]-d
+  (j)&lt;-[:EMPLOYEE {hoursPerWeek: 30}]-(d)
 CREATE (k:Human {name: "Karen"}),
-  k&lt;-[:LEAD]-d
+  (k)&lt;-[:LEAD]-(d)
 RETURN j, k;</textarea>
 </div>
 </div>
@@ -1574,7 +1602,7 @@ RETURN j, k;</textarea>
 <div class="listingblock slide">
 <div class="content">
 <textarea class="code" mode="cypher">MATCH (h:Human)
-WHERE NOT h&lt;-[:EMPLOYEE]-() AND NOT h&lt;-[:LEAD]-()
+WHERE NOT (h)&lt;-[:EMPLOYEE|:LEAD]-()
 DELETE h;</textarea>
 </div>
 </div>
@@ -1584,7 +1612,7 @@ DELETE h;</textarea>
 <div class="paragraph slide"><p>persons.csv</p></div>
 <div class="listingblock slide">
 <div class="content">
-<textarea class="code">"Lars Higgs","lars@higgs.com"
+<textarea class="code" mode="csv">"Lars Higgs","lars@higgs.com"
 "Maura Wilson","maura@wilson.com"</textarea>
 </div>
 </div>
@@ -1592,6 +1620,24 @@ DELETE h;</textarea>
 <div class="content">
 <textarea class="code" mode="cypher">LOAD CSV FROM 'file:///tmp/persons.csv' AS line
 CREATE (h:Human {name: line[0], email: line[1]});</textarea>
+</div>
+</div>
+</section>
+<section class="slide" id="_import_csv_2">
+<h2>Import CSV (2)</h2>
+<div class="paragraph slide"><p>persons.csv</p></div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="csv">name,email
+"Lars Higgs";"lars@higgs.com"
+"Maura Wilson";"maura@wilson.com"</textarea>
+</div>
+</div>
+<div class="listingblock slide">
+<div class="content">
+<textarea class="code" mode="cypher">LOAD CSV FROM 'file:///tmp/persons.csv' WITH HEADERS AS line
+FIELDTERMINATOR ";"
+MERGE (h:Human {email: line.email}) ON CREATE SET h.name = line.name;</textarea>
 </div>
 </div>
 </section>
@@ -1611,6 +1657,16 @@ derivative of <a href="https://www.flickr.com/photos/bortescristian/8442828274">
 <li>Bi-directional relations</li>
 <li>Many-to-many relations</li>
 <li>Schema and/or data migrations</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_technical_aspects">
+<h2>Technical aspects</h2>
+<div class="ulist">
+<ul>
+<li>Index-free adjencency</li>
+<li>(De-)normilization</li>
+<li>Null values and Not-Null-Constraints</li>
 </ul>
 </div>
 </section>

@@ -13,7 +13,7 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 == Datatypes
 
 [options="step"]
-- decimal: double or integer (hexadecimal and octal as well)
+- decimal: floating point or integer (hexadecimal and octal as well)
 - string
 - boolean
 - lists: [3, 4, 5]
@@ -35,11 +35,8 @@ derivative of <a href="https://www.flickr.com/photos/x1brett/6665955101">"Binary
 [role="canvas-caption", position="center"]
 Functions
 
-++++
-<div class="img-ref">
-<a href="https://www.flickr.com/photos/vestman/4908148942">"Function"</a> by <a href="https://www.flickr.com/photos/vestman/">Vestman</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+https://www.flickr.com/photos/vestman/4908148942[Function] by https://www.flickr.com/photos/vestman/[Vestman] / http://creativecommons.org/licenses/by/2.0/[CC BY]
 
 == Scalar functions
 
@@ -55,8 +52,8 @@ Functions
 == Mathematical and string functions
 [options="step"]
 - mathematical functions like `abs`, `sin`, `floor`, `sqrt`, ...
-- string functions like `trim`, substring, `replace`, ...
-- `toint` / `tofloat` / `tostring`: converting to int / float / string
+- string functions like `trim`, substring, `replace`, `split`, `length` ...
+- `toInt` / `toFloat` / `toString`: converting to int / float / string
 
 
 == Predicates
@@ -65,6 +62,9 @@ Functions
 - `ANY(x IN coll WHERE pred)`: tests if pred is true for at least one value in coll
 - `NONE(x IN coll WHERE pred)`: tests if pred is true for no value in coll
 - `SINGLE(x IN coll WHERE pred)`: tests if pred is true for exactly one value in coll
+
+== Predicates (cont.)
+[options="step"]
 - `EXISTS(x.prop)`: tests if x has the property prop
 - `EXISTS(pattern)`: tests if the given pattern exists
 
@@ -79,19 +79,20 @@ Functions
 [options="step"]
 - `tail(c)`: all but the first element of a collection
 - `extract(x IN coll | expr)`: maps all values in coll using expr
-- `filter(x IN COLL | pred)`: returns a collection with all elements for that pred is true
+- `filter(x IN coll WHERE pred)`: returns a collection with all elements for that pred is true
+- `[x in coll WHERE pred | expr]` combines filter and extract in one construct
 - `reduce(acc = inital, x IN coll | expr)`: reduces values in coll using acc and expr
 
 == Advanced filtering
 
 [options="step"]
-- `=~ "regexp"` allows to filter using regular expressions
-- patterns can be used as well
+- `=~ "regexp"` allows to filter using regular expressions, use flags for lowercase `?i`
+- graph-patterns can be used as well
 
 [source,cypher,options="step"]
 ----
 MATCH (d:Dept), (h:Human)
-WHERE h.name =~ "A.*" AND h<-[:LEAD]-d
+WHERE h.name =~ "A.*" AND (h)<-[:LEAD]-(d)
 RETURN h.name, d.name;
 ----
 

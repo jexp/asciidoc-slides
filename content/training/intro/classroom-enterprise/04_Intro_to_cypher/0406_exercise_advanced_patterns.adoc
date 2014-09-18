@@ -63,7 +63,7 @@ LIMIT 3;
 [source,cypher,options="step"]
 ----
 MATCH (h:Human)<-[m1:MEMBER]-(p1:Project),
-h<-[m2:MEMBER]-(p2:Project)
+      (h)<-[m2:MEMBER]-(p2:Project)
 WHERE m1.role = m2.role
 RETURN h.name AS name, p1.name, p2.name, m1.role as role;
 ----
