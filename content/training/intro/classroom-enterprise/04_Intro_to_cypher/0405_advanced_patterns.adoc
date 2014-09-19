@@ -66,8 +66,8 @@ Relationships can have attributes as well
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[m:MEMBER]-(p:Project)
-WHERE h.name = "Charlene"
+MATCH (p:Person)<-[m:MEMBER]-(:Project)
+WHERE p.name = "Charlene"
 RETURN m.role;
 ----
 
@@ -76,7 +76,7 @@ RETURN m.role;
 
 [source,cypher,options="step"]
 ----
-MATCH p=(a:Human)<-[:EMPLOYEE]-(d)-[:EMPLOYEE]->(b:Human)
+MATCH p=(a:Person)<-[:EMPLOYEE]-(d)-[:EMPLOYEE]->(b:Person)
 WHERE a.name = "Daniel"
 RETURN p;
 ----
@@ -85,13 +85,13 @@ RETURN p;
 
 [source,cypher,options="step"]
 ----
-MATCH p = (a)-[:X*0..]->(b)
+MATCH p = (a)-[:REL*0..]->(b)
 RETURN p;
 ----
 
 [source,cypher,options="step"]
 ----
-MATCH p = (a)-[:X*1..3]->(b)
+MATCH p = (a)-[:REL*1..3]->(b)
 RETURN p;
 ----
 
@@ -103,8 +103,8 @@ RETURN p;
 
 [source,cypher,options="step"]
 ----
-MATCH (h)<-[:EMPLOYEE]-(d)
-RETURN h.name as employee, 
+MATCH (p)<-[:EMPLOYEE]-(d)
+RETURN p.name as employee, 
   d.name as `department`;
 ----
 
@@ -114,11 +114,8 @@ RETURN h.name as employee,
 [role="canvas-caption", position="center"]
 Aggregation
 
-++++
-<div class="img-ref">
-derivative of <a href="https://www.flickr.com/photos/zscheyge/49012397">"Building Blocks"</a> by <a href="https://www.flickr.com/photos/zscheyge/">Holger Zscheyge</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+derivative of https://www.flickr.com/photos/zscheyge/49012397["Building Blocks"] by https://www.flickr.com/photos/zscheyge/[Holger Zscheyge] / http://creativecommons.org/licenses/by/2.0/[CC BY]
 
 == Aggregation
 
@@ -127,7 +124,7 @@ derivative of <a href="https://www.flickr.com/photos/zscheyge/49012397">"Buildin
 
 [source,cypher,options="step"]
 ----
-MATCH (h)<-[:EMPLOYEE]-(d)
+MATCH (p)<-[:EMPLOYEE]-(d)
 RETURN d.name, count(*);
 ----
 
@@ -137,8 +134,8 @@ RETURN d.name, count(*);
 [source,cypher,options="step"]
 ----
 MATCH (d:Dept)
-OPTIONAL MATCH (h)<-[:EMPLOYEE]-(d)
-RETURN d.name, count(h);
+OPTIONAL MATCH (p)<-[:EMPLOYEE]-(d)
+RETURN d.name, count(p);
 ----
 
 
@@ -149,7 +146,7 @@ returns only departments with at least one member
 
 [source,cypher,options="step"]
 ----
-MATCH (h)<-[:EMPLOYEE]-(d)
+MATCH (p)<-[:EMPLOYEE]-(d)
 RETURN d.name, count(*);
 ----
 
@@ -160,8 +157,8 @@ returns all departments
 [source,cypher,options="step"]
 ----
 MATCH (d:Dept)
-OPTIONAL MATCH (h)<-[:EMPLOYEE]-(d)
-RETURN d.name, count(h);
+OPTIONAL MATCH (p)<-[:EMPLOYEE]-(d)
+RETURN d.name, count(p);
 ----
 
 == Collecting
@@ -189,11 +186,11 @@ RETURN o.name AS organization,
 == Sorting
 
 [options="step"]
-`ORDER BY [ASC|DESC]` sorts the results (by multiple properties)
+`ORDER BY expr [ASC|DESC]` sorts the results (by multiple properties)
 
 [source,cypher,options="step"]
 ----
-MATCH (city:City)--(country:Country)
+MATCH (city:City)-[:IS_IN]->(country:Country)
 RETURN country.name, city.name
 ORDER BY country.name, city.name;
 ----
@@ -206,9 +203,9 @@ ORDER BY country.name, city.name;
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)
-RETURN h.name
-ORDER BY h.name
+MATCH (p:Person)
+RETURN p.name
+ORDER BY p.name
 SKIP 3
 LIMIT 5;
 ----

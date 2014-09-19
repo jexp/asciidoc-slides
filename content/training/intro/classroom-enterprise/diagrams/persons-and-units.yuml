@@ -1,20 +1,20 @@
 http://yuml.me/96d17b55
 
-[Person|name]^-[Human|dayOfBirth], 
-[Person]^-[Organization|legalForm], 
-[Person]-address->[Address],
-[Person]-location->[City],
-[Human]-birthplace->[City],
+[Entity|name]^-[Person|dayOfBirth], 
+[Entity]^-[Organization|legalForm], 
+[Entity]-address->[Address],
+[Entity]-location->[City],
+[Person]-birthplace->[City],
 [Organization|taxId],
-[Department|name]-employee->[Human], 
-[Department]-lead->[Human], 
+[Department|name]-employee->[Person], 
+[Department]-lead->[Person], 
 [Department]-parent->[Department], 
 [Department]^-[Organization],
 [Organization]-site->[Office],
 [Office]-location->[City],
 [Project|title;startDate;endDate]-site->[Office]
 [Project]-belongsTo->[Department],
-[Project]-member->[Human],
+[Project]-member->[Person],
 [Location|coordinates]^-[Address|street;zipCode],
 [Address]-city->[City],
 [Location]^-[City],
@@ -28,17 +28,17 @@ SIMPLIFIED:
 
 http://yuml.me/c789ab00
 
-[Person|name]^-[Human], 
-[Person]^-[Organization], 
-[Person]-location->[City],
+[Entity|name]^-[Person], 
+[Entity]^-[Organization], 
+[Entity]-location->[City],
 [Organization],
-[Department|name]-employee->[Human], 
-[Department]-lead->[Human], 
+[Department|name]-employee->[Person], 
+[Department]-lead->[Person], 
 [Department]-parent->[Department], 
 [Department]^-[Organization],
 [Organization]-site->[Office],
 [Office]-location->[City],
 [Project|title]-site->[Office]
 [Project]-belongsTo->[Department],
-[Project]-member->[Human],
+[Project]-member->[Person],
 [City]-isIn->[Country]

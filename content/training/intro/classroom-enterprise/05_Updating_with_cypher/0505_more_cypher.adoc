@@ -2,14 +2,14 @@
 
 [source,cypher,options="step"]
 ----
-CREATE INDEX ON :Human(name);
+CREATE INDEX ON :Person(name);
 ----
 
 === And constraints
 
 [source,cypher,options="step"]
 ----
-CREATE CONSTRAINT ON (h:Human) ASSERT h.name IS UNIQUE;
+CREATE CONSTRAINT ON (p:Person) ASSERT p.name IS UNIQUE;
 ----
 
 
@@ -17,10 +17,10 @@ CREATE CONSTRAINT ON (h:Human) ASSERT h.name IS UNIQUE;
 
 [source,cypher,options="step"]
 ----
-MATCH (h1:Human {name: "Alice"}), 
-  (h2:Human {name: "Charlene"}),  
-  p=shortestPath((h1)-[:EMPLOYEE|LEAD*..20]-(h2))
-RETURN length(nodes(p));
+MATCH (p1:Person {name: "Alice"}), 
+      (p2:Person {name: "Charlene"}),  
+      path=shortestPath((p1)-[:EMPLOYEE|:LEAD*..20]-(p2))
+RETURN length(path);
 ----
 
 == More cypher features

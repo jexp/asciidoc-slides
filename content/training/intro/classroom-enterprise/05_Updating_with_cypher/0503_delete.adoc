@@ -2,7 +2,7 @@
 
 [source,cypher,options="step"]
 ----
-MATCH (gina:Human)
+MATCH (gina:Person)
 WHERE gina.name="Gina"
 DELETE gina;
 ----
@@ -15,7 +15,7 @@ This will not work because the node has relationships!
 
 [source,cypher,options="step"]
 ----
-MATCH (gina:Human)-[r]-()
+MATCH (gina:Person)-[r]-()
 WHERE gina.name="Gina"
 DELETE r, gina;
 ----

@@ -4,11 +4,10 @@
 [role="canvas-caption", position="center"]
 Start coding!
 
-++++
-<div class="img-ref">
-derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female Typing"</a> by <a href="https://www.flickr.com/photos/adikos/">Adikos</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+derivative of href="https://www.flickr.com/photos/adikos/4440682278["Female Typing"] by 
+https://www.flickr.com/photos/adikos/[Adikos] / 
+http://creativecommons.org/licenses/by/2.0/[CC BY]
 
 == First Excercise
 
@@ -17,7 +16,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 - Which organizations have offices in Paris?
 - In which countries has "GraphIT" offices? 
 
-_Labels: Human, Org, Dept, Person, Office, City_
+_Labels: Person, Org, Dept, Entity, Office, City_
 
 _Relationship Types: EMPLOYEE, SITE, LOCATION, IS_IN_
 
@@ -27,9 +26,6 @@ _All nodes have a `name` property_
 
 [options="step"]
 Pattern
-
-
-== Find all organizations
 
 Pattern
 
@@ -65,13 +61,13 @@ Pattern
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="4.26" data-external-scale="0.6">
     <li class="node" data-node-id="4" data-x="-1697.3037903549252" data-y="-31.244897959183675">
-      <span class="caption">h:Human</span>
+      <span class="caption">p:Person</span>
     </li>
     <li class="node" data-node-id="5" data-x="-1498.2804922128632" data-y="-31.244897959183675">
       <span class="caption">d:Dept</span>
     </li>
     <li class="node" data-node-id="6" data-x="-1297.1275555499185" data-y="-31.244897959183675">
-      <span class="caption">b:Human</span>
+      <span class="caption">b:Person</span>
     </li>
     <li class="relationship" data-from="5" data-to="4">
       <span class="type">:EMPLOYEE</span>
@@ -88,9 +84,9 @@ Cypher
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept),
-  d-[:EMPLOYEE]->(b:Human)
-WHERE h.name = "Daniel"
+MATCH (p:Person)<-[:EMPLOYEE]-(d:Dept),
+      (d)-[:EMPLOYEE]->(b:Person)
+WHERE p.name = "Daniel"
 RETURN b.name;
 ----
 

@@ -23,10 +23,10 @@ http://creativecommons.org/licenses/by/2.0/[CC BY]
 .Who is working in "Project X" at "GraphIT"?
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[:MEMBER]-(p:Project),
-  p-[:BELONGS_TO]->(:Dept)-[:PARENT*0..]->(o:Org)
-WHERE p.name = "Project X" AND o.name = "GraphIT"
-RETURN h.name;
+MATCH (p:Person)<-[:MEMBER]-(pr:Project),
+      (pr)-[:BELONGS_TO]->(:Dept)-[:PARENT*0..]->(o:Org)
+WHERE pr.name = "Project X" AND o.name = "GraphIT"
+RETURN p.name;
 ----
 
 == Department Lead 
@@ -34,10 +34,10 @@ RETURN h.name;
 .Who is the lead of the "QA" department at "GraphIT"?
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[:LEAD]-(d:Dept),
-  d-[:PARENT*0..]->(o:Org)
+MATCH (p:Person)<-[:LEAD]-(d:Dept),
+      (d)-[:PARENT*0..]->(o:Org)
 WHERE d.name = "QA" AND o.name = "GraphIT"
-RETURN h.name;
+RETURN p.name;
 ----
 
 == Weekly Worktime
@@ -45,8 +45,8 @@ RETURN h.name;
 .How many hours per week is Daniel working?
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[e:EMPLOYEE]-(d:Dept)
-WHERE h.name = "Daniel"
+MATCH (p:Person)<-[e:EMPLOYEE]-(d:Dept)
+WHERE p.name = "Daniel"
 RETURN sum(e.hoursPerWeek) as `hours per week`;
 ----
 
@@ -55,8 +55,8 @@ RETURN sum(e.hoursPerWeek) as `hours per week`;
 .Find the three persons with the lowest hours per week.
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[e:EMPLOYEE]-(d:Dept)
-RETURN h.name AS name, sum(e.hoursPerWeek) as `hours per week`
+MATCH (p:Person)<-[e:EMPLOYEE]-(d:Dept)
+RETURN p.name AS name, sum(e.hoursPerWeek) as `hours per week`
 ORDER BY `hours per week`
 LIMIT 3;
 ----
@@ -66,10 +66,10 @@ LIMIT 3;
 .Who is having the same role in projects? 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[m1:MEMBER]-(p1:Project),
-      (h)<-[m2:MEMBER]-(p2:Project)
+MATCH (p:Person)<-[m1:MEMBER]-(pr1:Project),
+      (p)<-[m2:MEMBER]-(pr2:Project)
 WHERE m1.role = m2.role
-RETURN h.name AS name, p1.name, p2.name, m1.role as role;
+RETURN p.name AS name, pr1.name, pr2.name, m1.role as role;
 ----
 
 == Superiors
@@ -77,8 +77,8 @@ RETURN h.name AS name, p1.name, p2.name, m1.role as role;
 .Is Alice a superior of Daniel?
 [source,cypher,options="step"]
 ----
-MATCH (a:Human)<-[:LEAD]-(d1:Dept),
-  d1<-[:PARENT*0..]-(:Dept)-[:EMPLOYEE]->(d:Human)
+MATCH (a:Person)<-[:LEAD]-(d1:Dept),
+      (d1)<-[:PARENT*0..]-(:Dept)-[:EMPLOYEE]->(d:Person)
 WHERE a.name = "Alice" 
   AND d.name = "Daniel"
 RETURN a, d;

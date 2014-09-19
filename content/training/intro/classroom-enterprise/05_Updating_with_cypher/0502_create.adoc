@@ -4,11 +4,10 @@
 [role="canvas-caption", position="center"]
 ACID?
 
-++++
-<div class="img-ref">
-derivative of <a href="https://www.flickr.com/photos/somegeekintn/3458948437">"Medicine Cabinet"</a> by <a href="https://www.flickr.com/photos/somegeekintn/">Casey Fleser</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+derivative of https://www.flickr.com/photos/somegeekintn/3458948437["Medicine Cabinet"] by 
+https://www.flickr.com/photos/somegeekintn/[Casey Fleser] / 
+http://creativecommons.org/licenses/by/2.0/[CC BY]
 
 == Transactions
 
@@ -21,24 +20,24 @@ derivative of <a href="https://www.flickr.com/photos/somegeekintn/3458948437">"M
 
 [source,cypher,options="step"]
 ----
-CREATE (h:Human {name: "Gina"});
+CREATE (p:Person {name: "Gina"});
 ----
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)
-WHERE h.name="Gina"
-RETURN h;
+MATCH (p:Person)
+WHERE p.name="Gina"
+RETURN p;
 ----
 
 == Editing properties
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)
-WHERE h.name="Gina"
-SET h.emal = "gina@smith.com"
-RETURN h;
+MATCH (p:Person)
+WHERE p.name="Gina"
+SET p.emal = "gina@smith.com"
+RETURN p;
 ----
 
 === Ups, misspelt `email`
@@ -46,20 +45,20 @@ RETURN h;
 == Removing properties
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)
-WHERE h.name="Gina"
-SET h.email = h.emal
-REMOVE h.emal
-RETURN h;
+MATCH (p:Person)
+WHERE p.name="Gina"
+SET p.email = p.emal
+REMOVE p.emal
+RETURN p;
 ----
 
 == Creating relationships
 [source,cypher,options="step"]
 ----
-MATCH (h:Human), (p:Project)-[:BELONGS_TO]->(d:Dept)
-WHERE h.name="Gina" AND p.name = "Project X"
-MERGE (p)-[m:MEMBER {role: "developer"}]->(h)
-MERGE (d)-[e:EMPLOYEE {hoursPerWeek: 40}]->(h)
-RETURN h, m, p, d, e;
+MATCH (p:Person), (pr:Project)-[:BELONGS_TO]->(d:Dept)
+WHERE p.name="Gina" AND pr.name = "Project X"
+CREATE (pr)-[m:MEMBER {role: "developer"}]->(p)
+CREATE (d)-[e:EMPLOYEE {hoursPerWeek: 40}]->(p)
+RETURN p, m, pr, d, e;
 ----
 

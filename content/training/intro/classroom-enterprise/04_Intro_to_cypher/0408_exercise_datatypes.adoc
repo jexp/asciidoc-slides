@@ -24,44 +24,44 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 [source,cypher,options="step"]
 ----
 MATCH (d:Dept)-[:PARENT*0..]->(o:Org {name:"GraphIT"})
-OPTIONAL MATCH (h:Human)<-[:EMPLOYEE]->(d)
-RETURN d.name, collect(h.name) as employees;
+OPTIONAL MATCH (p:Person)<-[:EMPLOYEE]->(d)
+RETURN d.name, collect(p.name) as employees;
 ----
 
 == 2. Who is working for at least two departments?
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[:EMPLOYEE]->(d1:Dept),
-      (h)<-[:EMPLOYEE]->(d2:Dept)
-RETURN DISTINCT h.name;
+MATCH (p:Person)<-[:EMPLOYEE]->(d1:Dept),
+      (p)<-[:EMPLOYEE]->(d2:Dept)
+RETURN DISTINCT p.name;
 ----
 
 ////
-MATCH (h:Human)<-[:EMPLOYEE]->(d:Dept)
-WITH h, count(distinct d) as cnt
+MATCH (p:Person)<-[:EMPLOYEE]->(d:Dept)
+WITH p, count(distinct d) as cnt
 WHERE cnt > 1
-RETURN h
+RETURN p
 ////
 
-== 3. Persons with name starting with an E
+== 3. Entities with name starting with an E
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)
-WHERE h.name =~ "E.*"
-RETURN h.name;
+MATCH (p:Person)
+WHERE p.name =~ "E.*"
+RETURN p.name;
 ----
 
 == 4. Connection from Alice to Charlene
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE|LEAD*0..]-(c:Human)
+MATCH path=(a:Person)-[:EMPLOYEE|LEAD*0..]-(c:Person)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 RETURN 
-  length(filter(n IN nodes(path) WHERE "Human" IN LABELS(n)));
+  length(filter(n IN nodes(path) WHERE n:Person));
 ----
 
 
@@ -69,7 +69,7 @@ RETURN
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE|:LEAD*]-(c:Human)
+MATCH path=(a:Person)-[:EMPLOYEE|:LEAD*]-(c:Person)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 RETURN extract(n IN nodes(path) | n.name);
@@ -79,11 +79,11 @@ RETURN extract(n IN nodes(path) | n.name);
 
 [source,cypher,options="step"]
 ----
-MATCH path=(a:Human)-[:EMPLOYEE|:LEAD*]-(c:Human)
+MATCH path=(a:Person)-[:EMPLOYEE|:LEAD*]-(c:Person)
 WHERE a.name = "Alice"
   AND c.name = "Charlene"
 WITH 
-  filter(n IN nodes(path) WHERE "Human" IN labels(n)) 
+  filter(n IN nodes(path) WHERE n:Person) 
   AS persons
 RETURN extract(n IN persons | n.name);
 ----
@@ -91,6 +91,13 @@ RETURN extract(n IN persons | n.name);
 [options="step"]
 `WITH` allows you to transfer, project, limit and sort results between query parts
 
+[source,cypher]
+----
+MATCH path=(a:Person)-[:EMPLOYEE|:LEAD*]-(c:Person)
+WHERE a.name = "Alice"
+  AND c.name = "Charlene"
+WITH [n IN nodes(path) WHERE n:Person | n.name];
+----
 
 
 == Explore the database

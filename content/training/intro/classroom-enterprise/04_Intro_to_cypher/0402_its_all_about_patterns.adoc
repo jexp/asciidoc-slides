@@ -10,11 +10,11 @@ with SQL:
 [options="step"]
 [source,plsql]
 ----
-SELECT * FROM Human
-LEFT JOIN Human_Department 
-  ON Human.Id = Human_Department.HumanId
+SELECT * FROM Person
+LEFT JOIN Person_Department 
+  ON Person.Id = Person_Department.PersonId
 LEFT JOIN Department 
-  ON Department.Id = Human_Department.DepartmentId
+  ON Department.Id = Person_Department.DepartmentId
 WHERE Department.name = "IT-Department"
 ----
 
@@ -28,11 +28,10 @@ with Cypher...
 [role="canvas-caption", position="center"]
 It's all about patterns
 
-++++
-<div class="img-ref">
-<a href="https://www.flickr.com/photos/just-textures/14225505282">"16_22_inv"</a> by <a href="https://www.flickr.com/photos/just-textures/">Ed Jones</a> / <a href="http://creativecommons.org/licenses/by/2.0/">CC BY</a>
-<div>
-++++
+[role="img-ref"]
+https://www.flickr.com/photos/just-textures/14225505282["16_22_inv"] by 
+https://www.flickr.com/photos/just-textures/[Ed Jones] / 
+http://creativecommons.org/licenses/by/2.0/[CC BY]
 
 == From Tables to Patterns
 
@@ -49,7 +48,7 @@ What graph pattern are we looking for?
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">h:Human</span>
+      <span class="caption">p:Person</span>
     </li>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
       <span class="caption">d:Dept</span>
@@ -67,7 +66,7 @@ The pattern in Cypher:
 [options="step"]
 [source,cypher]
 ----
-(h:Human)<-[:EMPLOYEE]-(d:Dept)
+(p:Person)<-[:EMPLOYEE]-(d:Dept)
 ----
 
 == From SQL to Cypher
@@ -78,8 +77,8 @@ The pattern in Cypher:
 [options="step"]
 [source,cypher]
 ----
-MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
-RETURN h.name, d.name
+MATCH (p:Person)<-[:EMPLOYEE]-(d:Dept)
+RETURN p.name, d.name
 ----
 
 [options="step"]
@@ -88,9 +87,9 @@ RETURN h.name, d.name
 [options="step"]
 [source,cypher]
 ----
-MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
+MATCH (p:Person)<-[:EMPLOYEE]-(d:Dept)
 WHERE d.name = "IT-Department"
-RETURN h.name, d.name
+RETURN p.name, d.name
 ----
 
 == SQL vs. Cypher
@@ -98,18 +97,18 @@ RETURN h.name, d.name
 [options="step"]
 [source,plsql]
 ----
-SELECT * FROM Human
-LEFT JOIN Human_Department 
-  ON Human.Id = Human_Department.HumanId
+SELECT * FROM Person
+LEFT JOIN Person_Department 
+  ON Person.Id = Person_Department.PersonId
 LEFT JOIN Department 
-  ON Department.Id = Human_Department.DepartmentId
+  ON Department.Id = Person_Department.DepartmentId
 WHERE Department.name = "IT-Department
 ----
 
 [options="step"]
 [source,cypher]
 ----
-MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
+MATCH (p:Person)<-[:EMPLOYEE]-(d:Dept)
 WHERE d.name = "IT-Department"
-RETURN h.name, d.name
+RETURN p.name, d.name
 ----

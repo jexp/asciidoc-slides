@@ -1,11 +1,11 @@
 == Match or Create
 
 [options="step"]
-`MERGE` finds existing nodes or creates them
+`MERGE` finds existing nodes, relationships or patterns otherwise creates them
 
 [source,cypher,options="step"]
 ----
-MERGE (h:Human {name:"Harald"})
+MERGE (p:Person {name:"Harald"})
 RETURN h;
 ----
 
@@ -16,8 +16,8 @@ Uses indexes, constraints and locks to guarantee unique lookup and creation.
 
 [source,cypher,options="step"]
 ----
-MERGE (h:Human {name:"Ina"})
-ON CREATE SET h.created = timestamp()
-ON MATCH SET h.accessed = coalesce(h.accessed,0)+1
-RETURN h;
+MERGE (p:Person {name:"Ina"})
+ON CREATE SET p.created = timestamp()
+ON MATCH  SET p.accessed = coalesce(accessed,0)+1
+RETURN p;
 ----

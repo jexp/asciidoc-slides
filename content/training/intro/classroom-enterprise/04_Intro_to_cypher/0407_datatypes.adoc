@@ -91,15 +91,15 @@ https://www.flickr.com/photos/vestman/4908148942[Function] by https://www.flickr
 
 [source,cypher,options="step"]
 ----
-MATCH (d:Dept), (h:Human)
-WHERE h.name =~ "A.*" AND (h)<-[:LEAD]-(d)
-RETURN h.name, d.name;
+MATCH (d:Dept), (p:Person)
+WHERE p.name =~ "A.*" AND (p)<-[:LEAD]-(d)
+RETURN p.name, d.name;
 ----
 
 == Matching multiple relationships
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[:EMPLOYEE|:LEAD]-(d:Dept)
-return h, d;
+MATCH (p:Person)<-[:EMPLOYEE|:LEAD]-(d:Dept)
+return p, d;
 ----

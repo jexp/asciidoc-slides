@@ -21,7 +21,7 @@ derivative of <a href="https://www.flickr.com/photos/adikos/4440682278">"Female 
 
 [source,cypher,options="step"]
 ----
-CREATE (o:Org:Dept:Person {name: "MyCom"})
+CREATE (o:Org:Dept:Entity {name: "MyCom"})
 FOREACH (num IN range(1,4) | 
   CREATE (o)<-[:PARENT]-(d:Dept {name: "Department " + num}))
 MERGE (n:Country {name: "Netherlands"})
@@ -39,9 +39,9 @@ RETURN o;
 MATCH (o:Org)-[:PARENT]-(d:Dept)
 WHERE o.name = "MyCom" 
   AND d.name = "Department 3"
-CREATE (j:Human {name: "John"}),
+CREATE (j:Person {name: "John"}),
   (j)<-[:EMPLOYEE {hoursPerWeek: 30}]-(d)
-CREATE (k:Human {name: "Karen"}),
+CREATE (k:Person {name: "Karen"}),
   (k)<-[:LEAD]-(d)
 RETURN j, k;
 ----
@@ -49,9 +49,9 @@ RETURN j, k;
 == Remove persons without organizational unit
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)
-WHERE NOT (h)<-[:EMPLOYEE|:LEAD]-()
-DELETE h;
+MATCH (p:Person)
+WHERE NOT (p)<-[:EMPLOYEE|:LEAD]-()
+DELETE p;
 ----
 
 == Import CSV
@@ -68,7 +68,7 @@ persons.csv
 [source,cypher,options="step"]
 ----
 LOAD CSV FROM 'file:///tmp/persons.csv' AS line
-CREATE (h:Human {name: line[0], email: line[1]});
+CREATE (p:Person {name: line[0], email: line[1]});
 ----
 
 == Import CSV (2)
@@ -87,7 +87,7 @@ name,email
 ----
 LOAD CSV FROM 'file:///tmp/persons.csv' WITH HEADERS AS line
 FIELDTERMINATOR ";"
-MERGE (h:Human {email: line.email}) ON CREATE SET h.name = line.name;
+MERGE (p:Person {email: line.email}) ON CREATE SET p.name = line.name;
 ----
 
 

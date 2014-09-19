@@ -74,8 +74,8 @@ Find all humans
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)
-RETURN h.name;
+MATCH (p:Person)
+RETURN p.name;
 ----
 
 == Relationship types
@@ -100,8 +100,8 @@ Find employees of a department
 
 [source,cypher,options="step"]
 ----
-MATCH (h)<-[:EMPLOYEE]-(d)
-RETURN h.name, d.name;
+MATCH (p)<-[:EMPLOYEE]-(d)
+RETURN p.name, d.name;
 ----
 
 == Relationship types and labels
@@ -112,7 +112,7 @@ Find employees of a department
 <figure class="graph-diagram">
   <ul class="graph-diagram-markup" data-internal-scale="1.47" data-external-scale="0.5">
     <li class="node" data-node-id="1" data-x="-676" data-y="-19">
-      <span class="caption">h:Human</span>
+      <span class="caption">p:Person</span>
     </li>
     <li class="node" data-node-id="2" data-x="221.7539520263672" data-y="-19">
       <span class="caption">d:Dept</span>
@@ -126,7 +126,7 @@ Find employees of a department
 
 [source,cypher,options="step"]
 ----
-MATCH (h:Human)<-[:EMPLOYEE]-(d:Dept)
-RETURN h.name, d.name;
+MATCH (p:Person)<-[:EMPLOYEE]-(d:Dept)
+RETURN p.name, d.name;
 ----
 
